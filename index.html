@@ -12,6 +12,12 @@
 </head>
 <body>
 
+  <!-- Audio Controls (Soft Background Music) -->
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116035.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-toggle" onclick="toggleAudio()" id="musicBtn">🎵 Play Music</button>
+
   <!-- Background Scrollable Container -->
   <div class="scroll-container">
 
@@ -26,7 +32,7 @@
             <p class="event-tag">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
             
             <div class="scroll-indicator">
-              <span>Scroll / Swipe Down For Details</span>
+              <span>Swipe Down For Details</span>
               <div class="chevron">↓</div>
             </div>
           </div>
@@ -34,13 +40,13 @@
       </div>
     </section>
 
-    <!-- Section 2: Venue & Location (Revealed on Swipe/Scroll) -->
+    <!-- Section 2: Venue & Location (Revealed on Swipe) -->
     <section class="card-section">
       <div class="invitation-card">
         <div class="lace-border">
           <div class="inner-content">
             <p class="section-title">THE CELEBRATION</p>
-            <div class="divider-gold"></div>
+            <div class="divider-emerald"></div>
 
             <div class="event-details">
               <p class="day">FRIDAY, NOVEMBER 13, 2026</p>
@@ -61,13 +67,13 @@
       </div>
     </section>
 
-    <!-- Section 3: Event Schedule & Respectful Note -->
+    <!-- Section 3: Schedule & Polite Note -->
     <section class="card-section">
       <div class="invitation-card">
         <div class="lace-border">
           <div class="inner-content">
             <p class="section-title">EVENT SCHEDULE</p>
-            <div class="divider-gold"></div>
+            <div class="divider-emerald"></div>
 
             <div class="program-schedule">
               <div class="schedule-item"><span>17:00</span> Guest Arrival & Reception</div>
@@ -75,7 +81,7 @@
               <div class="schedule-item"><span>19:30</span> Dinner & Celebration</div>
             </div>
 
-            <div class="divider-gold"></div>
+            <div class="divider-emerald"></div>
 
             <!-- Polite Adults-Only Note -->
             <div class="adults-note">
@@ -88,8 +94,21 @@
         </div>
       </div>
     </section>
- 
+
   </div>
 
+  <script>
+    function toggleAudio() {
+      const music = document.getElementById('bgMusic');
+      const btn = document.getElementById('musicBtn');
+      if (music.paused) {
+        music.play();
+        btn.innerText = "🔊 Mute Music";
+      } else {
+        music.pause();
+        btn.innerText = "🎵 Play Music";
+      }
+    }
+  </script>
 </body>
 </html>
