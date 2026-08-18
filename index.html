@@ -12,41 +12,54 @@
 </head>
 <body>
 
-  <!-- Audio Controls (Soft Background Music) -->
+  <!-- Audio Element -->
   <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116035.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-toggle" onclick="toggleAudio()" id="musicBtn">🎵 Play Music</button>
 
-  <!-- Background Scrollable Container -->
+  <!-- Sound Toggle Button -->
+  <button class="music-toggle" id="musicBtn" onclick="toggleAudio()">🎵 Music On</button>
+
   <div class="scroll-container">
 
-    <!-- Section 1: Main Cover Card -->
+    <!-- Section 1: Interactive Envelope with Main Card Pop-Out -->
     <section class="card-section">
-      <div class="invitation-card">
-        <div class="lace-border">
-          <div class="inner-content">
-            <p class="tagline">TOGETHER WITH THEIR FAMILIES</p>
-            <div class="monogram-seal">S & H</div>
-            <h1 class="script-names large">Sawsan <br><span class="ampersand">&amp;</span><br> Hassan</h1>
-            <p class="event-tag">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
-            
-            <div class="scroll-indicator">
-              <span>Swipe Down For Details</span>
-              <div class="chevron">↓</div>
+      <div class="envelope-wrapper" id="envelopeWrapper">
+        <p class="header-subtitle">A LOVE LETTER TO FOREVER</p>
+        <h1 class="top-names">Sawsan &amp; Hassan</h1>
+
+        <div class="envelope" onclick="openEnvelope()">
+          <div class="envelope-flap"></div>
+          <div class="lace-trim"></div>
+          <div class="wax-seal">🦢</div>
+          
+          <!-- The Main Card popping out -->
+          <div class="popped-card" id="mainCard">
+            <div class="inner-card-border">
+              <p class="tagline">TOGETHER WITH THEIR FAMILIES</p>
+              <div class="monogram-seal">S & H</div>
+              <h1 class="script-names">Sawsan <br><span class="ampersand">&amp;</span><br> Hassan</h1>
+              <p class="event-tag">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
             </div>
           </div>
+        </div>
+
+        <p class="open-instruction" id="openPrompt">TAP ENVELOPE TO OPEN</p>
+
+        <div class="scroll-indicator" id="scrollPrompt" style="display: none;">
+          <span>Swipe Down For Details</span>
+          <div class="chevron">↓</div>
         </div>
       </div>
     </section>
 
-    <!-- Section 2: Venue & Location (Revealed on Swipe) -->
+    <!-- Section 2: Venue & Location Details -->
     <section class="card-section">
       <div class="invitation-card">
         <div class="lace-border">
           <div class="inner-content">
             <p class="section-title">THE CELEBRATION</p>
-            <div class="divider-emerald"></div>
+            <div class="divider-lace"></div>
 
             <div class="event-details">
               <p class="day">FRIDAY, NOVEMBER 13, 2026</p>
@@ -67,13 +80,13 @@
       </div>
     </section>
 
-    <!-- Section 3: Schedule & Polite Note -->
+    <!-- Section 3: Schedule & Respectful Adults-Only Note -->
     <section class="card-section">
       <div class="invitation-card">
         <div class="lace-border">
           <div class="inner-content">
             <p class="section-title">EVENT SCHEDULE</p>
-            <div class="divider-emerald"></div>
+            <div class="divider-lace"></div>
 
             <div class="program-schedule">
               <div class="schedule-item"><span>17:00</span> Guest Arrival & Reception</div>
@@ -81,7 +94,7 @@
               <div class="schedule-item"><span>19:30</span> Dinner & Celebration</div>
             </div>
 
-            <div class="divider-emerald"></div>
+            <div class="divider-lace"></div>
 
             <!-- Polite Adults-Only Note -->
             <div class="adults-note">
@@ -98,15 +111,34 @@
   </div>
 
   <script>
+    let musicStarted = false;
+
+    function openEnvelope() {
+      const wrapper = document.getElementById('envelopeWrapper');
+      const openPrompt = document.getElementById('openPrompt');
+      const scrollPrompt = document.getElementById('scrollPrompt');
+      const music = document.getElementById('bgMusic');
+
+      wrapper.classList.add('opened');
+      openPrompt.style.display = 'none';
+      scrollPrompt.style.display = 'flex';
+
+      // Play soft music upon opening envelope
+      if (!musicStarted) {
+        music.play().catch(() => {});
+        musicStarted = true;
+      }
+    }
+
     function toggleAudio() {
       const music = document.getElementById('bgMusic');
       const btn = document.getElementById('musicBtn');
       if (music.paused) {
         music.play();
-        btn.innerText = "🔊 Mute Music";
+        btn.innerText = "🔊 Music On";
       } else {
         music.pause();
-        btn.innerText = "🎵 Play Music";
+        btn.innerText = "🔇 Muted";
       }
     }
   </script>
