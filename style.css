@@ -5,39 +5,34 @@
 }
 
 body {
-  /* Rich Deep Emerald Green Background with Floral Artwork Overlay */
-  background: linear-gradient(rgba(12, 45, 29, 0.88), rgba(12, 45, 29, 0.88)), 
-              url('https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
+  /* Vintage Textured Dress Background matching your photo */
+  background: linear-gradient(rgba(20, 25, 18, 0.45), rgba(20, 25, 18, 0.45)),
+              url('https://images.unsplash.com/photo-1546804784-896d0dca3800?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
   font-family: 'Montserrat', sans-serif;
-  color: #0c2d1d;
+  color: #2c3328;
   overflow-x: hidden;
 }
 
-/* Audio Control Button */
+/* Music Control Button */
 .music-toggle {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 100;
-  background-color: #ffffff;
-  color: #0c2d1d;
-  border: 1px solid #0c2d1d;
+  top: 18px;
+  right: 18px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  color: #2c3328;
+  border: 1px solid #d4ceb8;
   padding: 8px 14px;
   border-radius: 20px;
   font-size: 10px;
   letter-spacing: 1px;
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.music-toggle:hover {
-  background-color: #0c2d1d;
-  color: #ffffff;
-}
-
-/* Smooth Full-Page Snap Scroll Container */
+/* Snap Scroll Container */
 .scroll-container {
   height: 100vh;
   overflow-y: scroll;
@@ -45,30 +40,141 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Individual Full-Screen Sections */
 .card-section {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   scroll-snap-align: start;
   padding: 20px;
 }
 
-/* Pure White Cards with Delicate Shadows */
-.invitation-card {
-  width: 330px;
-  height: 520px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+/* Top Titles above Envelope */
+.header-subtitle {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #f7f5ed;
+  text-align: center;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* Emerald Frame & Double Lace Line */
+.top-names {
+  font-family: 'Alex Brush', cursive;
+  font-size: 42px;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: normal;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Envelope Container */
+.envelope-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.envelope {
+  position: relative;
+  width: 310px;
+  height: 220px;
+  background-color: #f7f4ec;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+/* Envelope Lace Border & Seal */
+.lace-trim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #d8d0ba;
+  outline: 1px solid #b8ae93;
+  outline-offset: -6px;
+  pointer-events: none;
+}
+
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: #eae5d8;
+  border: 2px solid #c4bca6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: all 0.4s ease;
+}
+
+/* Card Popping Out */
+.popped-card {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  width: 280px;
+  height: 380px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translateY(0) scale(0.9);
+  opacity: 0;
+  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 5;
+}
+
+/* Animation state when envelope is tapped */
+.envelope-wrapper.opened .popped-card {
+  transform: translateY(-90px) scale(1);
+  opacity: 1;
+}
+
+.envelope-wrapper.opened .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.inner-card-border {
+  border: 1px solid #d4ceb8;
+  height: 100%;
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Sub-pages Cards */
+.invitation-card {
+  width: 320px;
+  height: 500px;
+  background-color: #fcfbf7;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
 .lace-border {
-  border: 2px solid #0c2d1d;
-  outline: 1px dashed #2d6a4f;
+  border: 2px solid #5d6754;
+  outline: 1px dashed #a39b8b;
   outline-offset: -8px;
   height: 100%;
   width: 100%;
@@ -87,123 +193,96 @@ body {
 
 .monogram-seal {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  color: #0c2d1d;
-  border: 1px solid #2d6a4f;
+  font-size: 20px;
+  color: #3b4434;
+  border: 1px solid #a39b8b;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px 0;
-  letter-spacing: 2px;
+  margin: 5px 0;
 }
 
 .script-names {
   font-family: 'Alex Brush', cursive;
-  color: #0c2d1d;
-  font-weight: normal;
-}
-
-.script-names.large {
-  font-size: 44px;
+  color: #2c3328;
+  font-size: 40px;
   line-height: 1.1;
+  font-weight: normal;
 }
 
 .ampersand {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-style: italic;
-  color: #2d6a4f;
+  color: #727b6a;
 }
 
-.tagline {
+.tagline, .event-tag {
   font-size: 8px;
-  letter-spacing: 2.5px;
-  color: #2d6a4f;
+  letter-spacing: 2px;
+  color: #6b7363;
   text-transform: uppercase;
 }
 
 .section-title {
   font-size: 10px;
   letter-spacing: 2.5px;
-  color: #0c2d1d;
+  color: #3b4434;
   text-transform: uppercase;
   font-weight: 500;
 }
 
-.event-tag {
-  font-size: 8px;
-  letter-spacing: 1.5px;
-  color: #2d6a4f;
-  text-transform: uppercase;
-  line-height: 1.5;
-  margin-top: 10px;
-}
-
-.divider-emerald {
-  width: 50px;
+.divider-lace {
+  width: 60px;
   height: 1px;
-  background-color: #2d6a4f;
+  background-color: #a39b8b;
   margin: 10px 0;
 }
 
 .event-details p {
-  margin: 5px 0;
+  margin: 4px 0;
 }
 
 .day {
   font-size: 11px;
   letter-spacing: 1.5px;
   font-weight: 500;
-  color: #0c2d1d;
+  color: #2c3328;
 }
 
-.time {
+.time, .address {
   font-size: 9px;
-  letter-spacing: 1px;
-  color: #2d6a4f;
+  color: #6b7363;
 }
 
 .venue {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
   font-style: italic;
-  color: #0c2d1d;
-  margin-top: 10px !important;
-}
-
-.address {
-  font-size: 9px;
-  color: #2d6a4f;
+  color: #3b4434;
+  margin-top: 8px !important;
 }
 
 .location-link {
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 12px;
   font-size: 9px;
-  letter-spacing: 1px;
-  color: #0c2d1d;
+  color: #3b4434;
   text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid #2d6a4f;
+  border-bottom: 1px solid #a39b8b;
   padding-bottom: 2px;
-  transition: color 0.3s ease;
-}
-
-.location-link:hover {
-  color: #2d6a4f;
 }
 
 .program-schedule {
   width: 100%;
-  margin: 5px 0;
 }
 
 .schedule-item {
   font-size: 9px;
-  color: #2d6a4f;
+  color: #555d4f;
   margin: 8px 0;
   display: flex;
   justify-content: space-between;
@@ -212,34 +291,40 @@ body {
 
 .schedule-item span {
   font-weight: 500;
-  color: #0c2d1d;
+  color: #2c3328;
 }
 
 .adults-note {
-  padding: 0 10px;
-  margin: 5px 0;
+  padding: 0 8px;
 }
 
 .note-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 14px;
   font-style: italic;
-  color: #0c2d1d;
+  color: #3b4434;
   margin-bottom: 4px;
 }
 
 .note-body {
   font-size: 8px;
   line-height: 1.4;
-  color: #2d6a4f;
-  letter-spacing: 0.3px;
+  color: #6b7363;
 }
 
 .footer-text {
   font-size: 8px;
   letter-spacing: 2px;
-  color: #2d6a4f;
+  color: #727b6a;
   text-transform: uppercase;
+}
+
+.open-instruction {
+  margin-top: 25px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .scroll-indicator {
@@ -247,18 +332,20 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  margin-top: 15px;
 }
 
 .scroll-indicator span {
   font-size: 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #2d6a4f;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .chevron {
   font-size: 12px;
-  color: #0c2d1d;
+  color: #ffffff;
   animation: bounce 1.8s infinite ease-in-out;
 }
 
