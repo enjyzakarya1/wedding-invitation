@@ -5,11 +5,36 @@
 }
 
 body {
-  /* Rich Dark Olive Background */
-  background: #3b4434; 
+  /* Rich Deep Emerald Green Background with Floral Artwork Overlay */
+  background: linear-gradient(rgba(12, 45, 29, 0.88), rgba(12, 45, 29, 0.88)), 
+              url('https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
   font-family: 'Montserrat', sans-serif;
-  color: #2c3328;
+  color: #0c2d1d;
   overflow-x: hidden;
+}
+
+/* Audio Control Button */
+.music-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+  background-color: #ffffff;
+  color: #0c2d1d;
+  border: 1px solid #0c2d1d;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+  background-color: #0c2d1d;
+  color: #ffffff;
 }
 
 /* Smooth Full-Page Snap Scroll Container */
@@ -30,21 +55,20 @@ body {
   padding: 20px;
 }
 
-/* Elegant Card Outer Shell */
+/* Pure White Cards with Delicate Shadows */
 .invitation-card {
   width: 330px;
   height: 520px;
-  background-color: #fcfbf7; /* Ivory Paper */
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  transition: transform 0.5s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
-/* Double Lace Border Frame */
+/* Emerald Frame & Double Lace Line */
 .lace-border {
-  border: 2px solid #5d6754;
-  outline: 1px dashed #a39b8b;
+  border: 2px solid #0c2d1d;
+  outline: 1px dashed #2d6a4f;
   outline-offset: -8px;
   height: 100%;
   width: 100%;
@@ -61,12 +85,11 @@ body {
   height: 100%;
 }
 
-/* Monogram & Typography */
 .monogram-seal {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
-  color: #3b4434;
-  border: 1px solid #a39b8b;
+  color: #0c2d1d;
+  border: 1px solid #2d6a4f;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -79,7 +102,7 @@ body {
 
 .script-names {
   font-family: 'Alex Brush', cursive;
-  color: #3b4434;
+  color: #0c2d1d;
   font-weight: normal;
 }
 
@@ -92,20 +115,20 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
   font-style: italic;
-  color: #727b6a;
+  color: #2d6a4f;
 }
 
 .tagline {
   font-size: 8px;
   letter-spacing: 2.5px;
-  color: #6b7363;
+  color: #2d6a4f;
   text-transform: uppercase;
 }
 
 .section-title {
   font-size: 10px;
   letter-spacing: 2.5px;
-  color: #3b4434;
+  color: #0c2d1d;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -113,20 +136,19 @@ body {
 .event-tag {
   font-size: 8px;
   letter-spacing: 1.5px;
-  color: #727b6a;
+  color: #2d6a4f;
   text-transform: uppercase;
   line-height: 1.5;
   margin-top: 10px;
 }
 
-.divider-gold {
+.divider-emerald {
   width: 50px;
   height: 1px;
-  background-color: #a39b8b;
+  background-color: #2d6a4f;
   margin: 10px 0;
 }
 
-/* Event Details & Link */
 .event-details p {
   margin: 5px 0;
 }
@@ -135,26 +157,26 @@ body {
   font-size: 11px;
   letter-spacing: 1.5px;
   font-weight: 500;
-  color: #2c3328;
+  color: #0c2d1d;
 }
 
 .time {
   font-size: 9px;
   letter-spacing: 1px;
-  color: #6b7363;
+  color: #2d6a4f;
 }
 
 .venue {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
   font-style: italic;
-  color: #3b4434;
+  color: #0c2d1d;
   margin-top: 10px !important;
 }
 
 .address {
   font-size: 9px;
-  color: #6b7363;
+  color: #2d6a4f;
 }
 
 .location-link {
@@ -162,19 +184,18 @@ body {
   margin-top: 15px;
   font-size: 9px;
   letter-spacing: 1px;
-  color: #3b4434;
+  color: #0c2d1d;
   text-decoration: none;
   font-weight: 500;
-  border-bottom: 1px solid #a39b8b;
+  border-bottom: 1px solid #2d6a4f;
   padding-bottom: 2px;
   transition: color 0.3s ease;
 }
 
 .location-link:hover {
-  color: #5d6754;
+  color: #2d6a4f;
 }
 
-/* Schedule List */
 .program-schedule {
   width: 100%;
   margin: 5px 0;
@@ -182,7 +203,7 @@ body {
 
 .schedule-item {
   font-size: 9px;
-  color: #555d4f;
+  color: #2d6a4f;
   margin: 8px 0;
   display: flex;
   justify-content: space-between;
@@ -191,10 +212,9 @@ body {
 
 .schedule-item span {
   font-weight: 500;
-  color: #2c3328;
+  color: #0c2d1d;
 }
 
-/* Graceful Adults-Only Wording */
 .adults-note {
   padding: 0 10px;
   margin: 5px 0;
@@ -204,25 +224,24 @@ body {
   font-family: 'Cormorant Garamond', serif;
   font-size: 14px;
   font-style: italic;
-  color: #3b4434;
+  color: #0c2d1d;
   margin-bottom: 4px;
 }
 
 .note-body {
   font-size: 8px;
   line-height: 1.4;
-  color: #6b7363;
+  color: #2d6a4f;
   letter-spacing: 0.3px;
 }
 
 .footer-text {
   font-size: 8px;
   letter-spacing: 2px;
-  color: #727b6a;
+  color: #2d6a4f;
   text-transform: uppercase;
 }
 
-/* Animated Scroll Prompt */
 .scroll-indicator {
   display: flex;
   flex-direction: column;
@@ -234,12 +253,12 @@ body {
   font-size: 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #8c9584;
+  color: #2d6a4f;
 }
 
 .chevron {
   font-size: 12px;
-  color: #6b7363;
+  color: #0c2d1d;
   animation: bounce 1.8s infinite ease-in-out;
 }
 
