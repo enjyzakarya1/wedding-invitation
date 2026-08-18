@@ -5,217 +5,184 @@
 }
 
 body {
-  background-color: #f9f8f3; /* Pure Ivory background */
+  /* Soft, calm background color */
+  background: #f4f6f1; 
   font-family: 'Montserrat', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  overflow-x: hidden;
-  color: #2c3328;
-}
-
-.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 20px;
+  color: #2e342a;
+  overflow-x: hidden;
 }
 
-.envelope-wrapper {
+.invitation-wrapper {
   position: relative;
   width: 320px;
-  height: 220px;
-  margin-top: 120px;
-  transition: transform 0.8s ease-in-out;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
 }
 
-/* Outer Envelope Design - Deep Olive Accent */
-.envelope {
-  position: relative;
+/* Common Card Border Box */
+.border-box {
+  border: 1px solid #c3bbb0;
+  height: 100%;
+  width: 100%;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* 1. Cover Card (Initial State) */
+.cover-card {
+  position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #4a5442; /* Dark Olive */
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 12px 30px rgba(35, 42, 31, 0.2);
-}
-
-.envelope .flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-left: 160px solid transparent;
-  border-right: 160px solid transparent;
-  border-top: 125px solid #3d4636; /* Medium Olive Flap */
-  transform-origin: top;
-  transition: transform 0.6s ease-in-out 0.2s, z-index 0.2s 0.4s;
-  z-index: 3;
-}
-
-.envelope .pocket {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-left: 160px solid #5d6754; /* Light Olive Pocket Front */
-  border-right: 160px solid #5d6754;
-  border-bottom: 110px solid #525c49;
-  border-radius: 0 0 8px 8px;
+  background-color: #faf9f6;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(45, 52, 42, 0.12);
+  cursor: pointer;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
   z-index: 2;
 }
 
-/* Invitation Card - Rich Ivory & Sage/Olive Elements */
-.card {
-  position: absolute;
-  bottom: 10px;
-  left: 12px;
-  width: 296px;
-  height: 195px;
-  background-color: #fffff8; /* Crisp Ivory Card */
-  border-radius: 4px;
-  padding: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform 0.8s ease-in-out 0.6s, height 0.6s ease 1.2s;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.card-border {
-  border: 1px solid #c2bba8; /* Soft Gold/Ivory Border Line */
-  height: 100%;
-  padding: 20px 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.card-content {
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.5s ease 1.2s;
-}
-
-.pre-title {
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #6b7363;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-.couple-names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: #3b4434; /* Soft Deep Olive Text */
-  line-height: 1.1;
-  letter-spacing: 0.5px;
-}
-
-.couple-names span {
-  font-style: italic;
-  font-size: 18px;
-  color: #727b6a;
+.cover-card:hover {
+  transform: scale(1.02);
 }
 
 .monogram {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  color: #8c9584;
-  margin: 10px 0;
+  font-size: 32px;
+  color: #4a5442;
   letter-spacing: 4px;
 }
 
-.details {
-  margin-top: 10px;
+.names-preview {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #3b4434;
 }
 
-.date {
+.click-hint {
   font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #788270;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* 2. Full Invitation Card (Revealed on Click) */
+.full-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fffff8;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, opacity 0.7s ease 0.2s;
+  z-index: 1;
+}
+
+.top-tag {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #6b7363;
+  text-transform: uppercase;
+}
+
+.main-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #3b4434;
+  line-height: 1.1;
+}
+
+.main-names span {
+  font-style: italic;
+  font-size: 20px;
+  color: #727b6a;
+}
+
+.event-type {
+  font-size: 8px;
   letter-spacing: 1.5px;
+  color: #555d4f;
+  line-height: 1.4;
+}
+
+.date-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.day, .time {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #6b7363;
+}
+
+.date-num {
+  font-size: 12px;
   font-weight: 500;
+  letter-spacing: 2px;
   color: #2c3328;
 }
 
-.time {
-  font-size: 9px;
-  letter-spacing: 1px;
-  color: #555d4f;
-  margin-top: 4px;
-}
-
 .divider {
-  width: 35px;
+  width: 40px;
   height: 1px;
-  background-color: #c2bba8;
-  margin: 12px auto;
+  background-color: #c3bbb0;
 }
 
-.venue-name {
+.venue-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-size: 20px;
   font-style: italic;
   color: #3b4434;
 }
 
-.address {
+.venue-address {
   font-size: 9px;
   letter-spacing: 0.5px;
   color: #6b7363;
-  margin-top: 2px;
 }
 
-.footer-note {
+.footer-tag {
   font-size: 8px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  letter-spacing: 2px;
   color: #727b6a;
-  margin-top: 15px;
 }
 
-/* Open Button Styling */
-.open-btn {
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 24px;
-  background-color: #3b4434; /* Dark Olive Button */
-  color: #fffff8;
-  border: none;
-  border-radius: 20px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: background-color 0.3s, opacity 0.4s;
-}
-
-.open-btn:hover {
-  background-color: #232a1f;
-}
-
-/* Animation Actions */
-.envelope-wrapper.open .flap {
-  transform: rotateX(180deg);
-  z-index: 0;
-}
-
-.envelope-wrapper.open .card {
-  transform: translateY(-200px);
-  height: 380px;
-  z-index: 4;
-}
-
-.envelope-wrapper.open .card-content {
-  opacity: 1;
-}
-
-.envelope-wrapper.open .open-btn {
+/* --- CLICK & ZOOM ANIMATION TRIGGER --- */
+.invitation-wrapper.opened .cover-card {
+  transform: scale(1.6);
   opacity: 0;
   pointer-events: none;
+}
+
+.invitation-wrapper.opened .full-card {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 3;
 }
 .envelope-wrapper.open .open-btn {
   opacity: 0;
