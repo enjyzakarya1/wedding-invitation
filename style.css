@@ -5,34 +5,33 @@
 }
 
 body {
-  /* Vintage Textured Dress Background matching your photo */
-  background: linear-gradient(rgba(20, 25, 18, 0.45), rgba(20, 25, 18, 0.45)),
-              url('https://images.unsplash.com/photo-1546804784-896d0dca3800?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
+  /* Artistic Vintage Lace & Emerald Botanical Background Overlay */
+  background: linear-gradient(rgba(12, 45, 29, 0.72), rgba(12, 45, 29, 0.72)),
+              url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
   font-family: 'Montserrat', sans-serif;
-  color: #2c3328;
+  color: #0c2d1d;
   overflow-x: hidden;
 }
 
-/* Music Control Button */
+/* Floating Ivory & Emerald Sound Button */
 .music-toggle {
   position: fixed;
-  top: 18px;
-  right: 18px;
+  top: 15px;
+  right: 15px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(5px);
-  color: #2c3328;
-  border: 1px solid #d4ceb8;
-  padding: 8px 14px;
+  background: #fdfbf7;
+  color: #0c2d1d;
+  border: 1px solid #1b4332;
+  padding: 6px 12px;
   border-radius: 20px;
   font-size: 10px;
   letter-spacing: 1px;
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* Snap Scroll Container */
+/* Reduced Spacing Scroll Container */
 .scroll-container {
   height: 100vh;
   overflow-y: scroll;
@@ -40,35 +39,36 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Tighter vertical spacing between cards */
 .card-section {
-  height: 100vh;
+  min-height: 85vh;
+  padding: 30px 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  scroll-snap-align: start;
-  padding: 20px;
+  scroll-snap-align: center;
 }
 
-/* Top Titles above Envelope */
+/* Header Text */
 .header-subtitle {
   font-size: 9px;
   letter-spacing: 3px;
-  color: #f7f5ed;
+  color: #fdfbf7;
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .top-names {
   font-family: 'Alex Brush', cursive;
-  font-size: 42px;
+  font-size: 40px;
   color: #ffffff;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: normal;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
 /* Envelope Container */
@@ -81,24 +81,24 @@ body {
 
 .envelope {
   position: relative;
-  width: 310px;
-  height: 220px;
-  background-color: #f7f4ec;
+  width: 300px;
+  height: 200px;
+  background-color: #fdfbf7; /* Ivory Paper */
   border-radius: 4px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: transform 0.4s ease;
 }
 
-/* Envelope Lace Border & Seal */
+/* Ivory Lace Trim Inner Detail */
 .lace-trim {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px dashed #d8d0ba;
-  outline: 1px solid #b8ae93;
+  border: 2px dashed #2d6a4f;
+  outline: 1px solid #1b4332;
   outline-offset: -6px;
   pointer-events: none;
 }
@@ -108,16 +108,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background: #eae5d8;
-  border: 2px solid #c4bca6;
+  width: 48px;
+  height: 48px;
+  background: #1b4332; /* Deep Emerald Seal */
+  border: 1px solid #d4ceb8;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   z-index: 10;
   transition: all 0.4s ease;
 }
@@ -126,22 +126,21 @@ body {
 .popped-card {
   position: absolute;
   bottom: 10px;
-  left: 15px;
+  left: 10px;
   width: 280px;
   height: 380px;
-  background-color: #ffffff;
+  background-color: #fdfbf7; /* Rich Ivory */
   border-radius: 6px;
-  padding: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transform: translateY(0) scale(0.9);
   opacity: 0;
   transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 5;
 }
 
-/* Animation state when envelope is tapped */
 .envelope-wrapper.opened .popped-card {
-  transform: translateY(-90px) scale(1);
+  transform: translateY(-80px) scale(1);
   opacity: 1;
 }
 
@@ -151,10 +150,12 @@ body {
 }
 
 .inner-card-border {
-  border: 1px solid #d4ceb8;
+  border: 1px dashed #1b4332;
+  outline: 1px solid #2d6a4f;
+  outline-offset: -4px;
   height: 100%;
   width: 100%;
-  padding: 20px 10px;
+  padding: 18px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -162,23 +163,23 @@ body {
   text-align: center;
 }
 
-/* Sub-pages Cards */
+/* Details Cards */
 .invitation-card {
-  width: 320px;
-  height: 500px;
-  background-color: #fcfbf7;
+  width: 310px;
+  height: 480px;
+  background-color: #fdfbf7; /* Pure Ivory */
   border-radius: 8px;
-  padding: 12px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
 .lace-border {
-  border: 2px solid #5d6754;
-  outline: 1px dashed #a39b8b;
-  outline-offset: -8px;
+  border: 2px solid #0c2d1d;
+  outline: 1px dashed #2d6a4f;
+  outline-offset: -6px;
   height: 100%;
   width: 100%;
-  padding: 25px 15px;
+  padding: 20px 12px;
   border-radius: 4px;
 }
 
@@ -193,53 +194,53 @@ body {
 
 .monogram-seal {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  color: #3b4434;
-  border: 1px solid #a39b8b;
+  font-size: 18px;
+  color: #0c2d1d;
+  border: 1px solid #2d6a4f;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5px 0;
+  margin: 4px 0;
 }
 
 .script-names {
   font-family: 'Alex Brush', cursive;
-  color: #2c3328;
-  font-size: 40px;
+  color: #0c2d1d;
+  font-size: 38px;
   line-height: 1.1;
   font-weight: normal;
 }
 
 .ampersand {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-size: 18px;
   font-style: italic;
-  color: #727b6a;
+  color: #2d6a4f;
 }
 
 .tagline, .event-tag {
   font-size: 8px;
   letter-spacing: 2px;
-  color: #6b7363;
+  color: #2d6a4f;
   text-transform: uppercase;
 }
 
 .section-title {
   font-size: 10px;
   letter-spacing: 2.5px;
-  color: #3b4434;
+  color: #0c2d1d;
   text-transform: uppercase;
   font-weight: 500;
 }
 
 .divider-lace {
-  width: 60px;
+  width: 50px;
   height: 1px;
-  background-color: #a39b8b;
-  margin: 10px 0;
+  background-color: #2d6a4f;
+  margin: 8px 0;
 }
 
 .event-details p {
@@ -250,30 +251,31 @@ body {
   font-size: 11px;
   letter-spacing: 1.5px;
   font-weight: 500;
-  color: #2c3328;
+  color: #0c2d1d;
 }
 
 .time, .address {
   font-size: 9px;
-  color: #6b7363;
+  color: #2d6a4f;
 }
 
 .venue {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
   font-style: italic;
-  color: #3b4434;
+  color: #0c2d1d;
   margin-top: 8px !important;
 }
 
 .location-link {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 10px;
   font-size: 9px;
-  color: #3b4434;
+  color: #0c2d1d;
   text-decoration: none;
-  border-bottom: 1px solid #a39b8b;
+  border-bottom: 1px solid #2d6a4f;
   padding-bottom: 2px;
+  font-weight: 500;
 }
 
 .program-schedule {
@@ -282,74 +284,74 @@ body {
 
 .schedule-item {
   font-size: 9px;
-  color: #555d4f;
-  margin: 8px 0;
+  color: #2d6a4f;
+  margin: 6px 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 8px;
 }
 
 .schedule-item span {
   font-weight: 500;
-  color: #2c3328;
+  color: #0c2d1d;
 }
 
 .adults-note {
-  padding: 0 8px;
+  padding: 0 6px;
 }
 
 .note-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 14px;
+  font-size: 13px;
   font-style: italic;
-  color: #3b4434;
-  margin-bottom: 4px;
+  color: #0c2d1d;
+  margin-bottom: 2px;
 }
 
 .note-body {
   font-size: 8px;
-  line-height: 1.4;
-  color: #6b7363;
+  line-height: 1.3;
+  color: #2d6a4f;
 }
 
 .footer-text {
   font-size: 8px;
   letter-spacing: 2px;
-  color: #727b6a;
+  color: #2d6a4f;
   text-transform: uppercase;
 }
 
 .open-instruction {
-  margin-top: 25px;
-  font-size: 9px;
+  margin-top: 18px;
+  font-size: 8px;
   letter-spacing: 2px;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  color: #fdfbf7;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .scroll-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  margin-top: 15px;
+  gap: 3px;
+  margin-top: 10px;
 }
 
 .scroll-indicator span {
   font-size: 8px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  color: #fdfbf7;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .chevron {
   font-size: 12px;
-  color: #ffffff;
+  color: #fdfbf7;
   animation: bounce 1.8s infinite ease-in-out;
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+  50% { transform: translateY(4px); }
 }
