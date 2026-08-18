@@ -3,54 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sawsan & Hassan's Wedding Invitation</title>
-  <!-- Google Fonts -->
+  <title>Sawsan & Hassan — Wedding Invitation</title>
+  <!-- Google Fonts for Elegant Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
-    <div class="envelope-wrapper" id="envelopeWrapper">
-      <!-- The Outer Envelope -->
-      <div class="envelope">
-        <div class="flap"></div>
-        <div class="pocket"></div>
-        
-        <!-- The Invitation Card -->
-        <div class="card" id="weddingCard">
-          <div class="card-border">
-            <div class="card-content">
-              <p class="pre-title">TOGETHER WITH THEIR FAMILIES</p>
-              <h1 class="couple-names">Sawsan <br><span>&amp;</span><br> Hassan</h1>
-              
-              <div class="monogram">S & H</div>
-              
-              <div class="details">
-                <p class="date">FRIDAY, NOVEMBER 13, 2026</p>
-                <p class="time">AT 5:00 IN THE EVENING</p>
-                <div class="divider"></div>
-                <p class="venue-name">Grand Garden Venue</p>
-                <p class="address">Main Ballroom, City Center</p>
-              </div>
-
-              <p class="footer-note">Joyfully invite you to celebrate their wedding</p>
-            </div>
-          </div>
-        </div>
+  <!-- Main Background Container -->
+  <div class="invitation-wrapper" id="invitationWrapper">
+    
+    <!-- Initial Cover Card (Clickable Zoom Cover) -->
+    <div class="cover-card" id="coverCard" onclick="openInvitation()">
+      <div class="border-box">
+        <p class="top-tag">YOU ARE CORDIALLY INVITED</p>
+        <div class="monogram">S & H</div>
+        <h1 class="names-preview">Sawsan & Hassan</h1>
+        <p class="click-hint">Tap / Click to Open</p>
       </div>
-      
-      <!-- Interactive Open Button -->
-      <button class="open-btn" onclick="openEnvelope()">Open Invitation</button>
     </div>
+
+    <!-- Full Invitation Revealed After Zoom -->
+    <div class="full-card" id="fullCard">
+      <div class="border-box">
+        <p class="top-tag">TOGETHER WITH THEIR FAMILIES</p>
+
+        <h1 class="main-names">Sawsan <br><span>&amp;</span><br> Hassan</h1>
+        
+        <div class="divider"></div>
+        
+        <p class="event-type">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
+        
+        <div class="date-box">
+          <span class="day">FRIDAY</span>
+          <span class="date-num">NOV 13, 2026</span>
+          <span class="time">AT 5:00 PM</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="venue-title">Grand Garden Venue</p>
+        <p class="venue-address">Main Ballroom, City Center</p>
+
+        <p class="footer-tag">RECEPTION TO FOLLOW</p>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    function openEnvelope() {
-      const wrapper = document.getElementById('envelopeWrapper');
-      wrapper.classList.add('open');
+    function openInvitation() {
+      const wrapper = document.getElementById('invitationWrapper');
+      wrapper.classList.add('opened');
     }
   </script>
 </body>
