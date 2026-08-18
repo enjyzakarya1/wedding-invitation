@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <!-- The Envelope Base -->
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="pocket"></div>
+        
+        <!-- The Invitation Card inside the envelope -->
+        <div class="card" id="weddingCard">
+          <div class="card-content">
+            <p class="subtitle">YOU ARE CORDIALLY INVITED TO THE WEDDING OF</p>
+            <h1>Partner 1 & Partner 2</h1>
+            <div class="divider"></div>
+            <p class="date">Saturday, September 20, 2026</p>
+            <p class="time">At 4:00 PM</p>
+            <p class="venue">Grand Garden Venue, Main Street</p>
+            <div class="divider"></div>
+            <p class="footer-msg">We look forward to celebrating with you!</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Open Button -->
+      <button class="open-btn" onclick="openEnvelope()">Open Invitation</button>
+    </div>
+  </div>
+
+  <script>
+    function openEnvelope() {
+      const wrapper = document.getElementById('envelopeWrapper');
+      wrapper.classList.add('open');
+    }
+  </script>
+</body>
+</html>
