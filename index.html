@@ -1,53 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sawsan & Hassan — Wedding Invitation</title>
-  <!-- Google Fonts for Elegant Typography -->
+  <!-- Google Fonts for Classical Serif & Elegant Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Main Background Container -->
   <div class="invitation-wrapper" id="invitationWrapper">
     
-    <!-- Initial Cover Card (Clickable Zoom Cover) -->
-    <div class="cover-card" id="coverCard" onclick="openInvitation()">
-      <div class="border-box">
-        <p class="top-tag">YOU ARE CORDIALLY INVITED</p>
-        <div class="monogram">S & H</div>
-        <h1 class="names-preview">Sawsan & Hassan</h1>
-        <p class="click-hint">Tap / Click to Open</p>
+    <!-- Cover Card (Initial State) -->
+    <div class="cover-card" onclick="openInvitation()">
+      <div class="lace-border">
+        <div class="inner-content">
+          <p class="tagline">TOGETHER WITH THEIR FAMILIES</p>
+          <div class="monogram-seal">S & H</div>
+          <h1 class="script-names">Sawsan & Hassan</h1>
+          <p class="date-preview">NOVEMBER 13, 2026</p>
+          <div class="pulse-button">Tap to Open Invitation</div>
+        </div>
       </div>
     </div>
 
-    <!-- Full Invitation Revealed After Zoom -->
-    <div class="full-card" id="fullCard">
-      <div class="border-box">
-        <p class="top-tag">TOGETHER WITH THEIR FAMILIES</p>
+    <!-- Main Revealing Card -->
+    <div class="main-card">
+      <div class="lace-border">
+        <div class="inner-content">
+          <p class="tagline">JOIN US FOR THE WEDDING OF</p>
+          <h1 class="script-names large">Sawsan <br><span class="ampersand">&amp;</span><br> Hassan</h1>
+          
+          <div class="divider-gold"></div>
 
-        <h1 class="main-names">Sawsan <br><span>&amp;</span><br> Hassan</h1>
-        
-        <div class="divider"></div>
-        
-        <p class="event-type">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
-        
-        <div class="date-box">
-          <span class="day">FRIDAY</span>
-          <span class="date-num">NOV 13, 2026</span>
-          <span class="time">AT 5:00 PM</span>
+          <div class="event-details">
+            <p class="day">FRIDAY, NOVEMBER 13, 2026</p>
+            <p class="time">AT 5:00 IN THE EVENING</p>
+            <p class="venue">Grand Garden Venue</p>
+            <p class="address">Main Ballroom, City Center</p>
+          </div>
+
+          <!-- Interactive Program Toggle -->
+          <button class="toggle-btn" onclick="toggleProgram()">View Event Schedule</button>
+
+          <div class="program-schedule" id="programSchedule">
+            <div class="schedule-item"><span>17:00</span> Guest Arrival & Reception</div>
+            <div class="schedule-item"><span>18:00</span> Wedding Ceremony</div>
+            <div class="schedule-item"><span>19:30</span> Dinner & Celebration</div>
+          </div>
+
+          <p class="footer-text">RECEPTION TO FOLLOW</p>
         </div>
-
-        <div class="divider"></div>
-
-        <p class="venue-title">Grand Garden Venue</p>
-        <p class="venue-address">Main Ballroom, City Center</p>
-
-        <p class="footer-tag">RECEPTION TO FOLLOW</p>
       </div>
     </div>
 
@@ -55,8 +61,12 @@
 
   <script>
     function openInvitation() {
-      const wrapper = document.getElementById('invitationWrapper');
-      wrapper.classList.add('opened');
+      document.getElementById('invitationWrapper').classList.add('opened');
+    }
+
+    function toggleProgram() {
+      const schedule = document.getElementById('programSchedule');
+      schedule.classList.toggle('active');
     }
   </script>
 </body>
