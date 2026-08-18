@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sawsan & Hassan — Wedding Invitation</title>
-  <!-- Google Fonts for Classical Serif & Elegant Typography -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -12,62 +12,84 @@
 </head>
 <body>
 
-  <div class="invitation-wrapper" id="invitationWrapper">
-    
-    <!-- Cover Card (Initial State) -->
-    <div class="cover-card" onclick="openInvitation()">
-      <div class="lace-border">
-        <div class="inner-content">
-          <p class="tagline">TOGETHER WITH THEIR FAMILIES</p>
-          <div class="monogram-seal">S & H</div>
-          <h1 class="script-names">Sawsan & Hassan</h1>
-          <p class="date-preview">NOVEMBER 13, 2026</p>
-          <div class="pulse-button">Tap to Open Invitation</div>
+  <!-- Background Scrollable Container -->
+  <div class="scroll-container">
+
+    <!-- Section 1: Main Cover Card -->
+    <section class="card-section">
+      <div class="invitation-card">
+        <div class="lace-border">
+          <div class="inner-content">
+            <p class="tagline">TOGETHER WITH THEIR FAMILIES</p>
+            <div class="monogram-seal">S & H</div>
+            <h1 class="script-names large">Sawsan <br><span class="ampersand">&amp;</span><br> Hassan</h1>
+            <p class="event-tag">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
+            
+            <div class="scroll-indicator">
+              <span>Scroll / Swipe Down For Details</span>
+              <div class="chevron">↓</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Main Revealing Card -->
-    <div class="main-card">
-      <div class="lace-border">
-        <div class="inner-content">
-          <p class="tagline">JOIN US FOR THE WEDDING OF</p>
-          <h1 class="script-names large">Sawsan <br><span class="ampersand">&amp;</span><br> Hassan</h1>
-          
-          <div class="divider-gold"></div>
+    <!-- Section 2: Venue & Location (Revealed on Swipe/Scroll) -->
+    <section class="card-section">
+      <div class="invitation-card">
+        <div class="lace-border">
+          <div class="inner-content">
+            <p class="section-title">THE CELEBRATION</p>
+            <div class="divider-gold"></div>
 
-          <div class="event-details">
-            <p class="day">FRIDAY, NOVEMBER 13, 2026</p>
-            <p class="time">AT 5:00 IN THE EVENING</p>
-            <p class="venue">Grand Garden Venue</p>
-            <p class="address">Main Ballroom, City Center</p>
+            <div class="event-details">
+              <p class="day">FRIDAY, NOVEMBER 13, 2026</p>
+              <p class="time">AT 5:00 IN THE EVENING</p>
+              
+              <p class="venue">The Westin Cairo</p>
+              <p class="address">Golf Resort & Spa, Katameya Dunes</p>
+              
+              <a href="https://maps.google.com/?q=The+Westin+Cairo+Golf+Resort+%26+Spa,+Katameya+Dunes" target="_blank" class="location-link">📍 View Location on Google Maps</a>
+            </div>
+
+            <div class="scroll-indicator">
+              <span>Swipe Down For Schedule</span>
+              <div class="chevron">↓</div>
+            </div>
           </div>
-
-          <!-- Interactive Program Toggle -->
-          <button class="toggle-btn" onclick="toggleProgram()">View Event Schedule</button>
-
-          <div class="program-schedule" id="programSchedule">
-            <div class="schedule-item"><span>17:00</span> Guest Arrival & Reception</div>
-            <div class="schedule-item"><span>18:00</span> Wedding Ceremony</div>
-            <div class="schedule-item"><span>19:30</span> Dinner & Celebration</div>
-          </div>
-
-          <p class="footer-text">RECEPTION TO FOLLOW</p>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Section 3: Event Schedule & Respectful Note -->
+    <section class="card-section">
+      <div class="invitation-card">
+        <div class="lace-border">
+          <div class="inner-content">
+            <p class="section-title">EVENT SCHEDULE</p>
+            <div class="divider-gold"></div>
+
+            <div class="program-schedule">
+              <div class="schedule-item"><span>17:00</span> Guest Arrival & Reception</div>
+              <div class="schedule-item"><span>18:00</span> Wedding Ceremony</div>
+              <div class="schedule-item"><span>19:30</span> Dinner & Celebration</div>
+            </div>
+
+            <div class="divider-gold"></div>
+
+            <!-- Polite Adults-Only Note -->
+            <div class="adults-note">
+              <p class="note-title">A Gentle Note</p>
+              <p class="note-body">To allow all our guests, including parents, a night of relaxation and uninhibited celebration, we respectfully request an adult-only reception.</p>
+            </div>
+
+            <p class="footer-text">WE CAN'T WAIT TO CELEBRATE WITH YOU</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </div>
 
-  <script>
-    function openInvitation() {
-      document.getElementById('invitationWrapper').classList.add('opened');
-    }
-
-    function toggleProgram() {
-      const schedule = document.getElementById('programSchedule');
-      schedule.classList.toggle('active');
-    }
-  </script>
 </body>
 </html>
