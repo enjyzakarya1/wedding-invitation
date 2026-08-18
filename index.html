@@ -4,33 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Invitation</title>
+  <!-- Google Fonts for Elegant Serif & Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="container">
     <div class="envelope-wrapper" id="envelopeWrapper">
-      <!-- The Envelope Base -->
+      <!-- The Outer Envelope -->
       <div class="envelope">
         <div class="flap"></div>
         <div class="pocket"></div>
         
-        <!-- The Invitation Card inside the envelope -->
+        <!-- The Invitation Card -->
         <div class="card" id="weddingCard">
-          <div class="card-content">
-            <p class="subtitle">YOU ARE CORDIALLY INVITED TO THE WEDDING OF</p>
-            <h1>Partner 1 & Partner 2</h1>
-            <div class="divider"></div>
-            <p class="date">Saturday, September 20, 2026</p>
-            <p class="time">At 4:00 PM</p>
-            <p class="venue">Grand Garden Venue, Main Street</p>
-            <div class="divider"></div>
-            <p class="footer-msg">We look forward to celebrating with you!</p>
+          <div class="card-border">
+            <div class="card-content">
+              <p class="pre-title">JOIN US TO CELEBRATE</p>
+              <h1 class="couple-names">Partner 1 <br><span>&amp;</span><br> Partner 2</h1>
+              
+              <div class="monogram">M</div>
+              
+              <div class="details">
+                <p class="date">SATURDAY, SEPTEMBER 20, 2026</p>
+                <p class="time">AT 4:00 IN THE AFTERNOON</p>
+                <div class="divider"></div>
+                <p class="venue-name">Grand Garden Venue</p>
+                <p class="address">123 Main Street, City Name</p>
+              </div>
+
+              <p class="footer-note">Reception to follow</p>
+            </div>
           </div>
         </div>
       </div>
       
-      <!-- Open Button -->
+      <!-- Interactive Open Button -->
       <button class="open-btn" onclick="openEnvelope()">Open Invitation</button>
     </div>
   </div>
