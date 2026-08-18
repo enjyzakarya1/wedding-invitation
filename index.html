@@ -29,9 +29,8 @@
         <h1 class="top-names">Sawsan &amp; Hassan</h1>
 
         <div class="envelope" onclick="openEnvelope()">
-          <div class="envelope-flap"></div>
           <div class="lace-trim"></div>
-          <div class="wax-seal">🦢</div>
+          <div class="wax-seal">🕊️</div>
           
           <!-- The Main Card popping out -->
           <div class="popped-card" id="mainCard">
@@ -102,7 +101,7 @@
               <p class="note-body">To allow all our guests, including parents, a night of relaxation and uninhibited celebration, we respectfully request an adult-only reception.</p>
             </div>
 
-            <p class="footer-text">WE CAN'T WAIT TO CELEBRATE WITH YOU</p>
+            <p class="footer-text">WE CAN'WAIT TO CELEBRATE WITH YOU</p>
           </div>
         </div>
       </div>
@@ -123,7 +122,6 @@
       openPrompt.style.display = 'none';
       scrollPrompt.style.display = 'flex';
 
-      // Play soft music upon opening envelope
       if (!musicStarted) {
         music.play().catch(() => {});
         musicStarted = true;
