@@ -5,186 +5,239 @@
 }
 
 body {
-  /* Soft, calm background color */
-  background: #f4f6f1; 
+  /* Rich Dark Olive Background */
+  background: #3b4434; 
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #2e342a;
+  color: #2c3328;
   overflow-x: hidden;
+  padding: 20px 0;
 }
 
 .invitation-wrapper {
   position: relative;
-  width: 320px;
-  height: 480px;
+  width: 340px;
+  min-height: 520px;
   display: flex;
   justify-content: center;
   align-items: center;
   perspective: 1000px;
 }
 
-/* Common Card Border Box */
-.border-box {
-  border: 1px solid #c3bbb0;
+/* Elegant Lace / Double Frame Border */
+.lace-border {
+  border: 2px solid #5d6754;
+  outline: 1px dashed #a39b8b;
+  outline-offset: -8px;
   height: 100%;
   width: 100%;
-  padding: 30px 20px;
+  padding: 25px 15px;
+  border-radius: 4px;
+}
+
+.inner-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  height: 100%;
 }
 
-/* 1. Cover Card (Initial State) */
+/* 1. Cover Card (Initial View) */
 .cover-card {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #faf9f6;
+  background-color: #fcfbf7; /* Ivory Paper */
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0 10px 30px rgba(45, 52, 42, 0.12);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
   z-index: 2;
 }
 
-.cover-card:hover {
-  transform: scale(1.02);
-}
-
-.monogram {
+.monogram-seal {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  color: #4a5442;
-  letter-spacing: 4px;
-}
-
-.names-preview {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
-  font-weight: 400;
+  font-size: 24px;
   color: #3b4434;
+  border: 1px solid #a39b8b;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  letter-spacing: 2px;
 }
 
-.click-hint {
+.script-names {
+  font-family: 'Alex Brush', cursive;
+  font-size: 38px;
+  color: #3b4434;
+  font-weight: normal;
+}
+
+.script-names.large {
+  font-size: 42px;
+  line-height: 1.1;
+}
+
+.ampersand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: #727b6a;
+}
+
+.tagline {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: #6b7363;
+  text-transform: uppercase;
+}
+
+.date-preview {
   font-size: 10px;
   letter-spacing: 2px;
+  color: #555d4f;
+  margin-top: 10px;
+}
+
+.pulse-button {
+  background-color: #3b4434;
+  color: #fcfbf7;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #788270;
-  animation: pulse 1.8s infinite;
+  margin-top: 25px;
+  animation: float 2s infinite ease-in-out;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
-/* 2. Full Invitation Card (Revealed on Click) */
-.full-card {
+/* 2. Revealed Main Card */
+.main-card {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: #fffff8;
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  transform: scale(0.8);
+  transform: scale(0.85);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, opacity 0.7s ease 0.2s;
   z-index: 1;
 }
 
-.top-tag {
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #6b7363;
-  text-transform: uppercase;
+.divider-gold {
+  width: 50px;
+  height: 1px;
+  background-color: #a39b8b;
+  margin: 15px 0;
 }
 
-.main-names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  font-weight: 400;
-  color: #3b4434;
-  line-height: 1.1;
+.event-details p {
+  margin: 4px 0;
 }
 
-.main-names span {
-  font-style: italic;
-  font-size: 20px;
-  color: #727b6a;
-}
-
-.event-type {
-  font-size: 8px;
+.day {
+  font-size: 11px;
   letter-spacing: 1.5px;
-  color: #555d4f;
-  line-height: 1.4;
-}
-
-.date-box {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.day, .time {
-  font-size: 9px;
-  letter-spacing: 1.5px;
-  color: #6b7363;
-}
-
-.date-num {
-  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 2px;
   color: #2c3328;
 }
 
-.divider {
-  width: 40px;
-  height: 1px;
-  background-color: #c3bbb0;
+.time {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #6b7363;
 }
 
-.venue-title {
+.venue {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
   font-style: italic;
   color: #3b4434;
+  margin-top: 8px !important;
 }
 
-.venue-address {
+.address {
   font-size: 9px;
-  letter-spacing: 0.5px;
   color: #6b7363;
 }
 
-.footer-tag {
+.toggle-btn {
+  background: transparent;
+  border: 1px solid #3b4434;
+  color: #3b4434;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 15px 0 5px 0;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #3b4434;
+  color: #fffff8;
+}
+
+.program-schedule {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  width: 100%;
+}
+
+.program-schedule.active {
+  max-height: 120px;
+}
+
+.schedule-item {
+  font-size: 9px;
+  color: #555d4f;
+  margin: 4px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.schedule-item span {
+  font-weight: 500;
+  color: #2c3328;
+}
+
+.footer-text {
   font-size: 8px;
   letter-spacing: 2px;
   color: #727b6a;
+  margin-top: 10px;
 }
 
-/* --- CLICK & ZOOM ANIMATION TRIGGER --- */
+/* Trigger Motion Zoom */
 .invitation-wrapper.opened .cover-card {
-  transform: scale(1.6);
+  transform: scale(1.5);
   opacity: 0;
   pointer-events: none;
 }
 
-.invitation-wrapper.opened .full-card {
+.invitation-wrapper.opened .main-card {
   opacity: 1;
   transform: scale(1);
   z-index: 3;
-}
-.envelope-wrapper.open .open-btn {
-  opacity: 0;
-  pointer-events: none;
 }
