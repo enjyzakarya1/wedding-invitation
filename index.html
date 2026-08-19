@@ -13,7 +13,12 @@
 </head>
 <body>
 
-  <!-- OIL PAINTING TEXTURED CONTAINER -->
+  <!-- BACKGROUND PAINTING CONTAINER (image_2.png) -->
+  <div class="canvas-background">
+    <img src="painting_background.jpg" alt="Artistic Painting Background" class="background-painting" />
+  </div>
+
+  <!-- OIL PAINTING TEXTURED CONTENT CONTAINER -->
   <div class="oil-canvas">
 
     <!-- ENVELOPE SECTION -->
@@ -25,8 +30,10 @@
           <div class="letter">
             <p class="letter-preview">You're Invited</p>
           </div>
+          <!-- ACTUAL WAX SEAL (Realistic deep red) -->
           <div class="wax-seal" id="waxSeal">
-            <span>Open</span>
+            <!-- Interlocking L/C from image_3.png (simplified for web) -->
+            <span class="initials">LC</span>
           </div>
         </div>
       </div>
@@ -88,6 +95,16 @@
       </footer>
 
     </main>
+  </div>
+
+  <!-- MUSIC FILE -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+</body>
+</html>
   </div>
 
 </body>
