@@ -13,36 +13,41 @@
 </head>
 <body>
 
-  <!-- BACKGROUND PAINTING CONTAINER (image_2.png) -->
-  <div class="canvas-background">
-    <img src="painting_background.jpg" alt="Artistic Painting Background" class="background-painting" />
-  </div>
+  <!-- REAL OIL PAINTING BACKGROUND -->
+  <div class="bg-overlay"></div>
+  <img src="background.jpg" alt="Floral Oil Painting Background" class="bg-image" />
 
-  <!-- OIL PAINTING TEXTURED CONTENT CONTAINER -->
-  <div class="oil-canvas">
+  <div class="main-wrapper">
+    <!-- REALISTIC 2D ENVELOPE CONTAINER -->
+    <section class="envelope-container" id="envelopeWrapper">
+      <div class="envelope-card">
+        
+        <!-- ENVELOPE BASE / BACK -->
+        <div class="envelope-body">
+          
+          <!-- INNER LETTER / CARD THAT SLIDES UP -->
+          <div class="letter-card">
+            <p class="letter-title">You're Invited</p>
+          </div>
 
-    <!-- ENVELOPE SECTION -->
-    <section class="envelope-section">
-      <div class="envelope-wrapper" id="envelopeWrapper">
-        <div class="envelope">
-          <div class="flap"></div>
-          <div class="pocket"></div>
-          <div class="letter">
-            <p class="letter-preview">You're Invited</p>
+          <!-- ENVELOPE FRONT COVER WITH LACE -->
+          <div class="envelope-front">
+            <img src="envelope-front.png" alt="Lace Envelope" class="envelope-img" />
+            
+            <!-- REAL ORGANIC WAX SEAL IMAGE OVERLAY -->
+            <div class="seal-container" id="waxSeal">
+              <img src="wax-seal.png" alt="Burgundy Wax Seal" class="wax-img" />
+            </div>
           </div>
-          <!-- ACTUAL WAX SEAL (Realistic deep red) -->
-          <div class="wax-seal" id="waxSeal">
-            <!-- Interlocking L/C from image_3.png (simplified for web) -->
-            <span class="initials">LC</span>
-          </div>
+
         </div>
+
       </div>
       <p class="tap-hint" id="tapHint">Tap wax seal to open</p>
     </section>
 
-    <!-- CONTINUOUS INVITATION CONTENT -->
+    <!-- CONTINUOUS SINGLE-PAGE CONTENT (NO SPACES/PAGES) -->
     <main class="invitation-content" id="invitationContent">
-      
       <header class="header">
         <span class="sub-heading">TOGETHER WITH THEIR FAMILIES</span>
         <h1 class="names">Bride &amp; Groom</h1>
@@ -67,18 +72,9 @@
       <section class="detail-block schedule">
         <p class="label">SCHEDULE OF EVENTS</p>
         <ul class="timeline">
-          <li>
-            <span class="time">5:00 PM</span>
-            <span class="event">Welcome Drinks</span>
-          </li>
-          <li>
-            <span class="time">6:00 PM</span>
-            <span class="event">Ceremony</span>
-          </li>
-          <li>
-            <span class="time">7:30 PM</span>
-            <span class="event">Dinner &amp; Celebration</span>
-          </li>
+          <li><span class="time">5:00 PM</span><span class="event">Welcome Drinks</span></li>
+          <li><span class="time">6:00 PM</span><span class="event">Ceremony</span></li>
+          <li><span class="time">7:30 PM</span><span class="event">Dinner &amp; Celebration</span></li>
         </ul>
       </section>
 
@@ -93,19 +89,12 @@
       <footer class="footer">
         <p>We can't wait to celebrate with you!</p>
       </footer>
-
     </main>
   </div>
 
-  <!-- MUSIC FILE -->
   <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
   </audio>
-
-</body>
-</html>
-  </div>
 
 </body>
 </html>
