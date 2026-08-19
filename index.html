@@ -13,18 +13,20 @@
 </head>
 <body>
 
-  <!-- FULLSCREEN BACKGROUND IMAGE -->
-  <img src="background.jpg" alt="Floral Oil Painting Background" class="bg-image" />
-  <div class="bg-overlay"></div>
+  <!-- HIGH-QUALITY BACKGROUND LAYER -->
+  <div class="bg-wrapper">
+    <img src="background.jpg" alt="Background" class="bg-image" />
+    <div class="bg-overlay"></div>
+  </div>
 
-  <div class="main-wrapper">
-    <!-- REALISTIC 2D ENVELOPE CONTAINER -->
-    <section class="envelope-container" id="envelopeWrapper">
+  <!-- FIRST SCREEN: ONLY THE ENVELOPE -->
+  <section class="hero-screen" id="heroScreen">
+    <div class="envelope-container" id="envelopeWrapper">
       <div class="envelope-card">
         <div class="envelope-body">
           
-          <!-- INNER LETTER CARD -->
-          <div class="letter-card">
+          <!-- INNER LETTER CARD THAT POPS OUT -->
+          <div class="letter-card" id="letterCard">
             <p class="letter-title">You're Invited</p>
           </div>
 
@@ -32,7 +34,7 @@
           <div class="envelope-front">
             <img src="envelope-front.png" alt="Lace Envelope" class="envelope-img" />
             
-            <!-- REAL ORGANIC WAX SEAL OVERLAY -->
+            <!-- CLICKABLE WAX SEAL -->
             <div class="seal-container" id="waxSeal">
               <img src="wax-seal.png" alt="Burgundy Wax Seal" class="wax-img" />
             </div>
@@ -41,10 +43,12 @@
         </div>
       </div>
       <p class="tap-hint" id="tapHint">Tap wax seal to open</p>
-    </section>
+    </div>
+  </section>
 
-    <!-- INVITATION CONTENT -->
-    <main class="invitation-content" id="invitationContent">
+  <!-- SECOND SECTION: INVITATION DETAILS (REVEALED ON OPEN / SWIPE) -->
+  <div class="details-wrapper" id="detailsWrapper">
+    <main class="invitation-content">
       <header class="header">
         <span class="sub-heading">TOGETHER WITH THEIR FAMILIES</span>
         <h1 class="names">Bride &amp; Groom</h1>
@@ -62,6 +66,7 @@
         <p class="label">VENUE</p>
         <h3 class="venue-title">The Westin Cairo</h3>
         <p class="venue-address">Golf Resort &amp; Spa, Katameya Dunes<br>Cairo, Egypt</p>
+        <a href="https://maps.google.com/?q=The+Westin+Cairo+Golf+Resort+%26+Spa" target="_blank" class="location-link">📍 View Location on Map</a>
       </section>
 
       <hr class="divider" />
@@ -73,6 +78,13 @@
           <li><span class="time">6:00 PM</span><span class="event">Ceremony</span></li>
           <li><span class="time">7:30 PM</span><span class="event">Dinner &amp; Celebration</span></li>
         </ul>
+      </section>
+
+      <hr class="divider" />
+
+      <section class="detail-block note-section">
+        <p class="label">PLEASE NOTE</p>
+        <p class="note-text">While we love your little ones, this celebration is an adult-only affair.</p>
       </section>
 
       <hr class="divider" />
