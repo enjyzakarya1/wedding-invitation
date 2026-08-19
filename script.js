@@ -1,29 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
   const envelopeWrapper = document.getElementById('envelopeWrapper');
-  const waxSeal = document.getElementById('waxSeal');
   const invitationContent = document.getElementById('invitationContent');
   const tapHint = document.getElementById('tapHint');
-  const bgMusic = document.getElementById('bg-music');
 
-  let isOpen = false;
+  if (envelopeWrapper) {
+    envelopeWrapper.addEventListener('click', () => {
+      // Open the envelope animation
+      envelopeWrapper.classList.add('open');
 
-  const openEnvelope = () => {
-    if (isOpen) return;
-    isOpen = true;
+      // Hide the tap hint
+      if (tapHint) {
+        tapHint.style.display = 'none';
+      }
 
-    envelopeWrapper.classList.add('open');
-    if (tapHint) tapHint.style.opacity = '0';
-
-    if (bgMusic) {
-      bgMusic.play().catch(() => {});
-    }
-
-    setTimeout(() => {
-      invitationContent.classList.add('show');
-      invitationContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 800);
-  };
-
-  if (waxSeal) waxSeal.addEventListener('click', openEnvelope);
-  if (envelopeWrapper) envelopeWrapper.addEventListener('click', openEnvelope);
+      // Show and unroll the invitation content
+      if (invitationContent) {
+        invitationContent.classList.add('show');
+        setTimeout(() => {
+          invitationContent.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    });
+  }
 });
