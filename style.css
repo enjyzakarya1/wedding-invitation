@@ -1,289 +1,64 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* MOBILE PHONE RESPONSIVE STYLES */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
 
-html, body {
-  width: 100%;
-  min-height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-  color: #1b3022;
-  overflow-x: hidden;
-}
+  .main-wrapper {
+    padding: 10px 5px;
+    width: 100%;
+    max-width: 100vw;
+  }
 
-/* ARTISTIC FLORAL PAINTING GRADIENT BACKDROP */
-.oil-painting-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: 
-    radial-gradient(circle at 15% 20%, rgba(200, 220, 210, 0.8), transparent 45%),
-    radial-gradient(circle at 85% 80%, rgba(185, 205, 195, 0.7), transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(245, 240, 230, 0.95), transparent 60%),
-    linear-gradient(135deg, #e8ede9 0%, #dbded7 50%, #f2ebd9 100%);
-  z-index: -1;
-}
+  /* Scale envelope down to fit small screens */
+  .envelope-card, .envelope {
+    width: 280px !important;
+    height: 185px !important;
+  }
 
-.main-wrapper {
-  width: 100%;
-  min-height: 100vh;
-  padding: 30px 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .envelope-img {
+    width: 280px !important;
+    height: auto;
+  }
 
-/* 2D REALISTIC LACE ENVELOPE */
-.envelope-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  cursor: pointer;
-  perspective: 1000px;
-}
+  .seal-container, .wax-seal {
+    width: 44px !important;
+    height: 48px !important;
+  }
 
-.envelope {
-  position: relative;
-  width: 320px;
-  height: 210px;
-  background-color: #f7f3eb;
-  border-radius: 4px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
-}
+  /* Adjust card container width */
+  .invitation-content {
+    width: 92% !important;
+    max-width: 360px !important;
+    padding: 20px 15px !important;
+    margin: 15px auto !important;
+  }
 
-/* LACE TRIM TOP FLAP */
-.flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 160px solid transparent;
-  border-right: 160px solid transparent;
-  border-top: 115px solid #eae1ce;
-  transform-origin: top;
-  transition: transform 0.6s ease, z-index 0.6s;
-  z-index: 3;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
-}
+  /* Adjust typography for mobile reading */
+  .names {
+    font-size: 2rem !important;
+  }
 
-.flap::after {
-  content: '';
-  position: absolute;
-  top: -115px;
-  left: -160px;
-  width: 320px;
-  height: 115px;
-  background-image: radial-gradient(circle, #ffffff 45%, transparent 50%);
-  background-size: 10px 10px;
-  background-position: bottom;
-  background-repeat: repeat-x;
-  opacity: 0.8;
-}
+  .date-highlight, .venue-title {
+    font-size: 1.3rem !important;
+  }
 
-.pocket {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 160px solid #f0e7d5;
-  border-right: 160px solid #f0e7d5;
-  border-bottom: 105px solid #e2d5bd;
-  border-top: 105px solid transparent;
-  border-radius: 0 0 4px 4px;
-  z-index: 2;
-}
+  .sub-heading, .label {
+    font-size: 0.6rem !important;
+    letter-spacing: 1.5px !important;
+  }
 
-.letter {
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  width: 290px;
-  height: 180px;
-  background: #ffffff;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.6s ease;
-  z-index: 1;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
+  .tagline, .venue-address {
+    font-size: 0.8rem !important;
+  }
 
-.letter-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-style: italic;
-  color: #1b3022;
-}
+  .timeline li {
+    font-size: 0.8rem !important;
+    gap: 8px !important;
+  }
 
-/* ORGANIC NATURAL WAX SEAL */
-.wax-seal {
-  position: absolute;
-  top: 85px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 52px;
-  height: 56px;
-  background: radial-gradient(circle at 35% 35%, #7a182b, #3b0a14);
-  border-radius: 48% 52% 55% 45% / 52% 48% 52% 48%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 4;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.35), inset 0 2px 3px rgba(255,255,255,0.25);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.seal-inner {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #e2c08d;
-  letter-spacing: 1px;
-}
-
-.tap-hint {
-  margin-top: 15px;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #2c4233;
-  font-weight: 500;
-}
-
-/* OPENING MOTION ANIMATION */
-.envelope-container.open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.envelope-container.open .letter {
-  transform: translateY(-70px);
-  z-index: 3;
-}
-
-.envelope-container.open .wax-seal {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* CONTINUOUS SINGLE PAGE FLOW */
-.invitation-content {
-  width: 100%;
-  max-width: 450px;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.8s ease, max-height 1.2s ease, margin 0.8s ease;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-}
-
-.invitation-content.show {
-  opacity: 1;
-  max-height: 3000px;
-  margin-top: 30px;
-  padding: 30px 20px;
-}
-
-/* TYPOGRAPHY */
-.sub-heading {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  color: #556b5c;
-}
-
-.names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.6rem;
-  font-weight: 600;
-  margin: 8px 0;
-  color: #1b3022;
-}
-
-.tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  font-style: italic;
-  color: #4a5d50;
-}
-
-.divider {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, #c5a059, transparent);
-  margin: 20px auto;
-  width: 70%;
-}
-
-.detail-block {
-  margin: 18px 0;
-}
-
-.label {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  color: #c5a059;
-  font-weight: 600;
-}
-
-.date-highlight, .venue-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  color: #1b3022;
-  margin-top: 4px;
-}
-
-.venue-address {
-  font-size: 0.85rem;
-  color: #4a5d50;
-  line-height: 1.4;
-}
-
-.timeline {
-  list-style: none;
-  margin-top: 8px;
-}
-
-.timeline li {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
-}
-
-.timeline .time {
-  font-weight: 600;
-  color: #c5a059;
-}
-
-.rsvp-button {
-  margin-top: 12px;
-  background-color: #1b3022;
-  color: #fcf9f2;
-  border: 1px solid #c5a059;
-  padding: 10px 24px;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-.footer {
-  margin-top: 25px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: #556b5c;
-  font-size: 1rem;
+  .rsvp-button {
+    padding: 8px 18px !important;
+    font-size: 0.75rem !important;
+  }
 }
