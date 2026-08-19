@@ -10,17 +10,28 @@ html, body {
   font-family: 'Montserrat', sans-serif;
   color: #1b3022;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-/* BACKGROUND IMAGE STYLES */
-.bg-image {
+/* HIGH QUALITY ENHANCED BACKGROUND */
+.bg-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  object-fit: cover;
   z-index: -2;
+  overflow: hidden;
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: -webkit-optimize-contrast;
+  transform: scale(1.02); /* Prevents edge blurring */
+  filter: contrast(1.05) brightness(0.98);
 }
 
 .bg-overlay {
@@ -29,25 +40,24 @@ html, body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.18);
   z-index: -1;
 }
 
-.main-wrapper {
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px 15px;
+/* FIRST PAGE: ONLY ENVELOPE (FULLSCREEN) */
+.hero-screen {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-/* ENVELOPE STYLES */
 .envelope-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
   cursor: pointer;
   z-index: 10;
 }
@@ -75,8 +85,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.6s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 1;
 }
 
@@ -111,6 +121,11 @@ html, body {
   height: 60px;
   cursor: pointer;
   z-index: 3;
+  transition: transform 0.3s ease, opacity 0.4s ease;
+}
+
+.seal-container:hover {
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
 .wax-img {
@@ -120,17 +135,23 @@ html, body {
 }
 
 .tap-hint {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 0.75rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #1b3022;
   font-weight: 600;
+  animation: pulse 2s infinite;
 }
 
-/* OPEN ANIMATION */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* OPEN ANIMATION: POP OUT LETTER */
 .envelope-container.open .letter-card {
-  transform: translateY(-80px);
+  transform: translateY(-110px) scale(1.05);
 }
 
 .envelope-container.open .seal-container {
@@ -138,20 +159,26 @@ html, body {
   pointer-events: none;
 }
 
-/* INVITATION CONTENT CARD */
-.invitation-content {
-  width: 90%;
-  max-width: 420px;
-  margin-top: 25px;
-  padding: 30px 20px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+/* SECOND SECTION: DETAILS CARD BELOW */
+.details-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 15px 60px 15px;
 }
 
-/* TYPOGRAPHY */
+.invitation-content {
+  width: 100%;
+  max-width: 420px;
+  padding: 35px 25px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* TYPOGRAPHY & LINKS */
 .sub-heading {
   font-size: 0.65rem;
   letter-spacing: 2px;
@@ -177,7 +204,7 @@ html, body {
   border: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, #c5a059, transparent);
-  margin: 20px auto;
+  margin: 22px auto;
   width: 70%;
 }
 
@@ -205,6 +232,22 @@ html, body {
   line-height: 1.4;
 }
 
+.location-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #c5a059;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid #c5a059;
+  padding-bottom: 2px;
+  transition: opacity 0.2s ease;
+}
+
+.location-link:hover {
+  opacity: 0.8;
+}
+
 .timeline {
   list-style: none;
   margin-top: 8px;
@@ -221,6 +264,14 @@ html, body {
 .timeline .time {
   font-weight: 600;
   color: #c5a059;
+}
+
+.note-text {
+  font-size: 0.82rem;
+  color: #556b5c;
+  line-height: 1.4;
+  margin-top: 5px;
+  font-style: italic;
 }
 
 .rsvp-button {
@@ -244,7 +295,7 @@ html, body {
   font-size: 1rem;
 }
 
-/* MOBILE OPTIMIZATIONS */
+/* MOBILE SIZING */
 @media screen and (max-width: 480px) {
   .envelope-card {
     width: 280px;
@@ -255,14 +306,13 @@ html, body {
     height: 170px;
   }
   .seal-container {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
   }
   .names {
     font-size: 2rem;
   }
   .invitation-content {
-    width: 95%;
-    padding: 20px 15px;
+    padding: 25px 18px;
   }
 }
