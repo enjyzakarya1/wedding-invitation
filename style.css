@@ -1,357 +1,282 @@
+/* RESET & BASE STYLES */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-  /* Artistic Vintage Lace & Emerald Botanical Background Overlay */
-  background: linear-gradient(rgba(12, 45, 29, 0.72), rgba(12, 45, 29, 0.72)),
-              url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat fixed;
+html, body {
+  width: 100%;
   font-family: 'Montserrat', sans-serif;
-  color: #0c2d1d;
+  color: #1b3022; /* Deep Emerald Green Text */
+  background-color: #fdfbf7;
   overflow-x: hidden;
 }
 
-/* Floating Ivory & Emerald Sound Button */
-.music-toggle {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 1000;
-  background: #fdfbf7;
-  color: #0c2d1d;
-  border: 1px solid #1b4332;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  font-family: 'Montserrat', sans-serif;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+/* 
+  IVORY OIL PAINTING BACKGROUND EFFECT
+  Combines soft cream shades with rich layered gradients and texture 
+*/
+.oil-canvas {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fcf9f2;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(245, 240, 227, 0.8), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(238, 230, 213, 0.7), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 253, 248, 0.9), transparent 60%),
+    conic-gradient(from 180deg at 50% 50%, #fdfbf7 0deg, #f5efe1 120deg, #fcf8ee 240deg, #fdfbf7 360deg);
+  background-blend-mode: overlay, multiply, soft-light, normal;
+  padding: 20px 15px;
 }
 
-/* Reduced Spacing Scroll Container */
-.scroll-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
-
-/* Tighter vertical spacing between cards */
-.card-section {
-  min-height: 85vh;
-  padding: 30px 15px;
+/* ENVELOPE CONTAINER */
+.envelope-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  scroll-snap-align: center;
+  padding: 40px 0 20px 0;
 }
 
-/* Header Text */
-.header-subtitle {
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: #fdfbf7;
-  text-align: center;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-
-.top-names {
-  font-family: 'Alex Brush', cursive;
-  font-size: 40px;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 15px;
-  font-weight: normal;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-}
-
-/* Envelope Container */
 .envelope-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: relative;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
 }
 
 .envelope {
   position: relative;
-  width: 300px;
-  height: 200px;
-  background-color: #fdfbf7; /* Ivory Paper */
+  width: 100%;
+  height: 100%;
+  background-color: #f2ebd9; /* Subtle contrast ivory for envelope body */
   border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  transition: transform 0.4s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* Ivory Lace Trim Inner Detail */
-.lace-trim {
+/* FLAP WITH 3D FLIP */
+.flap {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  border: 2px dashed #2d6a4f;
-  outline: 1px solid #1b4332;
-  outline-offset: -6px;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 110px solid #e8dfc8;
+  transform-origin: top;
+  transition: transform 0.6s ease, z-index 0.6s;
+  z-index: 3;
+}
+
+.pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid #ede3ce;
+  border-right: 150px solid #ede3ce;
+  border-bottom: 100px solid #e2d6bc;
+  border-top: 100px solid transparent;
+  border-radius: 0 0 4px 4px;
+  z-index: 2;
+}
+
+.letter {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  width: 270px;
+  height: 170px;
+  background: #ffffff;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.letter-preview {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #1b3022;
+}
+
+/* EMERALD / GOLD WAX SEAL */
+.wax-seal {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 46px;
+  background: radial-gradient(circle, #2a4734 0%, #112217 100%);
+  border: 2px solid #c5a059;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fcf9f2;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 4;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, opacity 0.4s ease;
+}
+
+.tap-hint {
+  margin-top: 15px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #556b5c;
+}
+
+/* OPEN ANIMATION STATES */
+.envelope-wrapper.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope-wrapper.open .letter {
+  transform: translateY(-60px);
+  z-index: 3;
+}
+
+.envelope-wrapper.open .wax-seal {
+  opacity: 0;
   pointer-events: none;
 }
 
-.wax-seal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  background: #1b4332; /* Deep Emerald Seal */
-  border: 1px solid #d4ceb8;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 10;
-  transition: all 0.4s ease;
-}
-
-/* Card Popping Out */
-.popped-card {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 280px;
-  height: 380px;
-  background-color: #fdfbf7; /* Rich Ivory */
-  border-radius: 6px;
-  padding: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transform: translateY(0) scale(0.9);
+/* CONTINUOUS SINGLE-PAGE FLOW (NO SPACES, NO PAGES) */
+.invitation-content {
+  max-width: 500px;
+  margin: 0 auto;
   opacity: 0;
-  transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 5;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 1s ease, max-height 1.2s ease, padding 0.8s ease;
+  text-align: center;
 }
 
-.envelope-wrapper.opened .popped-card {
-  transform: translateY(-80px) scale(1);
+/* REVEALED CONTENT STATE */
+.invitation-content.show {
   opacity: 1;
+  max-height: 3000px; /* Expands dynamically */
+  padding: 20px 10px 60px 10px;
 }
 
-.envelope-wrapper.opened .wax-seal {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.5);
+/* TYPOGRAPHY & CONTINUOUS LAYOUT */
+.header {
+  padding: 20px 0 10px 0;
 }
 
-.inner-card-border {
-  border: 1px dashed #1b4332;
-  outline: 1px solid #2d6a4f;
-  outline-offset: -4px;
-  height: 100%;
-  width: 100%;
-  padding: 18px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+.sub-heading {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #556b5c;
 }
 
-/* Details Cards */
-.invitation-card {
-  width: 310px;
-  height: 480px;
-  background-color: #fdfbf7; /* Pure Ivory */
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-}
-
-.lace-border {
-  border: 2px solid #0c2d1d;
-  outline: 1px dashed #2d6a4f;
-  outline-offset: -6px;
-  height: 100%;
-  width: 100%;
-  padding: 20px 12px;
-  border-radius: 4px;
-}
-
-.inner-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-}
-
-.monogram-seal {
+.names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: #0c2d1d;
-  border: 1px solid #2d6a4f;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 4px 0;
-}
-
-.script-names {
-  font-family: 'Alex Brush', cursive;
-  color: #0c2d1d;
-  font-size: 38px;
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin: 10px 0;
+  color: #1b3022;
   line-height: 1.1;
-  font-weight: normal;
 }
 
-.ampersand {
+.tagline {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-size: 1.1rem;
   font-style: italic;
-  color: #2d6a4f;
+  color: #4a5d50;
 }
 
-.tagline, .event-tag {
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #2d6a4f;
-  text-transform: uppercase;
-}
-
-.section-title {
-  font-size: 10px;
-  letter-spacing: 2.5px;
-  color: #0c2d1d;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.divider-lace {
-  width: 50px;
+.divider {
+  border: 0;
   height: 1px;
-  background-color: #2d6a4f;
-  margin: 8px 0;
+  background: linear-gradient(to right, transparent, #c5a059, transparent);
+  margin: 25px auto;
+  width: 60%;
 }
 
-.event-details p {
-  margin: 4px 0;
+.detail-block {
+  margin: 20px 0; /* Tightened spacing for seamless mobile continuous feed */
 }
 
-.day {
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  font-weight: 500;
-  color: #0c2d1d;
-}
-
-.time, .address {
-  font-size: 9px;
-  color: #2d6a4f;
-}
-
-.venue {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-style: italic;
-  color: #0c2d1d;
-  margin-top: 8px !important;
-}
-
-.location-link {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 9px;
-  color: #0c2d1d;
-  text-decoration: none;
-  border-bottom: 1px solid #2d6a4f;
-  padding-bottom: 2px;
-  font-weight: 500;
-}
-
-.program-schedule {
-  width: 100%;
-}
-
-.schedule-item {
-  font-size: 9px;
-  color: #2d6a4f;
-  margin: 6px 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 8px;
-}
-
-.schedule-item span {
-  font-weight: 500;
-  color: #0c2d1d;
-}
-
-.adults-note {
-  padding: 0 6px;
-}
-
-.note-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  font-style: italic;
-  color: #0c2d1d;
-  margin-bottom: 2px;
-}
-
-.note-body {
-  font-size: 8px;
-  line-height: 1.3;
-  color: #2d6a4f;
-}
-
-.footer-text {
-  font-size: 8px;
+.label {
+  font-size: 0.7rem;
   letter-spacing: 2px;
-  color: #2d6a4f;
-  text-transform: uppercase;
+  color: #c5a059;
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 
-.open-instruction {
-  margin-top: 18px;
-  font-size: 8px;
-  letter-spacing: 2px;
-  color: #fdfbf7;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+.date-highlight {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: #1b3022;
 }
 
-.scroll-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
+.venue-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: #1b3022;
+}
+
+.venue-address {
+  font-size: 0.9rem;
+  color: #4a5d50;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.timeline {
+  list-style: none;
   margin-top: 10px;
 }
 
-.scroll-indicator span {
-  font-size: 8px;
+.timeline li {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #1b3022;
+}
+
+.timeline .time {
+  font-weight: 500;
+  color: #c5a059;
+}
+
+.rsvp-button {
+  margin-top: 15px;
+  background-color: #1b3022;
+  color: #fcf9f2;
+  border: 1px solid #c5a059;
+  padding: 12px 28px;
+  font-size: 0.85rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #fdfbf7;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  border-radius: 2px;
+  cursor: pointer;
 }
 
-.chevron {
-  font-size: 12px;
-  color: #fdfbf7;
-  animation: bounce 1.8s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
+.footer {
+  margin-top: 30px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #556b5c;
+  font-size: 1.1rem;
 }
