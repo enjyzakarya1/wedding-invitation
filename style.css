@@ -12,7 +12,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ARTISTIC OIL PAINTING BACKGROUND EFFECT */
+/* ARTISTIC FLORAL PAINTING GRADIENT BACKDROP */
 .oil-painting-bg {
   position: fixed;
   top: 0;
@@ -20,11 +20,10 @@ html, body {
   width: 100vw;
   height: 100vh;
   background: 
-    radial-gradient(circle at 10% 20%, rgba(220, 235, 230, 0.8), transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(200, 215, 210, 0.7), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(245, 240, 230, 0.9), transparent 60%),
-    conic-gradient(from 120deg at 50% 50%, #e6ece8 0deg, #dbded7 120deg, #f0ebe1 240deg, #e6ece8 360deg);
-  background-blend-mode: overlay, multiply, soft-light, normal;
+    radial-gradient(circle at 15% 20%, rgba(200, 220, 210, 0.8), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(185, 205, 195, 0.7), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(245, 240, 230, 0.95), transparent 60%),
+    linear-gradient(135deg, #e8ede9 0%, #dbded7 50%, #f2ebd9 100%);
   z-index: -1;
 }
 
@@ -37,7 +36,7 @@ html, body {
   align-items: center;
 }
 
-/* ENVELOPE STRUCTURE WITH 2D LACE & SHADOWS */
+/* 2D REALISTIC LACE ENVELOPE */
 .envelope-container {
   display: flex;
   flex-direction: column;
@@ -51,12 +50,12 @@ html, body {
   position: relative;
   width: 320px;
   height: 210px;
-  background-color: #f5f0e6;
+  background-color: #f7f3eb;
   border-radius: 4px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
 }
 
-/* FLAP WITH DETAILED LACE TRIM */
+/* LACE TRIM TOP FLAP */
 .flap {
   position: absolute;
   top: 0;
@@ -65,14 +64,13 @@ html, body {
   height: 0;
   border-left: 160px solid transparent;
   border-right: 160px solid transparent;
-  border-top: 115px solid #eae2d1;
+  border-top: 115px solid #eae1ce;
   transform-origin: top;
   transition: transform 0.6s ease, z-index 0.6s;
   z-index: 3;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
 }
 
-/* LACE PATTERN ON FLAP EDGE */
 .flap::after {
   content: '';
   position: absolute;
@@ -80,11 +78,11 @@ html, body {
   left: -160px;
   width: 320px;
   height: 115px;
-  background-image: radial-gradient(circle, #ffffff 40%, transparent 45%);
-  background-size: 12px 12px;
+  background-image: radial-gradient(circle, #ffffff 45%, transparent 50%);
+  background-size: 10px 10px;
   background-position: bottom;
   background-repeat: repeat-x;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .pocket {
@@ -93,9 +91,9 @@ html, body {
   left: 0;
   width: 0;
   height: 0;
-  border-left: 160px solid #f0e8d8;
-  border-right: 160px solid #f0e8d8;
-  border-bottom: 105px solid #e2d7c3;
+  border-left: 160px solid #f0e7d5;
+  border-right: 160px solid #f0e7d5;
+  border-bottom: 105px solid #e2d5bd;
   border-top: 105px solid transparent;
   border-radius: 0 0 4px 4px;
   z-index: 2;
@@ -124,7 +122,7 @@ html, body {
   color: #1b3022;
 }
 
-/* NATURAL ORGANIC BURGUNDY WAX SEAL */
+/* ORGANIC NATURAL WAX SEAL */
 .wax-seal {
   position: absolute;
   top: 85px;
@@ -132,7 +130,7 @@ html, body {
   transform: translateX(-50%);
   width: 52px;
   height: 56px;
-  background: radial-gradient(circle at 30% 30%, #6b1426, #3b0a14);
+  background: radial-gradient(circle at 35% 35%, #7a182b, #3b0a14);
   border-radius: 48% 52% 55% 45% / 52% 48% 52% 48%;
   display: flex;
   align-items: center;
@@ -159,7 +157,7 @@ html, body {
   font-weight: 500;
 }
 
-/* OPEN ANIMATION */
+/* OPENING MOTION ANIMATION */
 .envelope-container.open .flap {
   transform: rotateX(180deg);
   z-index: 1;
