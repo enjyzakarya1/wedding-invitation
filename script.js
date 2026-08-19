@@ -4,19 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const detailsWrapper = document.getElementById("detailsWrapper");
   const bgMusic = document.getElementById("bgMusic");
 
-  if (waxSeal && envelopeWrapper) {
-    waxSeal.addEventListener("click", function (e) {
-      e.stopPropagation(); // Prevents multiple triggers
-      
-      // 1. Toggle pop-out letter animation
+  if (envelopeWrapper) {
+    envelopeWrapper.addEventListener("click", function (e) {
+      // Toggle pop-out letter animation
       envelopeWrapper.classList.add("open");
 
-      // 2. Play background music if included
+      // Play background music if file exists
       if (bgMusic && bgMusic.paused) {
         bgMusic.play().catch(() => {});
       }
 
-      // 3. Smooth scroll down to the invitation details after animation
+      // Smooth scroll down to details after animation finishes
       setTimeout(() => {
         detailsWrapper.scrollIntoView({ behavior: "smooth" });
       }, 700);
