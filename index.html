@@ -22,31 +22,25 @@
   <!-- FIRST SCREEN: ONLY THE ENVELOPE -->
   <section class="hero-screen" id="heroScreen">
     <div class="envelope-container" id="envelopeWrapper">
-      <div class="envelope-card">
-        <div class="envelope-body">
-          
-          <!-- INNER LETTER CARD THAT POPS OUT -->
-          <div class="letter-card" id="letterCard">
-            <p class="letter-title">You're Invited</p>
-          </div>
-
-          <!-- ENVELOPE FRONT COVER WITH LACE -->
-          <div class="envelope-front">
-            <img src="envelope-front.png" alt="Lace Envelope" class="envelope-img" onerror="this.style.opacity='0'" />
-            
-            <!-- CLICKABLE WAX SEAL -->
-            <div class="seal-container" id="waxSeal">
-              <img src="wax-seal.png" alt="Burgundy Wax Seal" class="wax-img" onerror="this.parentElement.classList.add('fallback-seal'); this.style.display='none';" />
-            </div>
-          </div>
-
-        </div>
+      
+      <!-- INNER LETTER CARD THAT SLIDES UP -->
+      <div class="letter-card" id="letterCard">
+        <p class="letter-title">You're Invited</p>
       </div>
+
+      <!-- ENVELOPE PHOTO COVER -->
+      <div class="envelope-card">
+        <img src="envelope-front.png" alt="Lace Envelope" class="envelope-img" />
+        
+        <!-- INVISIBLE CLICKABLE WAX SEAL OVERLAY -->
+        <div class="seal-container" id="waxSeal"></div>
+      </div>
+
       <p class="tap-hint" id="tapHint">Tap wax seal to open</p>
     </div>
   </section>
 
-  <!-- SECOND SECTION: INVITATION DETAILS (REVEALED ON OPEN / SWIPE) -->
+  <!-- SECOND SECTION: INVITATION DETAILS -->
   <div class="details-wrapper" id="detailsWrapper">
     <main class="invitation-content">
       <header class="header">
@@ -96,7 +90,7 @@
       </section>
 
       <footer class="footer">
-        <p>We can'wait to celebrate with you!</p>
+        <p>We can't wait to celebrate with you!</p>
       </footer>
     </main>
   </div>
@@ -106,4 +100,4 @@
   </audio>
 
 </body>
-</html> 
+</html>
