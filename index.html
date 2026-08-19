@@ -1,144 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sawsan & Hassan — Wedding Invitation</title>
-  <!-- Google Fonts -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation | The Westin Cairo</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts for Elegant Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Audio Element -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-116035.mp3" type="audio/mpeg">
+  <!-- Background Music (Optional) -->
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- Sound Toggle Button -->
-  <button class="music-toggle" id="musicBtn" onclick="toggleAudio()">🎵 Music On</button>
+  <!-- OIL PAINTING TEXTURED CONTAINER -->
+  <div class="oil-canvas">
 
-  <div class="scroll-container">
-
-    <!-- Section 1: Interactive Envelope with Main Card Pop-Out -->
-    <section class="card-section">
+    <!-- ENVELOPE HERO SECTION -->
+    <section class="envelope-section">
       <div class="envelope-wrapper" id="envelopeWrapper">
-        <p class="header-subtitle">A LOVE LETTER TO FOREVER</p>
-        <h1 class="top-names">Sawsan &amp; Hassan</h1>
-
-        <div class="envelope" onclick="openEnvelope()">
-          <div class="lace-trim"></div>
-          <div class="wax-seal">🕊️</div>
-          
-          <!-- The Main Card popping out -->
-          <div class="popped-card" id="mainCard">
-            <div class="inner-card-border">
-              <p class="tagline">TOGETHER WITH THEIR FAMILIES</p>
-              <div class="monogram-seal">S & H</div>
-              <h1 class="script-names">Sawsan <br><span class="ampersand">&amp;</span><br> Hassan</h1>
-              <p class="event-tag">JOYFULLY INVITE YOU TO CELEBRATE THEIR WEDDING</p>
-            </div>
+        <div class="envelope">
+          <div class="flap"></div>
+          <div class="pocket"></div>
+          <div class="letter">
+            <p class="letter-preview">You're Invited</p>
           </div>
-        </div>
-
-        <p class="open-instruction" id="openPrompt">TAP ENVELOPE TO OPEN</p>
-
-        <div class="scroll-indicator" id="scrollPrompt" style="display: none;">
-          <span>Swipe Down For Details</span>
-          <div class="chevron">↓</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2: Venue & Location Details -->
-    <section class="card-section">
-      <div class="invitation-card">
-        <div class="lace-border">
-          <div class="inner-content">
-            <p class="section-title">THE CELEBRATION</p>
-            <div class="divider-lace"></div>
-
-            <div class="event-details">
-              <p class="day">FRIDAY, NOVEMBER 13, 2026</p>
-              <p class="time">AT 5:00 IN THE EVENING</p>
-              
-              <p class="venue">The Westin Cairo</p>
-              <p class="address">Golf Resort & Spa, Katameya Dunes</p>
-              
-              <a href="https://maps.google.com/?q=The+Westin+Cairo+Golf+Resort+%26+Spa,+Katameya+Dunes" target="_blank" class="location-link">📍 View Location on Google Maps</a>
-            </div>
-
-            <div class="scroll-indicator">
-              <span>Swipe Down For Schedule</span>
-              <div class="chevron">↓</div>
-            </div>
+          <div class="wax-seal" id="waxSeal">
+            <span>Open</span>
           </div>
         </div>
       </div>
+      <p class="tap-hint" id="tapHint">Tap wax seal to open</p>
     </section>
 
-    <!-- Section 3: Schedule & Respectful Adults-Only Note -->
-    <section class="card-section">
-      <div class="invitation-card">
-        <div class="lace-border">
-          <div class="inner-content">
-            <p class="section-title">EVENT SCHEDULE</p>
-            <div class="divider-lace"></div>
+    <!-- CONTINUOUS INVITATION CONTENT (NO GAPS/PAGES) -->
+    <main class="invitation-content" id="invitationContent">
+      
+      <header class="header">
+        <span class="sub-heading">TOGETHER WITH THEIR FAMILIES</span>
+        <h1 class="names">Bride &amp; Groom</h1>
+        <p class="tagline">request the honor of your presence at their wedding celebration</p>
+      </header>
 
-            <div class="program-schedule">
-              <div class="schedule-item"><span>17:00</span> Guest Arrival & Reception</div>
-              <div class="schedule-item"><span>18:00</span> Wedding Ceremony</div>
-              <div class="schedule-item"><span>19:30</span> Dinner & Celebration</div>
-            </div>
+      <hr class="divider" />
 
-            <div class="divider-lace"></div>
+      <!-- EVENT DETAILS -->
+      <section class="detail-block">
+        <p class="label">DATE</p>
+        <h2 class="date-highlight">Friday, November 13, 2026</h2>
+      </section>
 
-            <!-- Polite Adults-Only Note -->
-            <div class="adults-note">
-              <p class="note-title">A Gentle Note</p>
-              <p class="note-body">To allow all our guests, including parents, a night of relaxation and uninhibited celebration, we respectfully request an adult-only reception.</p>
-            </div>
+      <section class="detail-block">
+        <p class="label">VENUE</p>
+        <h3 class="venue-title">The Westin Cairo</h3>
+        <p class="venue-address">Golf Resort &amp; Spa, Katameya Dunes<br>Cairo, Egypt</p>
+      </section>
 
-            <p class="footer-text">WE CAN'WAIT TO CELEBRATE WITH YOU</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      <hr class="divider" />
 
+      <!-- PROGRAM / TIMELINE -->
+      <section class="detail-block schedule">
+        <p class="label">SCHEDULE OF EVENTS</p>
+        <ul class="timeline">
+          <li>
+            <span class="time">5:00 PM</span>
+            <span class="event">Welcome Drinks</span>
+          </li>
+          <li>
+            <span class="time">6:00 PM</span>
+            <span class="event">Ceremony</span>
+          </li>
+          <li>
+            <span class="time">7:30 PM</span>
+            <span class="event">Dinner &amp; Celebration</span>
+          </li>
+        </ul>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- RSVP SECTION -->
+      <section class="detail-block rsvp-section">
+        <p class="label">R.S.V.P.</p>
+        <p class="rsvp-text">Please confirm your presence by October 1st, 2026</p>
+        <button class="rsvp-button">Confirm Attendance</button>
+      </section>
+
+      <footer class="footer">
+        <p>We can't wait to celebrate with you!</p>
+      </footer>
+
+    </main>
   </div>
 
-  <script>
-    let musicStarted = false;
-
-    function openEnvelope() {
-      const wrapper = document.getElementById('envelopeWrapper');
-      const openPrompt = document.getElementById('openPrompt');
-      const scrollPrompt = document.getElementById('scrollPrompt');
-      const music = document.getElementById('bgMusic');
-
-      wrapper.classList.add('opened');
-      openPrompt.style.display = 'none';
-      scrollPrompt.style.display = 'flex';
-
-      if (!musicStarted) {
-        music.play().catch(() => {});
-        musicStarted = true;
-      }
-    }
-
-    function toggleAudio() {
-      const music = document.getElementById('bgMusic');
-      const btn = document.getElementById('musicBtn');
-      if (music.paused) {
-        music.play();
-        btn.innerText = "🔊 Music On";
-      } else {
-        music.pause();
-        btn.innerText = "🔇 Muted";
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
