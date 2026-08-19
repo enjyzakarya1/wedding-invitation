@@ -1,4 +1,3 @@
-/* RESET & BASE STYLES */
 * {
   margin: 0;
   padding: 0;
@@ -7,242 +6,184 @@
 
 html, body {
   width: 100%;
+  min-height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  color: #1b3022; /* Deep Emerald Green Text */
-  background-color: #fdfbf7;
+  color: #1b3022;
   overflow-x: hidden;
 }
 
-/* 
-  1. ARTISTIC OIL PAINTING BACKGROUND EFFECT (image_2.png)
-*/
-.canvas-background {
+/* 1. FULLSCREEN REAL OIL PAINTING BACKGROUND */
+.bg-image {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  overflow: hidden;
-}
-
-.background-painting {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
-  filter: blur(5px) opacity(0.8); /* Soft blur and light opacity for depth */
+  z-index: -2;
 }
 
-/* Layer to keep the content slightly brighter and textured */
-.oil-canvas {
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(253, 251, 247, 0.35); /* Soft ivory glaze for high text readability */
+  z-index: -1;
+}
+
+.main-wrapper {
   width: 100%;
   min-height: 100vh;
-  z-index: 1;
-  position: relative;
-  /* Use the existing textured ivory blending layer */
-  background-image: 
-    radial-gradient(circle at 20% 20%, rgba(245, 240, 227, 0.4), transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(238, 230, 213, 0.3), transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(255, 253, 248, 0.5), transparent 60%),
-    conic-gradient(from 180deg at 50% 50%, #fdfbf7 0deg, #f5efe1 120deg, #fcf8ee 240deg, #fdfbf7 360deg);
-  background-blend-mode: overlay, multiply, soft-light, normal;
-  padding: 20px 15px;
-}
-
-/* ENVELOPE SECTION */
-.envelope-section {
+  padding: 30px 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 40px 0 20px 0;
 }
 
-.envelope-wrapper {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  perspective: 1000px;
+/* 2. REALISTIC 2D ENVELOPE WITH MOTION */
+.envelope-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
   cursor: pointer;
 }
 
-.envelope {
+.envelope-card {
+  position: relative;
+  width: 320px;
+  height: 220px;
+}
+
+.envelope-body {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #f2ebd9; /* Subtle contrast ivory for envelope body */
-  border-radius: 4px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* 2. ADD LACE TRIM TO FLAP (image_3.png/image_4.png) */
-.flap {
+.envelope-front {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
-  height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  border-top: 110px solid #e8dfc8;
-  transform-origin: top;
-  transition: transform 0.6s ease, z-index 0.6s;
+  width: 100%;
+  height: 100%;
   z-index: 3;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Lace element added via ::after to the flap */
-.flap::after {
-  content: '';
-  position: absolute;
-  bottom: 1px; /* Just below the triangle tip */
-  left: -150px; /* Offset the parent border width */
-  width: 300px;
-  height: 15px; /* Height of the lace strip */
-  background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="15" viewBox="0 0 30 15"%3E%3Cpath fill="%23fff" fill-opacity="0.8" d="M15,0 C22.5,0,25,7.5,15,7.5 C5,7.5,7.5,0,15,0 Z M15,15 C22.5,15,25,7.5,15,7.5 C5,7.5,7.5,15,15,15 Z"/%3E%3C/svg%3E');
-  background-repeat: repeat-x;
-  background-size: contain;
-  opacity: 0.9;
+.envelope-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.15));
 }
 
-.pocket {
+/* REAL WAX SEAL OVERLAY */
+.seal-container {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 150px solid #ede3ce;
-  border-right: 150px solid #ede3ce;
-  border-bottom: 100px solid #e2d6bc;
-  border-top: 100px solid transparent;
-  border-radius: 0 0 4px 4px;
-  z-index: 2;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  z-index: 4;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.letter {
+.wax-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+/* INSIDE LETTER CARD THAT SLIDES OUT */
+.letter-card {
   position: absolute;
-  bottom: 10px;
-  left: 15px;
-  width: 270px;
-  height: 170px;
+  top: 10px;
+  left: 5%;
+  width: 90%;
+  height: 190px;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.6s ease;
   z-index: 1;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.letter-preview {
+.letter-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-style: italic;
   color: #1b3022;
 }
 
-/* 
-  2. REDESIGN: ACTUAL WAX SEAL (Realistic deep red, irregular)
-  Using CSS to simulate the organic, deep burgundy wax shape from image_3.png
-*/
-.wax-seal {
-  position: absolute;
-  top: 85px; /* Adjusted position */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 55px; /* Slightly larger */
-  height: 60px;
-  /* Deep burgundy, irregular shape with highlights */
-  background: radial-gradient(circle, #5b1120 0%, #3a0b14 100%);
-  /* Realistic border radius and shape */
-  border-radius: 40% 60% 50% 50% / 50% 50% 60% 40%;
-  border: 1px solid #4a0f19;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fcf9f2;
-  z-index: 4;
-  /* Realistic texture shadow and depth */
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.1);
-  transition: transform 0.3s ease, opacity 0.4s ease;
-}
-
-/* Simulated interwoven initials from image_3.png */
-.initials {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  color: #fff;
-  opacity: 0.8;
-}
-
 .tap-hint {
   margin-top: 15px;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #556b5c;
-}
-
-/* OPEN ANIMATION STATES */
-.envelope-wrapper.open .flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.envelope-wrapper.open .letter {
-  transform: translateY(-60px);
-  z-index: 3;
-}
-
-.envelope-wrapper.open .wax-seal {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* CONTINUOUS SINGLE-PAGE FLOW (NO SPACES, NO PAGES) */
-.invitation-content {
-  max-width: 500px;
-  margin: 0 auto;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 1s ease, max-height 1.2s ease, padding 0.8s ease;
-  text-align: center;
-}
-
-/* REVEALED CONTENT STATE */
-.invitation-content.show {
-  opacity: 1;
-  max-height: 5000px; /* Higher value to allow all contents to show */
-  padding: 20px 10px 60px 10px;
-}
-
-/* TYPOGRAPHY & CONTINUOUS LAYOUT */
-.header {
-  padding: 20px 0 10px 0;
-}
-
-.sub-heading {
   font-size: 0.75rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: #2c4233;
+  font-weight: 500;
+}
+
+/* OPEN ANIMATION STATE */
+.envelope-container.open .letter-card {
+  transform: translateY(-80px);
+  z-index: 5;
+}
+
+.envelope-container.open .seal-container {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+  pointer-events: none;
+}
+
+/* 3. CONTINUOUS MOBILE FEED (NO GAPS/PAGES) */
+.invitation-content {
+  width: 100%;
+  max-width: 450px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.8s ease, max-height 1.2s ease, margin 0.8s ease;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.invitation-content.show {
+  opacity: 1;
+  max-height: 3000px;
+  margin-top: 30px;
+  padding: 30px 20px;
+}
+
+/* TYPOGRAPHY */
+.sub-heading {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
   color: #556b5c;
 }
 
 .names {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 600;
-  margin: 10px 0;
+  margin: 8px 0;
   color: #1b3022;
-  line-height: 1.1;
 }
 
 .tagline {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-style: italic;
   color: #4a5d50;
 }
@@ -251,67 +192,59 @@ html, body {
   border: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, #c5a059, transparent);
-  margin: 25px auto;
-  width: 60%;
+  margin: 20px auto;
+  width: 70%;
 }
 
 .detail-block {
-  margin: 20px 0; /* Tightened spacing for seamless mobile continuous feed */
+  margin: 18px 0;
 }
 
 .label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 2px;
   color: #c5a059;
-  font-weight: 500;
-  margin-bottom: 5px;
+  font-weight: 600;
 }
 
-.date-highlight {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  color: #1b3022;
-}
-
-.venue-title {
+.date-highlight, .venue-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem;
   color: #1b3022;
+  margin-top: 4px;
 }
 
 .venue-address {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #4a5d50;
   line-height: 1.4;
-  margin-top: 4px;
 }
 
 .timeline {
   list-style: none;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .timeline li {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  font-size: 0.95rem;
-  margin-bottom: 8px;
-  color: #1b3022;
+  gap: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
 }
 
 .timeline .time {
-  font-weight: 500;
+  font-weight: 600;
   color: #c5a059;
 }
 
 .rsvp-button {
-  margin-top: 15px;
+  margin-top: 12px;
   background-color: #1b3022;
   color: #fcf9f2;
   border: 1px solid #c5a059;
-  padding: 12px 28px;
-  font-size: 0.85rem;
+  padding: 10px 24px;
+  font-size: 0.8rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   border-radius: 2px;
@@ -319,9 +252,9 @@ html, body {
 }
 
 .footer {
-  margin-top: 30px;
+  margin-top: 25px;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   color: #556b5c;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
