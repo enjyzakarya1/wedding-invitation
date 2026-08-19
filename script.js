@@ -6,29 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (envelopeWrapper) {
     envelopeWrapper.addEventListener('click', () => {
-      // 1. Open the envelope animation
+      // 1. Trigger envelope opening animation
       envelopeWrapper.classList.add('open');
 
-      // 2. Hide the tap hint
+      // 2. Hide hint text
       if (tapHint) {
-        tapHint.style.display = 'none';
+        tapHint.style.opacity = '0';
       }
 
-      // 3. RE-INTEGRATE MUSIC: Play background music
+      // 3. Play background music upon interaction
       if (bgMusic) {
-        // Many browsers block autoplay unless user interacts. 
-        // A click on the envelope is the necessary interaction.
-        bgMusic.play().catch(error => {
-          console.log("Music play prevented, click elsewhere:", error);
+        bgMusic.play().catch(err => {
+          console.log("Music play blocked by browser settings:", err);
         });
       }
 
-      // 4. Show and unroll the invitation content
+      // 4. Reveal invitation details card beneath
       if (invitationContent) {
-        invitationContent.classList.add('show');
         setTimeout(() => {
-          invitationContent.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
+          invitationContent.classList.add('show');
+          invitationContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
       }
     });
   }
