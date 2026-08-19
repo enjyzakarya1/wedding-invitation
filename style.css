@@ -12,24 +12,19 @@ html, body {
   overflow-x: hidden;
 }
 
-/* 1. FULLSCREEN REAL OIL PAINTING BACKGROUND */
-.bg-image {
+/* ARTISTIC OIL PAINTING BACKGROUND EFFECT */
+.oil-painting-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-}
-
-.bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(253, 251, 247, 0.35); /* Soft ivory glaze for high text readability */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(220, 235, 230, 0.8), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(200, 215, 210, 0.7), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(245, 240, 230, 0.9), transparent 60%),
+    conic-gradient(from 120deg at 50% 50%, #e6ece8 0deg, #dbded7 120deg, #f0ebe1 240deg, #e6ece8 360deg);
+  background-blend-mode: overlay, multiply, soft-light, normal;
   z-index: -1;
 }
 
@@ -42,78 +37,84 @@ html, body {
   align-items: center;
 }
 
-/* 2. REALISTIC 2D ENVELOPE WITH MOTION */
+/* ENVELOPE STRUCTURE WITH 2D LACE & SHADOWS */
 .envelope-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
   cursor: pointer;
+  perspective: 1000px;
 }
 
-.envelope-card {
+.envelope {
   position: relative;
   width: 320px;
-  height: 220px;
+  height: 210px;
+  background-color: #f5f0e6;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.envelope-body {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.envelope-front {
+/* FLAP WITH DETAILED LACE TRIM */
+.flap {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 0;
+  height: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-top: 115px solid #eae2d1;
+  transform-origin: top;
+  transition: transform 0.6s ease, z-index 0.6s;
   z-index: 3;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
 }
 
-.envelope-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.15));
-}
-
-/* REAL WAX SEAL OVERLAY */
-.seal-container {
+/* LACE PATTERN ON FLAP EDGE */
+.flap::after {
+  content: '';
   position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 55px;
-  height: 55px;
-  z-index: 4;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  top: -115px;
+  left: -160px;
+  width: 320px;
+  height: 115px;
+  background-image: radial-gradient(circle, #ffffff 40%, transparent 45%);
+  background-size: 12px 12px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+  opacity: 0.7;
 }
 
-.wax-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
-
-/* INSIDE LETTER CARD THAT SLIDES OUT */
-.letter-card {
+.pocket {
   position: absolute;
-  top: 10px;
-  left: 5%;
-  width: 90%;
-  height: 190px;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 160px solid #f0e8d8;
+  border-right: 160px solid #f0e8d8;
+  border-bottom: 105px solid #e2d7c3;
+  border-top: 105px solid transparent;
+  border-radius: 0 0 4px 4px;
+  z-index: 2;
+}
+
+.letter {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  width: 290px;
+  height: 180px;
   background: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.6s ease;
   z-index: 1;
-  transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .letter-title {
@@ -121,6 +122,32 @@ html, body {
   font-size: 1.5rem;
   font-style: italic;
   color: #1b3022;
+}
+
+/* NATURAL ORGANIC BURGUNDY WAX SEAL */
+.wax-seal {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 56px;
+  background: radial-gradient(circle at 30% 30%, #6b1426, #3b0a14);
+  border-radius: 48% 52% 55% 45% / 52% 48% 52% 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35), inset 0 2px 3px rgba(255,255,255,0.25);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.seal-inner {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e2c08d;
+  letter-spacing: 1px;
 }
 
 .tap-hint {
@@ -132,19 +159,23 @@ html, body {
   font-weight: 500;
 }
 
-/* OPEN ANIMATION STATE */
-.envelope-container.open .letter-card {
-  transform: translateY(-80px);
-  z-index: 5;
+/* OPEN ANIMATION */
+.envelope-container.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
 }
 
-.envelope-container.open .seal-container {
+.envelope-container.open .letter {
+  transform: translateY(-70px);
+  z-index: 3;
+}
+
+.envelope-container.open .wax-seal {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.7);
   pointer-events: none;
 }
 
-/* 3. CONTINUOUS MOBILE FEED (NO GAPS/PAGES) */
+/* CONTINUOUS SINGLE PAGE FLOW */
 .invitation-content {
   width: 100%;
   max-width: 450px;
@@ -153,10 +184,10 @@ html, body {
   overflow: hidden;
   transition: opacity 0.8s ease, max-height 1.2s ease, margin 0.8s ease;
   text-align: center;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 .invitation-content.show {
