@@ -1,87 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Invitation | The Westin Cairo</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-<body>
-
-  <!-- BACKGROUND PAINTING LAYER -->
-  <div class="oil-painting-bg"></div>
+<!-- REAL OIL PAINTING BACKGROUND -->
+  <div class="bg-overlay"></div>
+  <img src="background.jpg.jpg" alt="Floral Oil Painting Background" class="bg-image" />
 
   <div class="main-wrapper">
-    <!-- ENVELOPE SECTION -->
+    <!-- REALISTIC 2D ENVELOPE CONTAINER -->
     <section class="envelope-container" id="envelopeWrapper">
-      <div class="envelope">
-        <div class="flap"></div>
-        <div class="pocket"></div>
-        <div class="letter">
-          <p class="letter-title">You're Invited</p>
+      <div class="envelope-card">
+        
+        <!-- ENVELOPE BASE / BACK -->
+        <div class="envelope-body">
+          
+          <!-- INNER LETTER / CARD THAT SLIDES UP -->
+          <div class="letter-card">
+            <p class="letter-title">You're Invited</p>
+          </div>
+
+          <!-- ENVELOPE FRONT COVER WITH LACE -->
+          <div class="envelope-front">
+            <img src="envelope-front.png.jpg" alt="Lace Envelope" class="envelope-img" />
+            
+            <!-- REAL ORGANIC WAX SEAL IMAGE OVERLAY -->
+            <div class="seal-container" id="waxSeal">
+              <img src="wax-seal.png.jpg" alt="Burgundy Wax Seal" class="wax-img" />
+            </div>
+          </div>
+
         </div>
-        <!-- NATURAL ORGANIC WAX SEAL -->
-        <div class="wax-seal" id="waxSeal">
-          <div class="seal-inner">LC</div>
-        </div>
+
       </div>
       <p class="tap-hint" id="tapHint">Tap wax seal to open</p>
     </section>
-
-    <!-- CONTINUOUS SINGLE-PAGE CONTENT -->
-    <main class="invitation-content" id="invitationContent">
-      <header class="header">
-        <span class="sub-heading">TOGETHER WITH THEIR FAMILIES</span>
-        <h1 class="names">Bride &amp; Groom</h1>
-        <p class="tagline">request the honor of your presence at their wedding celebration</p>
-      </header>
-
-      <hr class="divider" />
-
-      <section class="detail-block">
-        <p class="label">DATE</p>
-        <h2 class="date-highlight">Friday, November 13, 2026</h2>
-      </section>
-
-      <section class="detail-block">
-        <p class="label">VENUE</p>
-        <h3 class="venue-title">The Westin Cairo</h3>
-        <p class="venue-address">Golf Resort &amp; Spa, Katameya Dunes<br>Cairo, Egypt</p>
-      </section>
-
-      <hr class="divider" />
-
-      <section class="detail-block schedule">
-        <p class="label">SCHEDULE OF EVENTS</p>
-        <ul class="timeline">
-          <li><span class="time">5:00 PM</span><span class="event">Welcome Drinks</span></li>
-          <li><span class="time">6:00 PM</span><span class="event">Ceremony</span></li>
-          <li><span class="time">7:30 PM</span><span class="event">Dinner &amp; Celebration</span></li>
-        </ul>
-      </section>
-
-      <hr class="divider" />
-
-      <section class="detail-block rsvp-section">
-        <p class="label">R.S.V.P.</p>
-        <p class="rsvp-text">Please confirm your presence by October 1st, 2026</p>
-        <button class="rsvp-button">Confirm Attendance</button>
-      </section>
-
-      <footer class="footer">
-        <p>We can't wait to celebrate with you!</p>
-      </footer>
-    </main>
-  </div>
-
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
-
-</body>
-</html>
