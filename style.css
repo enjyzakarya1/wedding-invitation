@@ -1,87 +1,70 @@
-:root {
-  --emerald-green: #097969;
-  --ivory: #FDFBF7;
-  --gold: #d4af37;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sawsan & Hassan — Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #f7f5f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: 'Georgia', serif;
-}
+  <!-- 1. Background Image Overlay -->
+  <div class="background-overlay"></div>
 
-.envelope-wrapper {
-  position: relative;
-  width: 320px;
-  height: 220px;
-  perspective: 1000px;
-}
+  <!-- Main Scrollable Wrapper -->
+  <main class="page-container">
+    
+    <!-- 2. Interactive Envelope Hero Section -->
+    <section class="hero-section">
+      <p class="instruction-text">Tap the envelope to open</p>
+      
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="flap"></div>
+          <div class="pocket"></div>
+          
+          <!-- Envelope Image -->
+          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
+          
+          <!-- Pop-out Main Invitation Card -->
+          <div class="card" id="card">
+            <h2>Sawsan & Hassan</h2>
+            <p class="subtitle">Save the Date</p>
+            <p class="date">November 13, 2026</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-.envelope {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: var(--emerald-green);
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
+    <!-- 3. Details Section (Visible on Swipe / Scroll Down) -->
+    <section class="details-section">
+      <div class="details-card">
+        <h3>Wedding Details</h3>
+        
+        <div class="detail-item">
+          <h4>Location</h4>
+          <p>The Grand Ballroom</p>
+          <p>123 Elegance Way, Cairo</p>
+        </div>
+        
+        <div class="detail-item">
+          <h4>Schedule</h4>
+          <p>Ceremony: 6:00 PM</p>
+          <p>Dinner & Celebration: 7:30 PM</p>
+        </div>
 
-.envelope-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  pointer-events: none;
-}
+        <div class="detail-item">
+          <h4>RSVP</h4>
+          <p>Please confirm your attendance by October 15, 2026.</p>
+        </div>
+      </div>
+    </section>
 
-/* Card Styling & Smooth Motion */
-.card {
-  position: absolute;
-  bottom: 10px;
-  left: 5%;
-  width: 90%;
-  height: 90%;
-  background-color: var(--ivory);
-  color: #2b2b2b;
-  padding: 25px 15px;
-  box-sizing: border-box;
-  border-radius: 6px;
-  text-align: center;
-  border: 1px solid var(--gold);
-  z-index: 1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  /* Smooth sliding transition */
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s 0.4s;
-}
+  </main>
 
-.card h2 {
-  margin: 0 0 10px 0;
-  font-size: 1.4rem;
-  color: var(--emerald-green);
-}
-
-.card p {
-  margin: 5px 0;
-  font-size: 0.95rem;
-}
-
-.card .date {
-  font-weight: bold;
-  color: var(--gold);
-}
-
-/* Open State Motion */
+  <script src="script.js"></script>
+</body>
+</html>
 .envelope.open .card {
   transform: translateY(-130px) scale(1.05);
   z-index: 3;
