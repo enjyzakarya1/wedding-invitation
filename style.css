@@ -1,276 +1,87 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Color Palette */
+:root {
+  --emerald-green: #097969;
+  --ivory: #FDFBF7;
 }
 
-html, body {
-  width: 100%;
-  min-height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-  color: #1b3022;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+/* Envelope Container Setup */
+.envelope-wrapper {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  margin: 50px auto;
+  perspective: 1000px;
 }
 
-/* BACKGROUND IMAGE STYLES */
-.bg-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;
-  overflow: hidden;
-}
-
-.bg-image {
+.envelope {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.02);
-  filter: contrast(1.05) brightness(0.98);
-}
-
-.bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.15);
-  z-index: -1;
-}
-
-/* HERO SCREEN: FULLSCREEN ENVELOPE DISPLAY */
-.hero-screen {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.envelope-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  z-index: 10;
-}
-
-/* ENVELOPE PHOTO CARD */
-.envelope-card {
-  position: relative;
-  width: 290px;
-  height: 420px;
+  background-color: var(--emerald-green); /* Emerald Green envelope body */
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .envelope-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
-/* SLIDING INNER LETTER CARD */
-.letter-card {
+/* Smooth Card Pop-Out Motion */
+.card {
   position: absolute;
-  top: 40px;
-  width: 260px;
-  height: 180px;
-  background: #ffffff;
+  bottom: 10px;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: var(--ivory); /* Ivory card */
+  color: #2b2b2b;
+  padding: 20px;
+  box-sizing: border-box;
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
   z-index: 1;
+  
+  /* Ultra-smooth cubic-bezier transition */
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s 0.4s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.letter-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  font-style: italic;
-  color: #1b3022;
-}
-
-/* CLICKABLE AREA DIRECTLY OVER THE PHOTO'S WAX SEAL */
-.seal-container {
-  position: absolute;
-  top: 53.5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  cursor: pointer;
+/* Open State Animation */
+.envelope.open .card {
+  /* Slides up smoothly out of the envelope */
+  transform: translateY(-120px) scale(1.05);
   z-index: 3;
 }
 
-.tap-hint {
-  margin-top: 20px;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #1b3022;
-  font-weight: 600;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-/* POP-OUT ANIMATION */
-.envelope-container.open .letter-card {
-  transform: translateY(-130px) scale(1.05);
-}
-
-/* DETAILS SECTION */
-.details-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 40px 15px 60px 15px;
-}
-
-.invitation-content {
-  width: 100%;
-  max-width: 420px;
-  padding: 35px 25px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-}
-
-.sub-heading {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  color: #556b5c;
-}
-
-.names {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.4rem;
-  font-weight: 600;
-  margin: 8px 0;
-  color: #1b3022;
-}
-
-.tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-style: italic;
-  color: #4a5d50;
-}
-
-.divider {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, #c5a059, transparent);
-  margin: 22px auto;
-  width: 70%;
-}
-
-.detail-block {
-  margin: 18px 0;
-}
-
-.label {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  color: #c5a059;
-  font-weight: 600;
-}
-
-.date-highlight, .venue-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  color: #1b3022;
-  margin-top: 4px;
-}
-
-.venue-address {
-  font-size: 0.85rem;
-  color: #4a5d50;
-  line-height: 1.4;
-}
-
-.location-link {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 0.8rem;
-  color: #c5a059;
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid #c5a059;
-  padding-bottom: 2px;
-}
-
-.timeline {
-  list-style: none;
-  margin-top: 8px;
-}
-
-.timeline li {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  font-size: 0.85rem;
-  margin-bottom: 6px;
-}
-
-.timeline .time {
-  font-weight: 600;
-  color: #c5a059;
-}
-
-.note-text {
-  font-size: 0.82rem;
-  color: #556b5c;
-  line-height: 1.4;
-  margin-top: 5px;
-  font-style: italic;
-}
-
-.rsvp-button {
-  margin-top: 12px;
-  background-color: #1b3022;
-  color: #fcf9f2;
-  border: 1px solid #c5a059;
-  padding: 10px 24px;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-radius: 2px;
+/* Music Button Styling */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--ivory);
+  color: var(--emerald-green);
+  border: 2px solid var(--emerald-green);
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: bold;
   cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
-.footer {
-  margin-top: 25px;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: #556b5c;
-  font-size: 1rem;
+.music-btn:hover {
+  background-color: var(--emerald-green);
+  color: var(--ivory);
 }
-
-@media screen and (max-width: 480px) {
-  .envelope-card {
-    width: 260px;
-    height: 380px;
-  }
-  .letter-card {
     width: 230px;
     height: 160px;
   }
