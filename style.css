@@ -1,10 +1,8 @@
-/* Color Palette */
 :root {
   --emerald-green: #097969;
   --ivory: #FDFBF7;
 }
 
-/* Envelope Container Setup */
 .envelope-wrapper {
   position: relative;
   width: 320px;
@@ -17,7 +15,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: var(--emerald-green); /* Emerald Green envelope body */
+  background-color: var(--emerald-green);
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -34,14 +32,14 @@
   z-index: 2;
 }
 
-/* Smooth Card Pop-Out Motion */
+/* Smooth Card Motion Setup */
 .card {
   position: absolute;
   bottom: 10px;
   left: 5%;
   width: 90%;
   height: 90%;
-  background-color: var(--ivory); /* Ivory card */
+  background-color: var(--ivory);
   color: #2b2b2b;
   padding: 20px;
   box-sizing: border-box;
@@ -49,40 +47,13 @@
   text-align: center;
   z-index: 1;
   
-  /* Ultra-smooth cubic-bezier transition */
+  /* Natural easing curve for a smooth gliding motion */
   transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s 0.4s;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Open State Animation */
+/* Card Pops Out When Envelope Opens */
 .envelope.open .card {
-  /* Slides up smoothly out of the envelope */
   transform: translateY(-120px) scale(1.05);
   z-index: 3;
-}
-
-/* Music Button Styling */
-.music-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--ivory);
-  color: var(--emerald-green);
-  border: 2px solid var(--emerald-green);
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 100;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-
-.music-btn:hover {
-  background-color: var(--emerald-green);
-  color: var(--ivory);
-}
-    width: 230px;
-    height: 160px;
-  }
 }
