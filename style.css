@@ -1,17 +1,18 @@
 :root {
   --emerald-green: #097969;
   --ivory: #FDFBF7;
+  --gold: #d4af37;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f7f5f0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: 'Georgia', serif;
 }
 
 .envelope-wrapper {
@@ -28,7 +29,7 @@ body {
   background-color: var(--emerald-green);
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .envelope-img {
@@ -40,8 +41,10 @@ body {
   top: 0;
   left: 0;
   z-index: 2;
+  pointer-events: none;
 }
 
+/* Card Styling & Smooth Motion */
 .card {
   position: absolute;
   bottom: 10px;
@@ -50,16 +53,36 @@ body {
   height: 90%;
   background-color: var(--ivory);
   color: #2b2b2b;
-  padding: 20px;
+  padding: 25px 15px;
   box-sizing: border-box;
   border-radius: 6px;
   text-align: center;
+  border: 1px solid var(--gold);
   z-index: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Smooth sliding transition */
   transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s 0.4s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  color: var(--emerald-green);
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+.card .date {
+  font-weight: bold;
+  color: var(--gold);
+}
+
+/* Open State Motion */
 .envelope.open .card {
-  transform: translateY(-120px) scale(1.05);
+  transform: translateY(-130px) scale(1.05);
   z-index: 3;
 }
