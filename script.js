@@ -1,23 +1,32 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const envelopeWrapper = document.getElementById("envelopeWrapper");
-  const waxSeal = document.getElementById("waxSeal");
-  const detailsWrapper = document.getElementById("detailsWrapper");
-  const bgMusic = document.getElementById("bgMusic");
+const envelope = document.getElementById('envelope');
+const bgMusic = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-toggle');
+let isPlaying = false;
 
-  if (envelopeWrapper) {
-    envelopeWrapper.addEventListener("click", function (e) {
-      // Toggle pop-out letter animation
-      envelopeWrapper.classList.add("open");
+// Toggle Music Manually
+function toggleMusic() {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicBtn.textContent = '🎵 Play Music';
+  } else {
+    bgMusic.play();
+    musicBtn.textContent = '⏸ Pause Music';
+  }
+  isPlaying = !isPlaying;
+}
 
-      // Play background music if file exists
-      if (bgMusic && bgMusic.paused) {
-        bgMusic.play().catch(() => {});
-      }
+musicBtn.addEventListener('click', toggleMusic);
 
-      // Smooth scroll down to details after animation finishes
-      setTimeout(() => {
-        detailsWrapper.scrollIntoView({ behavior: "smooth" });
-      }, 700);
+// Open Envelope & Trigger Music Automatically on First Click
+envelope.addEventListener('click', () => {
+  envelope.classList.toggle('open');
+
+  if (!isPlaying) {
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      musicBtn.textContent = '⏸ Pause Music';
+    }).catch(err => {
+      console.log("Autoplay restricted by browser:", err);
     });
   }
 });
