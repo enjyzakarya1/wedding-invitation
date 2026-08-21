@@ -1,66 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sawsan & Hassan — Wedding Invitation</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-</head>
-<body>
+// ===========================================================
+// Sawsan & Hassan — Wedding Invitation
+// State machine: closed -> opened -> open
+//   closed  = envelope sits waiting, scroll locked
+//   opened  = card has slid out over the envelope, scroll still locked
+//   open    = guest tapped "View Full Invitation"; page unlocks and
+//             scrolls into #main-landing
+// ===========================================================
 
-  <!-- Background Overlay (Reveals after clicking) -->
-  <div class="background-overlay" id="bg-overlay"></div>
+(function () {
+  const body = document.body;
+  const envelope = document.getElementById('envelope');
+  const enterBtn = document.getElementById('enter-btn');
+  const mainLanding = document.getElementById('main-landing');
 
-  <main class="page-container">
-    
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <p class="instruction-text">Tap the envelope to open</p>
-      
-      <div class="envelope-container">
-        <div class="envelope" id="envelope">
-          
-          <!-- Open Envelope Graphic -->
-          <img src="new-envelope.jpg" alt="Olive Green Envelope" class="envelope-img">
-          
-          <!-- Card Sliding Out Beside Envelope -->
-          <div class="card" id="card">
-            <div class="card-border">
-              <p class="card-header">The Wedding of</p>
-              <h1 class="names">Sawsan<br><span class="ampersand">&</span><br>Hassan</h1>
-              
-              <div class="divider"></div>
-              
-              <div class="card-details">
-                <p class="detail-label">VENUE</p>
-                <p class="detail-value">THE WESTIN CAIRO</p>
-                <p class="detail-sub">Cairo International Airport Road</p>
+  function openEnvelope() {
+    if (body.dataset.state !== 'closed') return;
+    body.dataset.state = 'opened';
+    envelope.setAttribute('aria-expanded', 'true');
+  }
 
-                <p class="detail-label time-spacing">TIME</p>
-                <p class="detail-value">6:00 PM</p>
+  function enterLanding() {
+    if (body.dataset.state === 'open') return;
+    body.dataset.state = 'open';
+    mainLanding.setAttribute('aria-hidden', 'false');
+    // Wait for the unlock/opacity transition to start, then scroll.
+    requestAnimationFrame(() => {
+      mainLanding.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 
-                <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
-                  📍 GET DIRECTIONS (MAP LINK)
-                </a>
+  if (envelope) {
+    envelope.addEventListener('click', openEnvelope);
+    envelope.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openEnvelope();
+      }
+    });
+  }
 
-                <!-- QR Code Block -->
-                <div class="qr-container">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://maps.google.com/?q=The+Westin+Cairo&color=556B2F" alt="Map QR Code" class="qr-code">
-                  <p class="qr-label">SCAN FOR DIRECTIONS</p>
-                </div>
-              </div>
-            </div>
-          </div>
+  if (enterBtn) {
+    enterBtn.addEventListener('click', enterLanding);
+  }
 
-        </div>
-      </div>
-    </section>
+  // ---- scroll reveal for main-landing sections ----
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+  }, { threshold: 0.16 });
+  document.querySelectorAll('.main-landing .section').forEach((s) => io.observe(s));
 
-  </main>
+  // ---- countdown ----
+  const WEDDING_ISO = '2026-11-13T18:30:00+02:00';
+  const target = new Date(WEDDING_ISO).getTime();
+  const cdDays = document.getElementById('cd-days');
+  const cdHours = document.getElementById('cd-hours');
+  const cdMins = document.getElementById('cd-mins');
+  const cdSecs = document.getElementById('cd-secs');
 
-  <script src="script.js"></script>
-</body>
-</html>
+  function tick() {
+    if (!cdDays) return;
+    const diff = Math.max(0, target - Date.now());
+    cdDays.textContent = Math.floor(diff / 86400000);
+    cdHours.textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+    cdMins.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+    cdSecs.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---- add to calendar (.ics download) ----
+  const calendarBtn = document.getElementById('calendar-btn');
+  if (calendarBtn) {
+    calendarBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const ics = [
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT',
+        "SUMMARY:Sawsan & Hassan's Wedding",
+        'LOCATION:The Westin Cairo Golf Resort & Spa\\, Katameya Dunes\\, New Cairo City\\, Cairo\\, Egypt',
+        'DESCRIPTION:Adults-only celebration. Formal / Black tie.',
+        'DTSTART:20261113T163000Z',
+        'DTEND:20261113T230000Z',
+        'END:VEVENT', 'END:VCALENDAR',
+      ].join('\r\n');
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'sawsan-hassan-wedding.ics';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    });
+  }
+
+  // ---- RSVP attend toggle ----
+  document.querySelectorAll('.attend-opt').forEach((opt) => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.attend-opt').forEach((o) => o.classList.remove('is-active'));
+      opt.classList.add('is-active');
+    });
+  });
+
+  // ---- RSVP submit ----
+  // NOTE: this is a client-side demo only — it does not send data
+  // anywhere. Wire this up to Formspree / a Sheets webhook / your
+  // own backend before sending this to real guests.
+  const rsvpForm = document.getElementById('rsvp-form');
+  const rsvpThanks = document.getElementById('rsvp-thanks');
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      rsvpForm.hidden = true;
+      rsvpThanks.hidden = false;
+    });
+  }
+})();
