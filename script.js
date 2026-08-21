@@ -5,44 +5,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const music = document.getElementById('wedding-music');
   const musicBtn = document.getElementById('music-btn');
   const musicIcon = document.getElementById('music-icon');
-  
+
   let isPlaying = false;
 
-  function playAudio() {
-    if (music) {
-      music.play().then(() => {
-        isPlaying = true;
-        if (musicIcon) musicIcon.textContent = 'SOUND OFF';
-      }).catch(err => {
-        console.log('Autoplay blocked:', err);
-      });
-    }
-  }
-
-  function pauseAudio() {
-    if (music) {
-      music.pause();
-      isPlaying = false;
-      if (musicIcon) musicIcon.textContent = 'SOUND ON';
-    }
-  }
-
-  if (musicBtn) {
+  // Toggle Music Function
+  if (musicBtn && music) {
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (isPlaying) {
-        pauseAudio();
+      if (music.paused) {
+        music.play();
+        isPlaying = true;
+        if (musicIcon) musicIcon.textContent = 'SOUND OFF';
       } else {
-        playAudio();
+        music.pause();
+        isPlaying = false;
+        if (musicIcon) musicIcon.textContent = 'SOUND ON';
       }
     });
   }
 
+  // Envelope Open Interaction
   if (envelope) {
     envelope.addEventListener('click', () => {
       envelope.classList.toggle('open');
       const isOpen = envelope.classList.contains('open');
 
+      // Toggle background and details visibility
       if (bgOverlay) {
         bgOverlay.classList.toggle('active', isOpen);
       }
@@ -51,9 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsSection.classList.toggle('active', isOpen);
       }
 
-      // Unlock and play audio on user interaction
-      if (isOpen && !isPlaying) {
-        playAudio();
+      // Direct user-gesture audio play (Bypasses mobile autoplay block)
+      if (isOpen && music && music.paused) {
+        music.play().then(() => {
+          isPlaying = true;
+          if (musicIcon) musicIcon.textContent = 'SOUND OFF';
+        }).catch(err => {
+          console.log('Audio wait for explicit tap:', err);
+        });
       }
     });
   }
