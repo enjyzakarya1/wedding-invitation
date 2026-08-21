@@ -1,86 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sawsan & Hassan - Wedding Invitation</title>
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #051F20;
-            color: #F8F5EE;
-            overflow: hidden; /* Locked until opened */
-        }
-        .font-serif {
-            font-family: 'Cormorant Garamond', serif;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sawsan & Hassan — Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#051F20] text-[#F8F5EE] min-h-screen relative">
+<body>
 
-    <!-- COVER SCREEN (Phase 1) -->
-    <div id="cover-screen" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#051F20] transition-transform duration-1000 ease-in-out">
-        <div class="absolute inset-0 bg-radial from-[#0B2B26]/60 to-[#020D0C] pointer-events-none"></div>
+  <!-- Background Overlay -->
+  <div class="background-overlay"></div>
 
-        <div class="border border-[#F8F5EE]/20 p-8 md:p-12 text-center max-w-md w-full relative z-10 bg-[#051F20]/80 backdrop-blur-md shadow-2xl">
-            <div class="text-2xl text-[#D4AF37] mb-3">❦</div>
-            
-            <h1 class="font-serif text-4xl md:text-5xl font-light tracking-wide text-[#F8F5EE]">
-                Sawsan <span class="italic text-[#D4AF37]">&</span> Hassan
-            </h1>
-
-            <div class="w-12 h-[1px] bg-[#D4AF37]/50 mx-auto my-5"></div>
-
-            <p class="uppercase tracking-[0.25em] text-[11px] text-[#F8F5EE]/80 mb-8 font-light">
-                November 13, 2026 • Cordially Invites
-            </p>
-
-            <button onclick="openInvitation()" class="border border-[#F8F5EE] text-[#F8F5EE] px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-[#F8F5EE] hover:text-[#051F20] transition-colors duration-300 cursor-pointer">
-                Open Invitation
-            </button>
+  <main class="page-container">
+    
+    <!-- Hero Section (Clickable Envelope) -->
+    <section class="hero-section">
+      <p class="instruction-text">Tap the envelope to open</p>
+      
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="flap"></div>
+          <div class="pocket"></div>
+          
+          <!-- Wax Seal (Optional display on flap) -->
+          <img src="wax-seal.png" alt="Wax Seal" class="wax-seal-img" onerror="this.style.display='none'">
+          
+          <!-- Envelope Front Image -->
+          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
+          
+          <!-- Pop-out Invitation Card -->
+          <div class="card" id="card">
+            <h2>Sawsan & Hassan</h2>
+            <p class="subtitle">Save the Date</p>
+            <p class="date">November 13, 2026</p>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- MAIN CONTENT (Phase 2 & 3) -->
-    <main id="main-content" class="max-w-2xl mx-auto px-6 py-16 text-center space-y-16 opacity-0 transition-opacity duration-1000">
-        <section class="space-y-4 pt-8">
-            <span class="text-[#D4AF37] text-sm uppercase tracking-widest">Save The Date</span>
-            <h2 class="font-serif text-5xl md:text-6xl text-[#F8F5EE]">Sawsan & Hassan</h2>
-            <p class="text-sm tracking-widest uppercase text-[#D4AF37]">Friday, November 13, 2026</p>
-        </section>
+    <!-- Details Section (Swipe / Scroll Down) -->
+    <section class="details-section">
+      <div class="details-card">
+        <h3>Wedding Details</h3>
+        
+        <div class="detail-item">
+          <h4>Location</h4>
+          <p>The Grand Ballroom</p>
+          <p>123 Elegance Way, Cairo</p>
+        </div>
+        
+        <div class="detail-item">
+          <h4>Schedule</h4>
+          <p>Ceremony: 6:00 PM</p>
+          <p>Dinner & Celebration: 7:30 PM</p>
+        </div>
 
-        <section class="border border-[#F8F5EE]/10 bg-[#0B2B26]/30 p-8 rounded-sm space-y-4 shadow-lg">
-            <h3 class="font-serif text-2xl text-[#D4AF37]">The Celebration</h3>
-            <p class="text-sm text-[#F8F5EE]/90 leading-relaxed">
-                We look forward to celebrating with you at <br>
-                <strong class="text-[#F8F5EE]">The Westin Cairo</strong>
-            </p>
-            <p class="text-xs text-[#D4AF37] uppercase tracking-widest pt-4">
-                * Please note this reception is an adults-only affair *
-            </p>
-        </section>
-    </main>
+        <div class="detail-item">
+          <h4>RSVP</h4>
+          <p>Please confirm your attendance by October 15, 2026.</p>
+        </div>
+      </div>
+    </section>
 
-    <!-- Simple Animation Script -->
-    <script>
-        function openInvitation() {
-            const cover = document.getElementById('cover-screen');
-            const main = document.getElementById('main-content');
-            
-            // Slide cover up out of view
-            cover.style.transform = 'translateY(-100%)';
-            
-            // Enable scrolling and fade in content after transition
-            setTimeout(() => {
-                cover.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                main.style.opacity = '1';
-            }, 600);
-        }
-    </script>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
