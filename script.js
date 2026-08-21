@@ -1,9 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const envelope = document.getElementById('envelope');
+const envelope = document.getElementById('envelope');
 
-  if (envelope) {
-    envelope.addEventListener('click', () => {
-      envelope.classList.toggle('open');
-    });
-  }
-});
+if (envelope) {
+  envelope.addEventListener('click', function() {
+    envelope.classList.toggle('open');
+  });
+}
