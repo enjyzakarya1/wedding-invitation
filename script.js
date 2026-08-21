@@ -6,31 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const musicBtn = document.getElementById('music-btn');
   const musicIcon = document.getElementById('music-icon');
 
-  let isPlaying = false;
+  let audioUnlocked = false;
 
-  // Toggle Music Function
-  if (musicBtn && music) {
+  function playAudio() {
+    if (music) {
+      music.play().then(() => {
+        if (musicIcon) musicIcon.textContent = 'SOUND OFF';
+      }).catch(err => {
+        console.log('Audio playback prevented:', err);
+      });
+    }
+  }
+
+  function pauseAudio() {
+    if (music) {
+      music.pause();
+      if (musicIcon) musicIcon.textContent = 'SOUND ON';
+    }
+  }
+
+  // Toggle button logic
+  if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       if (music.paused) {
-        music.play();
-        isPlaying = true;
-        if (musicIcon) musicIcon.textContent = 'SOUND OFF';
+        playAudio();
       } else {
-        music.pause();
-        isPlaying = false;
-        if (musicIcon) musicIcon.textContent = 'SOUND ON';
+        pauseAudio();
       }
     });
   }
 
-  // Envelope Open Interaction
+  // Envelope tap logic
   if (envelope) {
     envelope.addEventListener('click', () => {
       envelope.classList.toggle('open');
       const isOpen = envelope.classList.contains('open');
 
-      // Toggle background and details visibility
       if (bgOverlay) {
         bgOverlay.classList.toggle('active', isOpen);
       }
@@ -39,14 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsSection.classList.toggle('active', isOpen);
       }
 
-      // Direct user-gesture audio play (Bypasses mobile autoplay block)
-      if (isOpen && music && music.paused) {
-        music.play().then(() => {
-          isPlaying = true;
-          if (musicIcon) musicIcon.textContent = 'SOUND OFF';
-        }).catch(err => {
-          console.log('Audio wait for explicit tap:', err);
-        });
+      // Force play on first tap
+      if (isOpen) {
+        if (!audioUnlocked && music) {
+          music.load(); // Preload sound buffer
+          audioUnlocked = true;
+        }
+        playAudio();
       }
     });
   }
