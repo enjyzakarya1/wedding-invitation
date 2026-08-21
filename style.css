@@ -19,18 +19,18 @@ body {
   overflow-x: hidden;
 }
 
-/* 1. Dynamic Background Overlay */
+/* Dynamic Background Overlay */
 .background-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('./background.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./background.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1;
+  z-index: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1.2s ease-in-out;
@@ -40,7 +40,7 @@ body {
   opacity: 1 !important;
 }
 
-/* 2. Audio Control Button */
+/* Audio Control Button */
 .music-toggle {
   position: fixed;
   top: 20px;
@@ -67,12 +67,14 @@ body {
   font-weight: 600;
 }
 
-/* 3. Hero Section */
+/* Hero Section */
 .page-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-section {
@@ -258,7 +260,7 @@ body {
   50% { transform: translateY(4px); }
 }
 
-/* 4. Details Section */
+/* Details Section */
 .details-section {
   width: 100%;
   max-width: 450px;
