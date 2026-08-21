@@ -1,69 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sawsan & Hassan — Wedding Invitation</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Pinyon+Script&display=swap');
 
-  <!-- Background Overlay -->
-  <div class="background-overlay"></div>
+* {
+  box-sizing: border-box;
+}
 
-  <main class="page-container">
-    
-    <!-- Hero Section (Clickable Envelope) -->
-    <section class="hero-section">
-      <p class="instruction-text">Tap the envelope to open</p>
-      
-      <div class="envelope-wrapper">
-        <div class="envelope" id="envelope">
-          <div class="flap"></div>
-          <div class="pocket"></div>
-          
-          <!-- Wax Seal -->
-          <img src="wax-seal.jpg" alt="Wax Seal" class="wax-seal-img" onerror="this.style.display='none'">
-          
-          <!-- Envelope Front Image -->
-          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
-          
-          <!-- Pop-out Invitation Card -->
-          <div class="card" id="card">
-            <h2>Sawsan & Hassan</h2>
-            <p class="subtitle">Save the Date</p>
-            <p class="date">November 13, 2026</p>
-          </div>
-        </div>
-      </div>
-    </section>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Cormorant Garamond', serif;
+  color: #2b2b2b;
+  overflow-x: hidden;
+}
 
-    <!-- Details Section (Swipe / Scroll Down) -->
-    <section class="details-section">
-      <div class="details-card">
-        <h3>Wedding Details</h3>
-        
-        <div class="detail-item">
-          <h4>Location</h4>
-          <p>The Grand Ballroom</p>
-          <p>123 Elegance Way, Cairo</p>
-        </div>
-        
-        <div class="detail-item">
-          <h4>Schedule</h4>
-          <p>Ceremony: 6:00 PM</p>
-          <p>Dinner & Celebration: 7:30 PM</p>
-        </div>
+/* 1. Background Overlay */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('background.png') center/cover no-repeat;
+  z-index: -1;
+}
 
-        <div class="detail-item">
-          <h4>RSVP</h4>
-          <p>Please confirm your attendance by October 15, 2026.</p>
-        </div>
-      </div>
-    </section>
+.page-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  </main>
+/* 2. Hero Section */
+.hero-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.instruction-text {
+  color: #FDFBF7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* 3. Envelope Wrapper & Setup */
+.envelope-wrapper {
+  position: relative;
+  width: 320px;
+  height: 220px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #097969;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Wax Seal Overlay */
+.wax-seal-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55px;
+  height: 55px;
+  z-index: 4;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.envelope.open .wax-seal-img {
+  opacity: 0;
+}
+
+/* 4. Pop-out Invitation Card */
+.card {
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: #FDFBF7;
+  padding: 20px 15px;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid #d4af37;
+  z-index: 1;
+  box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.15), 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.8s ease, z-index 0s 0.3s;
+}
+
+.card h2 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2.2rem;
+  color: #097969;
+  margin: 5px 0;
+  font-weight: normal;
+}
+
+.card .subtitle {
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin: 5px 0;
+}
+
+.card .date {
+  font-weight: 600;
+  color: #d4af37;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+/* Envelope Open State */
+.envelope.open .card {
+  transform: translateY(-130px);
+  z-index: 3;
+}
+
+/* 5. Details Section */
+.details-section {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 20px 80px 20px;
+}
+
+.details-card {
+  background-color: rgba(253, 251, 247, 0.95);
+  border-radius: 8px;
+  padding: 30px 20px;
+  text-align: center;
+  border: 1px solid #d4af37;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.details-card h3 {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 2.5rem;
+  color: #097969;
+  margin-top: 0;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 10px;
+  font-weight: normal;
+}
+
+.detail-item {
+  margin: 25px 0;
+}
+
+.detail-item h4 {
+  margin: 0 0 5px 0;
+  color: #d4af37;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+}
+
+.detail-item p {
+  margin: 3px 0;
+  font-size: 1rem;
+}
