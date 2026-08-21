@@ -19,14 +19,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Dynamic Background Overlay */
+/* Dynamic Background Overlay (Fixed file extension to background.jpg) */
 .background-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./background.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./background.jpg?v=2');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -113,7 +113,7 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Zoomed Envelope Dimensions */
+/* Envelope Container */
 .envelope-container {
   width: 96vw;
   max-width: 480px;
@@ -181,7 +181,7 @@ body {
   opacity: 0;
 }
 
-/* Typography & Decorative Lines */
+/* Typography & Visual Details */
 .card-symbol, .line-symbol {
   color: var(--gold-accent);
   font-size: 0.85rem;
