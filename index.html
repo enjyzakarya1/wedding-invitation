@@ -11,28 +11,42 @@
 </head>
 <body>
 
-  <!-- Background Overlay (Reveals after clicking) -->
+  <!-- Audio Element (Add your music file as music.mp3) -->
+  <audio id="wedding-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Control Button -->
+  <button id="music-btn" class="music-toggle" aria-label="Toggle Music">
+    <span id="music-icon">🎵</span>
+  </button>
+
+  <!-- Dynamic Background (Reveals on tap) -->
   <div class="background-overlay" id="bg-overlay"></div>
 
   <main class="page-container">
     
-    <!-- Hero Section -->
+    <!-- Hero Section: Full Mobile Screen Envelope -->
     <section class="hero-section">
-      <p class="instruction-text">Tap the envelope to open</p>
+      <div class="instruction-box">
+        <p class="instruction-text">Tap the envelope to open</p>
+        <span class="tap-symbol">✦</span>
+      </div>
       
       <div class="envelope-container">
         <div class="envelope" id="envelope">
           
-          <!-- Open Envelope Graphic -->
+          <!-- Full Screen Envelope Graphic -->
           <img src="new-envelope.jpg" alt="Olive Green Envelope" class="envelope-img">
           
-          <!-- Card Sliding Out Beside Envelope -->
+          <!-- Invitation Card -->
           <div class="card" id="card">
             <div class="card-border">
+              <span class="card-symbol">❦</span>
               <p class="card-header">The Wedding of</p>
               <h1 class="names">Sawsan<br><span class="ampersand">&</span><br>Hassan</h1>
               
-              <div class="divider"></div>
+              <div class="divider">✦</div>
               
               <div class="card-details">
                 <p class="detail-label">VENUE</p>
@@ -41,16 +55,11 @@
 
                 <p class="detail-label time-spacing">TIME</p>
                 <p class="detail-value">6:00 PM</p>
+              </div>
 
-                <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
-                  📍 GET DIRECTIONS (MAP LINK)
-                </a>
-
-                <!-- QR Code Block -->
-                <div class="qr-container">
-                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://maps.google.com/?q=The+Westin+Cairo&color=556B2F" alt="Map QR Code" class="qr-code">
-                  <p class="qr-label">SCAN FOR DIRECTIONS</p>
-                </div>
+              <div class="swipe-hint">
+                <span>Swipe Down for Details</span>
+                <span class="scroll-arrow">↓</span>
               </div>
             </div>
           </div>
@@ -59,11 +68,62 @@
       </div>
     </section>
 
+    <!-- Details Section (Appears after envelope opens) -->
+    <section class="details-section" id="details-section">
+      
+      <!-- Card Page 1: Location & Directions -->
+      <div class="details-card">
+        <div class="card-symbol-header">📍</div>
+        <h2>Location & Map</h2>
+        <p class="venue-name">The Westin Cairo Resort & Spa</p>
+        <p class="venue-address">Katameya Dunes, Cairo International Airport Road</p>
+
+        <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
+          OPEN IN GOOGLE MAPS
+        </a>
+
+        <div class="qr-container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Westin+Cairo&color=556B2F" alt="Map QR Code" class="qr-code">
+          <p class="qr-label">SCAN FOR DIRECTIONS</p>
+        </div>
+      </div>
+
+      <div class="section-divider">🕊️</div>
+
+      <!-- Card Page 2: Schedule & Timeline -->
+      <div class="details-card">
+        <div class="card-symbol-header">⌛</div>
+        <h2>Schedule of Events</h2>
+        
+        <div class="timeline-item">
+          <span class="timeline-symbol">💍</span>
+          <div>
+            <h4>6:00 PM</h4>
+            <p>Welcome & Guest Reception</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-symbol">✨</span>
+          <div>
+            <h4>7:00 PM</h4>
+            <p>Wedding Ceremony</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-symbol">🥂</span>
+          <div>
+            <h4>8:00 PM</h4>
+            <p>Dinner & Celebrations</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
-    });
-  }
-})();
