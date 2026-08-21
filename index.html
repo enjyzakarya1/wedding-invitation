@@ -11,38 +11,39 @@
 </head>
 <body>
 
-  <!-- Audio Element (Add your music file as music.mp3) -->
-  <audio id="wedding-music" loop>
+  <!-- Audio Element -->
+  <audio id="wedding-music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
+    <source src="music.ogg" type="audio/ogg">
   </audio>
 
-  <!-- Music Control Button -->
+  <!-- Music Toggle Button -->
   <button id="music-btn" class="music-toggle" aria-label="Toggle Music">
-    <span id="music-icon">🎵</span>
+    <span id="music-icon" class="music-icon-text">SOUND ON</span>
   </button>
 
-  <!-- Dynamic Background (Reveals on tap) -->
+  <!-- Dynamic Background Overlay -->
   <div class="background-overlay" id="bg-overlay"></div>
 
   <main class="page-container">
     
-    <!-- Hero Section: Full Mobile Screen Envelope -->
+    <!-- Hero Section: Full Zoom Envelope -->
     <section class="hero-section">
       <div class="instruction-box">
-        <p class="instruction-text">Tap the envelope to open</p>
+        <p class="instruction-text">Tap envelope to open</p>
         <span class="tap-symbol">✦</span>
       </div>
       
       <div class="envelope-container">
         <div class="envelope" id="envelope">
           
-          <!-- Full Screen Envelope Graphic -->
-          <img src="new-envelope.jpg" alt="Olive Green Envelope" class="envelope-img">
+          <!-- Background Envelope Graphic -->
+          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
           
           <!-- Invitation Card -->
           <div class="card" id="card">
             <div class="card-border">
-              <span class="card-symbol">❦</span>
+              <span class="card-symbol">◇</span>
               <p class="card-header">The Wedding of</p>
               <h1 class="names">Sawsan<br><span class="ampersand">&</span><br>Hassan</h1>
               
@@ -58,7 +59,7 @@
               </div>
 
               <div class="swipe-hint">
-                <span>Swipe Down for Details</span>
+                <span>Scroll Down For Details</span>
                 <span class="scroll-arrow">↓</span>
               </div>
             </div>
@@ -68,18 +69,18 @@
       </div>
     </section>
 
-    <!-- Details Section (Appears after envelope opens) -->
+    <!-- Details Section -->
     <section class="details-section" id="details-section">
       
-      <!-- Card Page 1: Location & Directions -->
+      <!-- Location & Directions -->
       <div class="details-card">
-        <div class="card-symbol-header">📍</div>
+        <div class="line-symbol">◇ ◇ ◇</div>
         <h2>Location & Map</h2>
         <p class="venue-name">The Westin Cairo Resort & Spa</p>
         <p class="venue-address">Katameya Dunes, Cairo International Airport Road</p>
 
         <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
-          OPEN IN GOOGLE MAPS
+          OPEN GOOGLE MAPS
         </a>
 
         <div class="qr-container">
@@ -88,15 +89,15 @@
         </div>
       </div>
 
-      <div class="section-divider">🕊️</div>
+      <div class="section-divider">― ✦ ―</div>
 
-      <!-- Card Page 2: Schedule & Timeline -->
+      <!-- Timeline -->
       <div class="details-card">
-        <div class="card-symbol-header">⌛</div>
-        <h2>Schedule of Events</h2>
+        <div class="line-symbol">◇ ◇ ◇</div>
+        <h2>Schedule</h2>
         
         <div class="timeline-item">
-          <span class="timeline-symbol">💍</span>
+          <span class="timeline-symbol">✦</span>
           <div>
             <h4>6:00 PM</h4>
             <p>Welcome & Guest Reception</p>
@@ -104,7 +105,7 @@
         </div>
 
         <div class="timeline-item">
-          <span class="timeline-symbol">✨</span>
+          <span class="timeline-symbol">✦</span>
           <div>
             <h4>7:00 PM</h4>
             <p>Wedding Ceremony</p>
@@ -112,12 +113,24 @@
         </div>
 
         <div class="timeline-item">
-          <span class="timeline-symbol">🥂</span>
+          <span class="timeline-symbol">✦</span>
           <div>
             <h4>8:00 PM</h4>
             <p>Dinner & Celebrations</p>
           </div>
         </div>
+      </div>
+
+      <div class="section-divider">― ✦ ―</div>
+
+      <!-- Friendly Note on Children -->
+      <div class="details-card note-card">
+        <div class="line-symbol">✧</div>
+        <h2>A Little Note</h2>
+        <p class="note-text">
+          We love your little ones dearly, but tonight is your night off! <br><br>
+          Call the babysitter, put on your dancing shoes, and let’s celebrate adult-style uninterrupted. 🥂
+        </p>
       </div>
 
     </section>
