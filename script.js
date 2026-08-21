@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isPlaying = false;
   let chimeInterval = null;
 
-  // Web Audio API Synthesizer (Generates soft, ambient chime melody)
+  // Web Audio API Synthesizer (Generates soft sound directly in browser)
   function initAudio() {
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function playSoftChime() {
     if (!audioCtx) return;
 
-    // Pentatonic scale notes for a gentle sound (Hz)
     const notes = [523.25, 659.25, 783.99, 1046.50, 1174.66];
     const freq = notes[Math.floor(Math.random() * notes.length)];
 
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     osc.type = 'sine';
     osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-    // Soft fade-in and fade-out envelope
     gain.gain.setValueAtTime(0, audioCtx.currentTime);
     gain.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.1);
     gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isPlaying = true;
       if (musicIcon) musicIcon.textContent = 'SOUND OFF';
       playSoftChime();
-      chimeInterval = setInterval(playSoftChime, 1800); // Plays a soft note every 1.8 seconds
+      chimeInterval = setInterval(playSoftChime, 1800);
     }
   }
 
