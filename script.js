@@ -7,36 +7,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let audioCtx = null;
   let isPlaying = false;
-  let chimeInterval = null;
+  let musicInterval = null;
+  let step = 0;
 
-  // Web Audio API Synthesizer (Generates soft sound directly in browser)
+  // Soft romantic wedding chords (Frequency progressions in Hz)
+  const chords = [
+    [261.63, 329.63, 392.00, 523.25], // C Major (Warm Soft)
+    [220.00, 261.63, 329.63, 440.00], // A Minor (Elegant Romantic)
+    [174.61, 220.00, 261.63, 349.23], // F Major (Sweet Soft)
+    [196.00, 246.94, 293.66, 392.00]  // G Major (Warm Harmony)
+  ];
+
   function initAudio() {
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
   }
 
-  function playSoftChime() {
+  function playWeddingHarmony() {
     if (!audioCtx) return;
 
-    const notes = [523.25, 659.25, 783.99, 1046.50, 1174.66];
-    const freq = notes[Math.floor(Math.random() * notes.length)];
+    const currentChord = chords[step % chords.length];
+    step++;
 
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
+    currentChord.forEach((freq, index) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
 
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      // Soft triangle wave for piano/string hybrid tone
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (index * 0.15));
 
-    gain.gain.setValueAtTime(0, audioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.1);
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 2.5);
+      const startTime = audioCtx.currentTime + (index * 0.15);
+      gain.gain.setValueAtTime(0, startTime);
+      gain.gain.linearRampToValueAtTime(0.04, startTime + 0.3);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.8);
 
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
 
-    osc.start();
-    osc.stop(audioCtx.currentTime + 2.5);
+      osc.start(startTime);
+      osc.stop(startTime + 2.8);
+    });
   }
 
   function startMusic() {
@@ -47,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isPlaying) {
       isPlaying = true;
       if (musicIcon) musicIcon.textContent = 'SOUND OFF';
-      playSoftChime();
-      chimeInterval = setInterval(playSoftChime, 1800);
+      playWeddingHarmony();
+      musicInterval = setInterval(playWeddingHarmony, 2400);
     }
   }
 
@@ -56,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isPlaying) {
       isPlaying = false;
       if (musicIcon) musicIcon.textContent = 'SOUND ON';
-      clearInterval(chimeInterval);
+      clearInterval(musicInterval);
     }
   }
 
