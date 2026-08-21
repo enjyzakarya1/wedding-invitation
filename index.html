@@ -5,59 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sawsan & Hassan — Wedding Invitation</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Background Overlay -->
-  <div class="background-overlay"></div>
+  <!-- Background Overlay (Reveals after clicking) -->
+  <div class="background-overlay" id="bg-overlay"></div>
 
   <main class="page-container">
     
-    <!-- Hero Section (Clickable Envelope) -->
+    <!-- Hero Section -->
     <section class="hero-section">
       <p class="instruction-text">Tap the envelope to open</p>
       
-      <div class="envelope-wrapper">
+      <div class="envelope-container">
         <div class="envelope" id="envelope">
-          <div class="flap"></div>
-          <div class="pocket"></div>
           
-          <!-- Wax Seal -->
-          <img src="wax-seal.jpg" alt="Wax Seal" class="wax-seal-img" onerror="this.style.display='none'">
+          <!-- Open Envelope Graphic -->
+          <img src="new-envelope.jpg" alt="Olive Green Envelope" class="envelope-img">
           
-          <!-- Envelope Front Image -->
-          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
-          
-          <!-- Pop-out Invitation Card -->
+          <!-- Card Sliding Out Beside Envelope -->
           <div class="card" id="card">
-            <h2>Sawsan & Hassan</h2>
-            <p class="subtitle">Save the Date</p>
-            <p class="date">November 13, 2026</p>
+            <div class="card-border">
+              <p class="card-header">The Wedding of</p>
+              <h1 class="names">Sawsan<br><span class="ampersand">&</span><br>Hassan</h1>
+              
+              <div class="divider"></div>
+              
+              <div class="card-details">
+                <p class="detail-label">VENUE</p>
+                <p class="detail-value">THE WESTIN CAIRO</p>
+                <p class="detail-sub">Cairo International Airport Road</p>
+
+                <p class="detail-label time-spacing">TIME</p>
+                <p class="detail-value">6:00 PM</p>
+
+                <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
+                  📍 GET DIRECTIONS (MAP LINK)
+                </a>
+
+                <!-- QR Code Block -->
+                <div class="qr-container">
+                  <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://maps.google.com/?q=The+Westin+Cairo&color=556B2F" alt="Map QR Code" class="qr-code">
+                  <p class="qr-label">SCAN FOR DIRECTIONS</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Details Section (Swipe / Scroll Down) -->
-    <section class="details-section">
-      <div class="details-card">
-        <h3>Wedding Details</h3>
-        
-        <div class="detail-item">
-          <h4>Location</h4>
-          <p>The Grand Ballroom</p>
-          <p>123 Elegance Way, Cairo</p>
-        </div>
-        
-        <div class="detail-item">
-          <h4>Schedule</h4>
-          <p>Ceremony: 6:00 PM</p>
-          <p>Dinner & Celebration: 7:30 PM</p>
-        </div>
-
-        <div class="detail-item">
-          <h4>RSVP</h4>
-          <p>Please confirm your attendance by October 15, 2026.</p>
         </div>
       </div>
     </section>
