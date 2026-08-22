@@ -6,39 +6,45 @@ document.addEventListener("DOMContentLoaded", () => {
   
   let isPlaying = false;
 
-  // Helper to play music smoothly
-  function playAudio() {
-    bgMusic.play().then(() => {
-      isPlaying = true;
-      musicIcon.textContent = "🎵";
-    }).catch(err => {
-      console.log("Browser blocked initial audio start:", err);
+  // Force-preload audio element
+  if (bgMusic) {
+    bgMusic.load();
+  }
+
+  function toggleAudio() {
+    if (!bgMusic) return;
+
+    if (bgMusic.paused) {
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        if (musicIcon) musicIcon.textContent = "🎵";
+      }).catch(err => {
+        console.warn("Playback prevented or audio file missing:", err);
+      });
+    } else {
+      bgMusic.pause();
+      isPlaying = false;
+      if (musicIcon) musicIcon.textContent = "🔇";
+    }
+  }
+
+  // Tap envelope to toggle open animation & start music
+  if (envelopeWrapper) {
+    envelopeWrapper.addEventListener("click", () => {
+      envelopeWrapper.classList.toggle("open");
+
+      // Auto-start music on initial open tap
+      if (bgMusic && bgMusic.paused) {
+        toggleAudio();
+      }
     });
   }
 
-  // Helper to pause music
-  function pauseAudio() {
-    bgMusic.pause();
-    isPlaying = false;
-    musicIcon.textContent = "🔇";
+  // Floating button toggle
+  if (musicBtn) {
+    musicBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Avoid triggering envelope click
+      toggleAudio();
+    });
   }
-
-  // Envelope Tap: Toggle open class & trigger music
-  envelopeWrapper.addEventListener("click", () => {
-    envelopeWrapper.classList.toggle("open");
-
-    if (!isPlaying) {
-      playAudio();
-    }
-  });
-
-  // Music Button: Explicit Toggle
-  musicBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Avoid triggering envelope click
-    if (isPlaying) {
-      pauseAudio();
-    } else {
-      playAudio();
-    }
-  });
 });
