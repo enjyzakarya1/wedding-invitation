@@ -50,7 +50,7 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  perspective: 1500px; /* Enhanced 3D depth */
+  perspective: 1500px;
 }
 
 .envelope-wrapper {
@@ -82,7 +82,7 @@ body, html {
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* MAIN INVITATION PAPER - ENHANCED MOTION */
+/* MAIN INVITATION PAPER - MOTION & STYLING */
 .envelope-card {
   position: absolute;
   z-index: 2;
@@ -95,7 +95,7 @@ body, html {
   border: 1px solid rgba(209, 199, 189, 0.4);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
   
-  /* Initial Closed State: Hidden, pushed down, tilted back */
+  /* Initial Closed State */
   opacity: 0;
   transform: translateY(80px) rotateX(-15deg) scale(0.88);
   transform-origin: center bottom;
@@ -118,10 +118,9 @@ body, html {
   50% { transform: translateY(-3px) scale(1.05); opacity: 1; }
 }
 
-/* OPEN STATE ENHANCED MOTION */
+/* OPEN STATE MOTION */
 .envelope-wrapper.open .envelope-card {
   opacity: 1;
-  /* Card glides smoothly upward out of envelope with slight tilt correction */
   transform: translateY(-25px) rotateX(0deg) scale(1);
 }
 
@@ -134,7 +133,7 @@ body, html {
   pointer-events: none;
 }
 
-/* PROGRAM TIMELINE */
+/* PROGRAM TIMELINE (WITH CONNECTING LINE) */
 .timeline-container {
   position: relative;
   max-width: 500px;
