@@ -4,15 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const musicBtn = document.getElementById("music-btn");
   let isPlaying = false;
 
-  // Toggle Enhanced Envelope Motion & Play Music
+  // Enhanced Envelope Open Motion & Auto-play Audio
   envelopeWrapper.addEventListener("click", () => {
     envelopeWrapper.classList.toggle("open");
 
-    // Play music on tap if not already playing
     if (!isPlaying) {
       bgMusic.play().then(() => {
         isPlaying = true;
-      }).catch(err => console.log("Autoplay blocked by browser policy:", err));
+      }).catch(err => console.log("Autoplay prevented:", err));
     }
   });
 
