@@ -10,21 +10,30 @@
 </head>
 <body>
 
-  <div></div>
+  <!-- BACKGROUND MUSIC PLAYER -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- MUSIC TOGGLE BUTTON -->
+  <button id="music-btn" class="music-toggle-btn" aria-label="Toggle Music">
+    <span id="music-icon">🎵</span>
+  </button>
 
   <main>
-    <!-- SECTION 1: MOBILE FULL-SCREEN ENVELOPE -->
+    <!-- SECTION 1: HERO / ENVELOPE WITH MOTION -->
     <section class="hero-section">
-      <div class="tap-hint">
+      <div class="tap-hint" id="tap-hint">
         <p>Tap envelope to open</p>
         <span>✦</span>
       </div>
       
-      <div class="envelope-wrapper">
+      <div class="envelope-wrapper" id="envelope-wrapper">
         <div class="envelope-container">
           <img alt="Wedding Envelope" src="new-envelope.jpg" class="envelope-img">
           
-          <div class="envelope-card">
+          <div class="envelope-card" id="envelope-card">
             <div class="card-content">
               <span>◇</span>
               <p class="subtitle">The Wedding of</p>
@@ -68,35 +77,37 @@
         </a>
       </div>
 
-      <!-- Program (Title removed) -->
+      <!-- Schedule/Timeline (Lines Included, Title Removed) -->
       <div class="block program-block">
-        <div class="timeline">
-          <div class="timeline-item">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          
+          <div class="timeline-item left">
             <div class="timeline-content">
               <span class="time">6:00 PM</span>
               <span class="event">Guests arrival</span>
             </div>
-            <div></div>
+            <div class="timeline-dot"></div>
           </div>
 
-          <div class="timeline-item">
-            <div></div>
+          <div class="timeline-item right">
+            <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="time">7:00 PM</span>
               <span class="event">Ceremony</span>
             </div>
           </div>
 
-          <div class="timeline-item">
+          <div class="timeline-item left">
             <div class="timeline-content">
               <span class="time">8:00 PM</span>
               <span class="event">Wedding dinner</span>
             </div>
-            <div></div>
+            <div class="timeline-dot"></div>
           </div>
 
-          <div class="timeline-item">
-            <div></div>
+          <div class="timeline-item right">
+            <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="time">12:00 AM</span>
               <span class="event">End of evening</span>
@@ -134,7 +145,7 @@
         </p>
       </div>
 
-      <!-- Couple Photo (Moved to end & frameless) -->
+      <!-- Couple Photo (At bottom & frameless) -->
       <div class="block couple-photo-block">
         <img alt="Sawsan &amp; Hassan" src="couple.jpg" class="couple-img">
       </div>
@@ -142,5 +153,6 @@
     </section>
   </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
