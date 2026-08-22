@@ -10,20 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let musicTimeout = null;
   let phraseIndex = 0;
 
-  // Romantic Canon-in-D style chord progression (frequencies in Hz)
+  // Rich romantic chord progression
   const romanticMelody = [
-    // D Major / Soft Warm Intro
-    [293.66, 370.00, 440.00, 587.33],
-    // A Major
-    [220.00, 277.18, 329.63, 440.00],
-    // B Minor (Emotional)
-    [246.94, 293.66, 370.00, 493.88],
-    // F# Minor
-    [185.00, 220.00, 277.18, 370.00],
-    // G Major (Warm Heartfelt)
-    [196.00, 246.94, 293.66, 392.00],
-    // D Major Low
-    [146.83, 220.00, 293.66, 370.00]
+    [293.66, 370.00, 440.00, 587.33], // D Major
+    [220.00, 277.18, 329.63, 440.00], // A Major
+    [246.94, 293.66, 370.00, 493.88], // B Minor
+    [185.00, 220.00, 277.18, 370.00], // F# Minor
+    [196.00, 246.94, 293.66, 392.00], // G Major
+    [146.83, 220.00, 293.66, 370.00]  // D Major Low
   ];
 
   function initAudio() {
@@ -32,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Plays a lush arpeggiated piano/celeste phrase
   function playRomanticPhrase() {
     if (!audioCtx || !isPlaying) return;
 
@@ -43,24 +36,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
-      // Sine + gentle filter creates a warm piano feel
-      osc.type = 'sine';
+      osc.type = 'triangle'; // Warm acoustic tone
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (noteIndex * 0.22));
 
       const startTime = audioCtx.currentTime + (noteIndex * 0.22);
+      
+      // Increased gain volume from 0.045 to 0.18 for significantly louder sound
       gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(0.045, startTime + 0.15);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 3.2);
+      gain.gain.linearRampToValueAtTime(0.18, startTime + 0.12);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 3.0);
 
       osc.connect(gain);
       gain.connect(audioCtx.destination);
 
       osc.start(startTime);
-      osc.stop(startTime + 3.2);
+      osc.stop(startTime + 3.0);
     });
 
-    // Loop smoothly every 2.6 seconds
-    musicTimeout = setTimeout(playRomanticPhrase, 2600);
+    musicTimeout = setTimeout(playRomanticPhrase, 2400);
   }
 
   function startMusic() {
@@ -83,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Toggle button click
   if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -95,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Envelope click trigger
   if (envelope) {
     envelope.addEventListener('click', () => {
       envelope.classList.toggle('open');
