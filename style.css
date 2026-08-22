@@ -8,22 +8,23 @@
 body, html {
   width: 100%;
   height: 100%;
-  font-family: serif; /* Customize to your Google Font */
+  font-family: serif;
   background-color: #faf9f6;
   color: #333;
   overflow-x: hidden;
 }
 
-/* 1. FULL SCREEN ENVELOPE SECTION */
+/* DESKTOP DEFAULT: Centered, fixed-size hero container */
 .hero-section {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  max-width: 600px; /* Constrained on desktop web */
+  min-height: 80vh;
+  margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 .envelope-wrapper {
@@ -37,7 +38,6 @@ body, html {
 .envelope-container {
   position: relative;
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,44 +45,39 @@ body, html {
 
 .envelope-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Spans full screen */
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
+  height: auto;
+  object-fit: contain;
 }
 
 .envelope-card {
-  position: relative;
+  position: absolute;
   z-index: 2;
   text-align: center;
   padding: 2rem;
-  max-width: 500px;
-  width: 90%;
+  width: 85%;
 }
 
 .tap-hint {
   position: absolute;
-  top: 2rem;
+  top: 1.5rem;
   z-index: 3;
   text-align: center;
 }
 
 /* DETAILS SECTION */
 .details-section {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 3rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 3rem;
   text-align: center;
 }
 
 .block h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -97,12 +92,11 @@ body, html {
   letter-spacing: 1px;
 }
 
-/* TIMELINE */
+/* TIMELINE (Program Title Removed) */
 .timeline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 1.2rem;
 }
 
 .timeline-item {
@@ -125,24 +119,23 @@ body, html {
 }
 
 .swatch {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: inline-block;
 }
 
-/* 3. COUPLE PHOTO (AT END & FRAMELESS) */
+/* COUPLE PHOTO (AT THE END & NO FRAME) */
 .couple-photo-block {
-  margin-top: 2rem;
-  padding: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
+  margin-top: 1rem;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .couple-img {
   width: 100%;
-  max-width: 100%;
   height: auto;
   display: block;
   border: none !important;
@@ -151,4 +144,22 @@ body, html {
   background: transparent !important;
   padding: 0 !important;
   border-radius: 0 !important;
+}
+
+/* MOBILE-ONLY FULL SCREEN ENVELOPE */
+@media screen and (max-width: 767px) {
+  .hero-section {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+  }
+
+  .envelope-container {
+    height: 100vh;
+  }
+
+  .envelope-img {
+    height: 100vh;
+    object-fit: cover; /* Spans full mobile screen */
+  }
 }
