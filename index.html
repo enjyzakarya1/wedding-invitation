@@ -3,56 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sawsan & Hassan — Wedding Invitation</title>
-  <link rel="stylesheet" href="style.css">
+  <title>The Wedding of Sawsan & Hassan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Music Toggle Button -->
-  <button id="music-btn" class="music-toggle" aria-label="Toggle Music">
-    <span id="music-icon" class="music-icon-text">SOUND ON</span>
-  </button>
+  <div></div>
 
-  <!-- Dynamic Background Overlay -->
-  <div class="background-overlay" id="bg-overlay"></div>
-
-  <main class="page-container">
-    
-    <!-- Hero Section -->
+  <main>
+    <!-- SECTION 1: FULL SCREEN ENVELOPE -->
     <section class="hero-section">
-      <div class="instruction-box">
-        <p class="instruction-text">Tap envelope to open</p>
-        <span class="tap-symbol">✦</span>
+      <div class="tap-hint">
+        <p>Tap envelope to open</p>
+        <span>✦</span>
       </div>
       
-      <div class="envelope-container">
-        <div class="envelope" id="envelope">
+      <div class="envelope-wrapper">
+        <div class="envelope-container">
+          <img alt="Wedding Envelope" src="new-envelope.jpg" class="envelope-img">
           
-          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
-          
-          <div class="card" id="card">
-            <div class="card-border">
-              <span class="card-symbol">◇</span>
-              <p class="card-header">The Wedding of</p>
-              <h1 class="names">Sawsan<br><span class="ampersand">&</span><br>Hassan</h1>
+          <div class="envelope-card">
+            <div class="card-content">
+              <span>◇</span>
+              <p class="subtitle">The Wedding of</p>
+              <h1>Sawsan<br><span>&amp;</span><br>Hassan</h1>
               
               <div class="divider">✦</div>
               
-              <div class="card-details">
-                <p class="detail-label">VENUE</p>
-                <p class="detail-value">THE WESTIN CAIRO</p>
-                <p class="detail-sub">Cairo International Airport Road</p>
+              <div class="event-brief">
+                <p class="label">VENUE</p>
+                <p class="venue-title">THE WESTIN CAIRO</p>
+                <p class="venue-sub">Cairo International Airport Road</p>
 
-                <p class="detail-label time-spacing">TIME</p>
-                <p class="detail-value">6:00 PM</p>
+                <p class="label">TIME</p>
+                <p class="time-title">6:00 PM</p>
               </div>
 
-              <div class="swipe-hint">
+              <div class="scroll-hint">
                 <span>Scroll Down For Details</span>
-                <span class="scroll-arrow">↓</span>
+                <span>↓</span>
               </div>
             </div>
           </div>
@@ -61,91 +52,52 @@
       </div>
     </section>
 
-    <!-- Details Section -->
-    <section class="details-section" id="details-section">
+    <!-- SECTION 2: DETAILS -->
+    <section class="details-section">
       
-      <!-- Top Decorative Ribbon Accent -->
-      <div class="ribbon-container">
-        <svg class="ribbon-icon" viewBox="0 0 100 60" width="45" height="32">
-          <path d="M30 20 C20 5, 5 15, 25 30 C45 45, 50 25, 50 25 C50 25, 55 45, 75 30 C95 15, 80 5, 70 20 C60 35, 50 25, 50 25 C50 25, 40 35, 30 20 Z" fill="#1B2E1E"/>
-          <path d="M50 25 L35 55 L42 52 L50 35 L58 52 L65 55 Z" fill="#1B2E1E"/>
-        </svg>
-      </div>
-
       <!-- Location -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Location</h2>
-        <p class="location-name">The Westin Cairo Resort & Spa</p>
-        <p class="body-text">
+      <div class="block location-block">
+        <h2>Location</h2>
+        <p class="venue-name">The Westin Cairo Resort &amp; Spa</p>
+        <p class="venue-desc">
           Katameya Dunes, Cairo International Airport Road.<br>
           A tranquil oasis surrounded by lush greenery — the perfect setting to celebrate our love under the evening sky.
         </p>
-        <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
+        <a href="https://maps.google.com/?q=The+Westin+Cairo" rel="noopener noreferrer" target="_blank" class="map-btn">
           OPEN GOOGLE MAPS
         </a>
       </div>
 
-      <!-- Program / Timeline -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Program</h2>
-        
-        <div class="timeline-container">
-          <svg class="timeline-svg" viewBox="0 0 200 360" preserveAspectRatio="none">
-            <path d="M100 0 C 130 40, 70 80, 100 120 C 130 160, 70 200, 100 240 C 130 280, 70 320, 100 360" 
-                  fill="none" stroke="#1B2E1E" stroke-width="2" stroke-dasharray="5 4"/>
-          </svg>
-
-          <!-- Timeline Node 1: Arrival -->
-          <div class="timeline-node left">
-            <div class="node-text">
+      <!-- Program (Title removed) -->
+      <div class="block program-block">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
               <span class="time">6:00 PM</span>
               <span class="event">Guests arrival</span>
             </div>
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <path d="M8 22h8M12 15v7M6 3l6 9 6-9H6z"/>
-              </svg>
-            </div>
+            <div></div>
           </div>
 
-          <!-- Timeline Node 2: Ceremony -->
-          <div class="timeline-node right">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <circle cx="9" cy="14" r="5"/>
-                <circle cx="15" cy="14" r="5"/>
-                <path d="M12 4l1.5 2.5L16 7l-2 2 .5 3.5L12 11l-2.5 1.5.5-3.5-2-2 2.5-.5z"/>
-              </svg>
-            </div>
-            <div class="node-text">
+          <div class="timeline-item">
+            <div></div>
+            <div class="timeline-content">
               <span class="time">7:00 PM</span>
               <span class="event">Ceremony</span>
             </div>
           </div>
 
-          <!-- Timeline Node 3: Dinner -->
-          <div class="timeline-node left">
-            <div class="node-text">
+          <div class="timeline-item">
+            <div class="timeline-content">
               <span class="time">8:00 PM</span>
               <span class="event">Wedding dinner</span>
             </div>
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <circle cx="12" cy="12" r="8"/>
-                <circle cx="12" cy="12" r="5"/>
-                <path d="M5 4v16M19 4v6a2 2 0 01-2 2h0M19 12v8"/>
-              </svg>
-            </div>
+            <div></div>
           </div>
 
-          <!-- Timeline Node 4: End -->
-          <div class="timeline-node right">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-              </svg>
-            </div>
-            <div class="node-text">
+          <div class="timeline-item">
+            <div></div>
+            <div class="timeline-content">
               <span class="time">12:00 AM</span>
               <span class="event">End of evening</span>
             </div>
@@ -154,45 +106,41 @@
       </div>
 
       <!-- Dress Code -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Dress Code</h2>
-        <p class="body-text">
+      <div class="block dresscode-block">
+        <h2>Dress Code</h2>
+        <p>
           We’d be delighted if your outfits complemented our wedding color palette. Formal or cocktail attire suggested.
         </p>
         <div class="color-palette">
-          <span class="swatch swatch-1"></span>
-          <span class="swatch swatch-2"></span>
-          <span class="swatch swatch-3"></span>
-        </div>
-      </div>
-
-      <!-- Couple Photo Section -->
-      <div class="section-block photo-block">
-        <div class="photo-frame">
-          <img src="couple.jpg" alt="Sawsan & Hassan" class="couple-img">
+          <span class="swatch color-1"></span>
+          <span class="swatch color-2"></span>
+          <span class="swatch color-3"></span>
         </div>
       </div>
 
       <!-- Additional Information -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Additional Information</h2>
-        <p class="body-text">
+      <div class="block info-block">
+        <h2>Additional Information</h2>
+        <p>
           No gifts, please — your presence is our greatest gift.
         </p>
       </div>
 
-      <!-- Friendly Note on Children -->
-      <div class="section-block details-card">
-        <h2 class="script-title">A Little Note</h2>
-        <p class="body-text">
+      <!-- A Little Note -->
+      <div class="block note-block">
+        <h2>A Little Note</h2>
+        <p>
           We love your little ones dearly, but tonight is your night off! Call the babysitter, put on your dancing shoes, and let’s celebrate adult-style uninterrupted. 🥂
         </p>
       </div>
 
-    </section>
+      <!-- Couple Photo (Moved to the very end & frameless) -->
+      <div class="block couple-photo-block">
+        <img alt="Sawsan &amp; Hassan" src="couple.jpg" class="couple-img">
+      </div>
 
+    </section>
   </main>
 
-  <script src="script.js"></script>
 </body>
 </html>
