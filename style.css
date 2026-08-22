@@ -1,470 +1,154 @@
-:root {
-  --deep-emerald: #1B2E1E;
-  --forest-green: #2D4430;
-  --olive-green: #3D5A40;
-  --transparent-ivory: rgba(253, 252, 248, 0.72);
-  --gold-accent: #B8860B;
-  --text-green: #142416;
-}
-
+/* RESET & GENERAL STYLES */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--text-green);
-  background-color: #FAF8F2;
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: serif; /* Customize to your Google Font */
+  background-color: #faf9f6;
+  color: #333;
   overflow-x: hidden;
 }
 
-/* Dynamic Background Overlay */
-.background-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* 1. FULL SCREEN ENVELOPE SECTION */
+.hero-section {
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('./background.jpg?v=6');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1.2s ease-in-out;
-}
-
-.background-overlay.active {
-  opacity: 1 !important;
-}
-
-/* Audio Control Button */
-.music-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  background: rgba(253, 252, 248, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--deep-emerald);
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.music-icon-text {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 1.5px;
-  color: var(--deep-emerald);
-  font-weight: 700;
-}
-
-/* Hero Section */
-.page-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: relative;
-  z-index: 1;
-}
-
-.hero-section {
-  height: 100vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  perspective: 1200px;
+  overflow: hidden;
 }
 
-.instruction-box {
-  text-align: center;
-  margin-bottom: 10px;
-  transition: opacity 0.5s ease;
+.envelope-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.instruction-text {
-  font-family: 'Cinzel', serif;
-  color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.tap-symbol {
-  color: var(--gold-accent);
-  font-size: 0.8rem;
-}
-
-/* Envelope & Card Fit Alignment */
 .envelope-container {
-  width: 92vw;
-  max-width: 420px;
-  height: 80vh;
-  max-height: 620px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.envelope {
   position: relative;
   width: 100%;
   height: 100%;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .envelope-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.35));
+  object-fit: cover; /* Spans full screen */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.envelope-card {
   position: relative;
   z-index: 2;
-  pointer-events: none;
-}
-
-/* Perfectly Centered Card Inside Envelope Pocket */
-.card {
-  position: absolute;
-  top: 14%;
-  left: 11%;
-  width: 78%;
-  height: 72%;
-  background-color: rgba(253, 252, 248, 0.96);
-  backdrop-filter: blur(8px);
-  padding: 12px 10px;
-  border-radius: 6px;
   text-align: center;
-  z-index: 1;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transform: translateY(0);
-  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s 0.3s;
-  will-change: transform;
-  overflow: hidden;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
 }
 
-.card-border {
-  border: 1px solid var(--gold-accent);
-  height: 100%;
-  padding: 10px 8px;
+.tap-hint {
+  position: absolute;
+  top: 2rem;
+  z-index: 3;
+  text-align: center;
+}
+
+/* DETAILS SECTION */
+.details-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
   display: flex;
   flex-direction: column;
+  gap: 3.5rem;
+  text-align: center;
+}
+
+.block h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.map-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #333;
+  letter-spacing: 1px;
+}
+
+/* TIMELINE */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.timeline-item {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Open Motion */
-.envelope.open .card {
-  transform: translateY(-160px);
-  z-index: 3;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
-}
-
-.envelope.open .instruction-box {
-  opacity: 0;
-}
-
-.card-symbol {
-  color: var(--gold-accent);
-  font-size: 0.75rem;
-}
-
-.card-header {
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--forest-green);
-  font-weight: 600;
-  margin: 1px 0;
-}
-
-.names {
-  font-family: 'Cinzel', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--deep-emerald);
-  letter-spacing: 2px;
-  line-height: 1.15;
-  margin: 2px 0;
-}
-
-.ampersand {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 500;
-  color: var(--gold-accent);
-  font-size: 1.8rem;
-  line-height: 0.8;
+.timeline-content .time {
+  font-weight: bold;
   display: block;
 }
 
-.divider {
-  color: var(--gold-accent);
-  font-size: 0.7rem;
-  margin: 1px 0;
-}
-
-.detail-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 2px;
-  color: var(--gold-accent);
-  font-weight: 700;
-  margin: 3px 0 1px 0;
-}
-
-.detail-value {
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: var(--deep-emerald);
-  margin: 0;
-}
-
-.detail-sub {
-  font-size: 0.75rem;
-  color: var(--forest-green);
-  font-weight: 600;
-  margin: 1px 0 0 0;
-}
-
-.swipe-hint {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 1.5px;
-  color: var(--gold-accent);
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2px;
-}
-
-.scroll-arrow {
-  animation: bounce 1.5s infinite;
-  font-size: 0.8rem;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-/* Details Section Typography & Transparent Styling */
-.details-section {
-  width: 100%;
-  max-width: 480px;
-  padding: 30px 18px 100px 18px;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-}
-
-.details-section.active {
-  display: flex;
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.ribbon-container {
-  margin-bottom: -10px;
-}
-
-.details-card {
-  background-color: var(--transparent-ivory);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(184, 134, 11, 0.4);
-  border-radius: 12px;
-  padding: 26px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
-  width: 100%;
-  text-align: center;
-}
-
-/* Clean, Elegant Wedding Headline Typography */
-.script-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 2.8rem;
-  color: var(--deep-emerald);
-  font-weight: 600;
-  margin: 0 0 6px 0;
-  line-height: 1;
-  letter-spacing: 0.5px;
-}
-
-.location-name {
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--deep-emerald);
-  letter-spacing: 1.5px;
-  margin: 0 0 10px 0;
-}
-
-.body-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: var(--forest-green);
-  font-weight: 600;
-  margin: 0 0 15px 0;
-}
-
-.location-btn {
-  display: inline-block;
-  padding: 10px 22px;
-  background-color: var(--deep-emerald);
-  color: #FAF8F2;
-  text-decoration: none;
-  font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  border-radius: 20px;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.location-btn:hover {
-  transform: translateY(-2px);
-  background-color: var(--forest-green);
-}
-
-/* Timeline Program Layout */
-.timeline-container {
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-  height: 360px;
-  margin: 20px auto 0 auto;
-}
-
-.timeline-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.timeline-node {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 1;
-}
-
-.timeline-node.left {
-  left: 10px;
-  text-align: right;
-}
-
-.timeline-node.right {
-  right: 10px;
-  text-align: left;
-}
-
-.timeline-node:nth-child(2) { top: 10px; }
-.timeline-node:nth-child(3) { top: 100px; }
-.timeline-node:nth-child(4) { top: 190px; }
-.timeline-node:nth-child(5) { top: 280px; }
-
-.node-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.node-text .time {
-  font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  color: var(--forest-green);
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.node-text .event {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.7rem;
-  color: var(--deep-emerald);
-  font-weight: 600;
-  line-height: 1.1;
-}
-
-.node-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(253, 252, 248, 0.88);
-  border: 1px solid var(--gold-accent);
-  border-radius: 50%;
-  padding: 7px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-}
-
-/* Color Palette Swatches */
+/* DRESS CODE SWATCHES */
 .color-palette {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 15px;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .swatch {
-  width: 42px;
-  height: 24px;
-  border-radius: 12px 0 12px 0;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
-.swatch-1 { background-color: #A3B18A; }
-.swatch-2 { background-color: #DDA15E; }
-.swatch-3 { background-color: #6B705C; }
-
-/* Photo Card Frame */
-.photo-block {
-  width: 100%;
-}
-
-.photo-frame {
-  border: 1px solid var(--gold-accent);
-  padding: 8px;
-  border-radius: 12px;
-  background-color: var(--transparent-ivory);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+/* 3. COUPLE PHOTO (AT END & FRAMELESS) */
+.couple-photo-block {
+  margin-top: 2rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .couple-img {
   width: 100%;
+  max-width: 100%;
   height: auto;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 6px;
   display: block;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
 }
