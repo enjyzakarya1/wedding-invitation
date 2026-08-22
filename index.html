@@ -7,35 +7,42 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Music Toggle Button -->
+  <!-- Audio Element (Add your music file as music.mp3) -->
+  <audio id="wedding-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Control Button -->
   <button id="music-btn" class="music-toggle" aria-label="Toggle Music">
-    <span id="music-icon" class="music-icon-text">SOUND ON</span>
+    <span id="music-icon">🎵</span>
   </button>
 
-  <!-- Dynamic Background Overlay -->
+  <!-- Dynamic Background (Reveals on tap) -->
   <div class="background-overlay" id="bg-overlay"></div>
 
   <main class="page-container">
     
-    <!-- Hero Section -->
+    <!-- Hero Section: Full Mobile Screen Envelope -->
     <section class="hero-section">
       <div class="instruction-box">
-        <p class="instruction-text">Tap envelope to open</p>
+        <p class="instruction-text">Tap the envelope to open</p>
         <span class="tap-symbol">✦</span>
       </div>
       
       <div class="envelope-container">
         <div class="envelope" id="envelope">
           
-          <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
+          <!-- Full Screen Envelope Graphic -->
+          <img src="new-envelope.jpg" alt="Olive Green Envelope" class="envelope-img">
           
+          <!-- Invitation Card -->
           <div class="card" id="card">
             <div class="card-border">
-              <span class="card-symbol">◇</span>
+              <span class="card-symbol">❦</span>
               <p class="card-header">The Wedding of</p>
               <h1 class="names">Sawsan<br><span class="ampersand">&</span><br>Hassan</h1>
               
@@ -51,7 +58,7 @@
               </div>
 
               <div class="swipe-hint">
-                <span>Scroll Down For Details</span>
+                <span>Swipe Down for Details</span>
                 <span class="scroll-arrow">↓</span>
               </div>
             </div>
@@ -61,132 +68,56 @@
       </div>
     </section>
 
-    <!-- Details Section -->
+    <!-- Details Section (Appears after envelope opens) -->
     <section class="details-section" id="details-section">
       
-      <!-- Top Decorative Ribbon Accent -->
-      <div class="ribbon-container">
-        <svg class="ribbon-icon" viewBox="0 0 100 60" width="45" height="32">
-          <path d="M30 20 C20 5, 5 15, 25 30 C45 45, 50 25, 50 25 C50 25, 55 45, 75 30 C95 15, 80 5, 70 20 C60 35, 50 25, 50 25 C50 25, 40 35, 30 20 Z" fill="#1B2E1E"/>
-          <path d="M50 25 L35 55 L42 52 L50 35 L58 52 L65 55 Z" fill="#1B2E1E"/>
-        </svg>
-      </div>
+      <!-- Card Page 1: Location & Directions -->
+      <div class="details-card">
+        <div class="card-symbol-header">📍</div>
+        <h2>Location & Map</h2>
+        <p class="venue-name">The Westin Cairo Resort & Spa</p>
+        <p class="venue-address">Katameya Dunes, Cairo International Airport Road</p>
 
-      <!-- Location -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Location</h2>
-        <p class="location-name">The Westin Cairo Resort & Spa</p>
-        <p class="body-text">
-          Katameya Dunes, Cairo International Airport Road.<br>
-          A tranquil oasis surrounded by lush greenery — the perfect setting to celebrate our love under the evening sky.
-        </p>
         <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
-          OPEN GOOGLE MAPS
+          OPEN IN GOOGLE MAPS
         </a>
+
+        <div class="qr-container">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Westin+Cairo&color=556B2F" alt="Map QR Code" class="qr-code">
+          <p class="qr-label">SCAN FOR DIRECTIONS</p>
+        </div>
       </div>
 
-      <!-- Program / Timeline -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Program</h2>
+      <div class="section-divider">🕊️</div>
+
+      <!-- Card Page 2: Schedule & Timeline -->
+      <div class="details-card">
+        <div class="card-symbol-header">⌛</div>
+        <h2>Schedule of Events</h2>
         
-        <div class="timeline-container">
-          <svg class="timeline-svg" viewBox="0 0 200 360" preserveAspectRatio="none">
-            <path d="M100 0 C 130 40, 70 80, 100 120 C 130 160, 70 200, 100 240 C 130 280, 70 320, 100 360" 
-                  fill="none" stroke="#1B2E1E" stroke-width="2" stroke-dasharray="5 4"/>
-          </svg>
-
-          <!-- Timeline Node 1: Arrival -->
-          <div class="timeline-node left">
-            <div class="node-text">
-              <span class="time">6:00 PM</span>
-              <span class="event">Guests arrival</span>
-            </div>
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <path d="M8 22h8M12 15v7M6 3l6 9 6-9H6z"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Timeline Node 2: Ceremony -->
-          <div class="timeline-node right">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <circle cx="9" cy="14" r="5"/>
-                <circle cx="15" cy="14" r="5"/>
-                <path d="M12 4l1.5 2.5L16 7l-2 2 .5 3.5L12 11l-2.5 1.5.5-3.5-2-2 2.5-.5z"/>
-              </svg>
-            </div>
-            <div class="node-text">
-              <span class="time">7:00 PM</span>
-              <span class="event">Ceremony</span>
-            </div>
-          </div>
-
-          <!-- Timeline Node 3: Dinner -->
-          <div class="timeline-node left">
-            <div class="node-text">
-              <span class="time">8:00 PM</span>
-              <span class="event">Wedding dinner</span>
-            </div>
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <circle cx="12" cy="12" r="8"/>
-                <circle cx="12" cy="12" r="5"/>
-                <path d="M5 4v16M19 4v6a2 2 0 01-2 2h0M19 12v8"/>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Timeline Node 4: End -->
-          <div class="timeline-node right">
-            <div class="node-icon">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="#1B2E1E" stroke-width="1.8" fill="none">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-              </svg>
-            </div>
-            <div class="node-text">
-              <span class="time">12:00 AM</span>
-              <span class="event">End of evening</span>
-            </div>
+        <div class="timeline-item">
+          <span class="timeline-symbol">💍</span>
+          <div>
+            <h4>6:00 PM</h4>
+            <p>Welcome & Guest Reception</p>
           </div>
         </div>
-      </div>
 
-      <!-- Dress Code -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Dress Code</h2>
-        <p class="body-text">
-          We’d be delighted if your outfits complemented our wedding color palette. Formal or cocktail attire suggested.
-        </p>
-        <div class="color-palette">
-          <span class="swatch swatch-1"></span>
-          <span class="swatch swatch-2"></span>
-          <span class="swatch swatch-3"></span>
+        <div class="timeline-item">
+          <span class="timeline-symbol">✨</span>
+          <div>
+            <h4>7:00 PM</h4>
+            <p>Wedding Ceremony</p>
+          </div>
         </div>
-      </div>
 
-      <!-- Couple Photo Section -->
-      <div class="section-block photo-block">
-        <div class="photo-frame">
-          <img src="couple.jpg" alt="Sawsan & Hassan" class="couple-img">
+        <div class="timeline-item">
+          <span class="timeline-symbol">🥂</span>
+          <div>
+            <h4>8:00 PM</h4>
+            <p>Dinner & Celebrations</p>
+          </div>
         </div>
-      </div>
-
-      <!-- Additional Information -->
-      <div class="section-block details-card">
-        <h2 class="script-title">Additional Information</h2>
-        <p class="body-text">
-          No gifts, please — your presence is our greatest gift.
-        </p>
-      </div>
-
-      <!-- Friendly Note on Children -->
-      <div class="section-block details-card">
-        <h2 class="script-title">A Little Note</h2>
-        <p class="body-text">
-          We love your little ones dearly, but tonight is your night off! Call the babysitter, put on your dancing shoes, and let’s celebrate adult-style uninterrupted. 🥂
-        </p>
       </div>
 
     </section>
