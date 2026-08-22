@@ -1,9 +1,9 @@
 :root {
-  --deep-olive: #2D3A1E;
-  --soft-olive: #4B5832;
-  --blended-ivory: rgba(252, 250, 246, 0.88);
+  --deep-olive: #12190E;
+  --soft-olive: #3B4B28;
+  --transparent-ivory: rgba(252, 250, 246, 0.65);
   --gold-accent: #B8860B;
-  --text-dark: #1F241A;
+  --text-dark: #0F140C;
 }
 
 * {
@@ -26,7 +26,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('./background.jpg?v=4');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('./background.jpg?v=5');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,13 +46,14 @@ body {
   top: 20px;
   right: 20px;
   z-index: 100;
-  background: rgba(252, 250, 246, 0.92);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--deep-olive);
-  padding: 8px 14px;
+  background: rgba(252, 250, 246, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-accent);
+  padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .music-icon-text {
@@ -74,26 +75,27 @@ body {
 }
 
 .hero-section {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  perspective: 1000px;
+  padding: 15px 10px;
+  perspective: 1200px;
 }
 
 .instruction-box {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   transition: opacity 0.6s ease;
 }
 
 .instruction-text {
   font-family: 'Cinzel', serif;
-  color: var(--deep-olive);
-  letter-spacing: 2.5px;
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 0.85rem;
   font-weight: 700;
@@ -105,16 +107,16 @@ body {
   font-size: 0.8rem;
 }
 
-/* Envelope Container */
+/* Full Screen Envelope Container */
 .envelope-container {
-  width: 96vw;
-  max-width: 480px;
-  height: 82vh;
+  width: 92vw;
+  max-width: 440px;
+  height: 86vh;
   max-height: 680px;
   position: relative;
   display: flex;
   justify-content: center;
-  perspective: 1200px;
+  align-items: center;
 }
 
 .envelope {
@@ -123,59 +125,66 @@ body {
   height: 100%;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: floatEnvelope 4s ease-in-out infinite;
+}
+
+@keyframes floatEnvelope {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
 .envelope:hover {
-  transform: translateY(-4px) rotateX(2deg);
+  transform: translateY(-5px) rotateX(3deg);
 }
 
 .envelope-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
   position: relative;
   z-index: 2;
 }
 
+/* First Page Card Fix */
 .card {
   position: absolute;
-  top: 10px;
-  left: 3%;
-  width: 94%;
-  height: 97%;
-  background-color: var(--blended-ivory);
-  backdrop-filter: blur(8px);
-  padding: 15px 10px;
+  top: 6%;
+  left: 6%;
+  width: 88%;
+  height: 88%;
+  background-color: rgba(252, 250, 246, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 8px;
   border-radius: 8px;
   text-align: center;
   z-index: 1;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transform: translateY(0) rotateX(0deg);
-  transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s 0.4s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(0) scale(0.98);
+  transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s 0.3s;
   overflow: hidden;
 }
 
 .card-border {
-  border: 1.5px solid var(--gold-accent);
+  border: 1px solid var(--gold-accent);
   height: 100%;
-  padding: 15px 10px;
+  padding: 12px 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Open Envelope Animation */
 .envelope.open {
-  transform: scale(0.98);
+  animation: none;
 }
 
 .envelope.open .card {
-  transform: translateY(-145px) rotateX(-2deg) scale(1.03);
+  transform: translateY(-135px) rotateX(-2deg) scale(1.02);
   z-index: 3;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
 }
 
 .envelope.open .instruction-box {
@@ -184,12 +193,12 @@ body {
 
 .card-symbol {
   color: var(--gold-accent);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .card-header {
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--deep-olive);
   font-weight: 600;
   margin: 2px 0;
@@ -197,65 +206,68 @@ body {
 
 .names {
   font-family: 'Cinzel', serif;
-  font-size: 1.8rem;
+  font-size: 1.55rem;
   font-weight: 700;
   color: var(--deep-olive);
   letter-spacing: 2px;
-  line-height: 1.2;
-  margin: 0;
+  line-height: 1.15;
+  margin: 2px 0;
 }
 
 .ampersand {
-  font-style: italic;
+  font-family: 'MonteCarlo', cursive;
   font-weight: 400;
   color: var(--gold-accent);
-  font-size: 1.4rem;
+  font-size: 2.2rem;
+  line-height: 0.8;
+  display: block;
 }
 
 .divider {
   color: var(--gold-accent);
   font-size: 0.75rem;
+  margin: 2px 0;
 }
 
 .detail-label {
   font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 2px;
   color: var(--gold-accent);
   font-weight: 700;
-  margin: 6px 0 2px 0;
+  margin: 4px 0 1px 0;
 }
 
 .detail-value {
   font-family: 'Cinzel', serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--deep-olive);
   margin: 0;
 }
 
 .detail-sub {
-  font-size: 0.8rem;
-  color: #444444;
+  font-size: 0.75rem;
+  color: #333333;
   font-weight: 600;
-  margin: 2px 0 0 0;
+  margin: 1px 0 0 0;
 }
 
 .swipe-hint {
   font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 1.5px;
   color: var(--gold-accent);
   font-weight: 700;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
 .scroll-arrow {
   animation: bounce 1.5s infinite;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 @keyframes bounce {
@@ -263,24 +275,24 @@ body {
   50% { transform: translateY(4px); }
 }
 
-/* Faded/Blended Details Cards */
+/* Transparent Details Section */
 .details-section {
   width: 100%;
   max-width: 480px;
-  padding: 40px 20px 100px 20px;
+  padding: 30px 18px 100px 18px;
   display: none;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 28px;
 }
 
 .details-section.active {
   display: flex;
-  animation: fadeIn 0.8s ease;
+  animation: fadeInUp 0.9s ease forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -289,32 +301,32 @@ body {
 }
 
 .details-card {
-  background-color: var(--blended-ivory);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(184, 134, 11, 0.25);
+  background-color: var(--transparent-ivory);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(184, 134, 11, 0.4);
   border-radius: 12px;
-  padding: 28px 22px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 26px 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
   width: 100%;
   text-align: center;
 }
 
 .script-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3.4rem;
+  font-family: 'MonteCarlo', cursive;
+  font-size: 3.6rem;
   color: var(--deep-olive);
   font-weight: 400;
-  margin: 0 0 10px 0;
+  margin: 0 0 4px 0;
   line-height: 1;
 }
 
 .location-name {
   font-family: 'Cinzel', serif;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--deep-olive);
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   margin: 0 0 10px 0;
 }
 
@@ -323,7 +335,8 @@ body {
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--text-dark);
-  font-weight: 400;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
   margin: 0 0 15px 0;
 }
 
@@ -337,13 +350,14 @@ body {
   font-size: 0.75rem;
   letter-spacing: 2px;
   border-radius: 20px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-  transition: transform 0.2s ease;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .location-btn:hover {
   transform: translateY(-2px);
+  background-color: var(--soft-olive);
 }
 
 /* Timeline Program Layout */
@@ -395,14 +409,14 @@ body {
 .node-text .time {
   font-family: 'Cinzel', serif;
   font-size: 0.8rem;
-  color: #555555;
-  font-weight: 600;
+  color: #1A2215;
+  font-weight: 700;
   letter-spacing: 1px;
 }
 
 .node-text .event {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
+  font-family: 'MonteCarlo', cursive;
+  font-size: 2.4rem;
   color: var(--deep-olive);
   line-height: 1;
 }
@@ -411,11 +425,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--blended-ivory);
+  background-color: rgba(252, 250, 246, 0.85);
   border: 1px solid var(--gold-accent);
   border-radius: 50%;
-  padding: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 7px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Color Palette Swatches */
@@ -427,10 +441,10 @@ body {
 }
 
 .swatch {
-  width: 40px;
+  width: 42px;
   height: 24px;
   border-radius: 12px 0 12px 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .swatch-1 { background-color: #A3B18A; }
@@ -446,9 +460,10 @@ body {
   border: 1px solid var(--gold-accent);
   padding: 8px;
   border-radius: 12px;
-  background-color: var(--blended-ivory);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  background-color: var(--transparent-ivory);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
 
 .couple-img {
