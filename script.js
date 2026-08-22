@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let musicTimeout = null;
   let phraseIndex = 0;
 
-  // Rich romantic chord progression
+  // Quiet, soothing ambient romance chord progression
   const romanticMelody = [
-    [293.66, 370.00, 440.00, 587.33], // D Major
-    [220.00, 277.18, 329.63, 440.00], // A Major
-    [246.94, 293.66, 370.00, 493.88], // B Minor
-    [185.00, 220.00, 277.18, 370.00], // F# Minor
-    [196.00, 246.94, 293.66, 392.00], // G Major
-    [146.83, 220.00, 293.66, 370.00]  // D Major Low
+    [261.63, 329.63, 392.00], // C Major Soft
+    [220.00, 261.63, 329.63], // A Minor Soft
+    [174.61, 220.00, 261.63], // F Major Soft
+    [196.00, 246.94, 293.66]  // G Major Soft
   ];
 
   function initAudio() {
@@ -26,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function playRomanticPhrase() {
+  function playQuietRomance() {
     if (!audioCtx || !isPlaying) return;
 
     const chord = romanticMelody[phraseIndex % romanticMelody.length];
@@ -36,24 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
-      osc.type = 'triangle'; // Warm acoustic tone
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (noteIndex * 0.22));
+      osc.type = 'sine'; // Soft, pure tone
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime + (noteIndex * 0.3));
 
-      const startTime = audioCtx.currentTime + (noteIndex * 0.22);
+      const startTime = audioCtx.currentTime + (noteIndex * 0.3);
       
-      // Increased gain volume from 0.045 to 0.18 for significantly louder sound
+      // Quiet, gentle volume profile
       gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(0.18, startTime + 0.12);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 3.0);
+      gain.gain.linearRampToValueAtTime(0.035, startTime + 0.4);
+      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 3.5);
 
       osc.connect(gain);
       gain.connect(audioCtx.destination);
 
       osc.start(startTime);
-      osc.stop(startTime + 3.0);
+      osc.stop(startTime + 3.5);
     });
 
-    musicTimeout = setTimeout(playRomanticPhrase, 2400);
+    musicTimeout = setTimeout(playQuietRomance, 3200);
   }
 
   function startMusic() {
@@ -64,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isPlaying) {
       isPlaying = true;
       if (musicIcon) musicIcon.textContent = 'SOUND OFF';
-      playRomanticPhrase();
+      playQuietRomance();
     }
   }
 
