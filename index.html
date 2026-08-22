@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
 
   <main class="page-container">
     
-    <!-- Hero Section: Full Zoom Envelope -->
+    <!-- Hero Section -->
     <section class="hero-section">
       <div class="instruction-box">
         <p class="instruction-text">Tap envelope to open</p>
@@ -31,10 +31,8 @@
       <div class="envelope-container">
         <div class="envelope" id="envelope">
           
-          <!-- Background Envelope Graphic -->
           <img src="new-envelope.jpg" alt="Wedding Envelope" class="envelope-img">
           
-          <!-- Invitation Card -->
           <div class="card" id="card">
             <div class="card-border">
               <span class="card-symbol">◇</span>
@@ -66,64 +64,108 @@
     <!-- Details Section -->
     <section class="details-section" id="details-section">
       
-      <!-- Location & Directions -->
-      <div class="details-card">
-        <div class="line-symbol">◇ ◇ ◇</div>
-        <h2>Location & Map</h2>
-        <p class="venue-name">The Westin Cairo Resort & Spa</p>
-        <p class="venue-address">Katameya Dunes, Cairo International Airport Road</p>
+      <!-- Top Decorative Ribbon Accent -->
+      <div class="ribbon-container">
+        <svg class="ribbon-icon" viewBox="0 0 100 60" width="40" height="30">
+          <path d="M30 20 C20 5, 5 15, 25 30 C45 45, 50 25, 50 25 C50 25, 55 45, 75 30 C95 15, 80 5, 70 20 C60 35, 50 25, 50 25 C50 25, 40 35, 30 20 Z" fill="#4B5832"/>
+          <path d="M50 25 L35 55 L42 52 L50 35 L58 52 L65 55 Z" fill="#4B5832"/>
+        </svg>
+      </div>
 
+      <!-- Location -->
+      <div class="section-block">
+        <h2 class="script-title">Location</h2>
+        <p class="location-name">The Westin Cairo Resort & Spa</p>
+        <p class="body-text">
+          Katameya Dunes, Cairo International Airport Road.<br>
+          A tranquil oasis surrounded by lush greenery — the perfect setting to celebrate our love under the evening sky.
+        </p>
         <a href="https://maps.google.com/?q=The+Westin+Cairo" target="_blank" rel="noopener noreferrer" class="location-btn">
           OPEN GOOGLE MAPS
         </a>
-
-        <div class="qr-container">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://maps.google.com/?q=The+Westin+Cairo&color=556B2F" alt="Map QR Code" class="qr-code">
-          <p class="qr-label">SCAN FOR DIRECTIONS</p>
-        </div>
       </div>
 
-      <div class="section-divider">― ✦ ―</div>
-
-      <!-- Timeline -->
-      <div class="details-card">
-        <div class="line-symbol">◇ ◇ ◇</div>
-        <h2>Schedule</h2>
+      <!-- Program / Timeline -->
+      <div class="section-block">
+        <h2 class="script-title">Program</h2>
         
-        <div class="timeline-item">
-          <span class="timeline-symbol">✦</span>
-          <div>
-            <h4>6:00 PM</h4>
-            <p>Welcome & Guest Reception</p>
-          </div>
-        </div>
+        <div class="timeline-container">
+          <svg class="timeline-svg" viewBox="0 0 200 360" preserveAspectRatio="none">
+            <path d="M100 0 C 130 40, 70 80, 100 120 C 130 160, 70 200, 100 240 C 130 280, 70 320, 100 360" 
+                  fill="none" stroke="#7A8B5B" stroke-width="1.5" stroke-dasharray="4 3"/>
+          </svg>
 
-        <div class="timeline-item">
-          <span class="timeline-symbol">✦</span>
-          <div>
-            <h4>7:00 PM</h4>
-            <p>Wedding Ceremony</p>
+          <!-- Timeline Node 1 -->
+          <div class="timeline-node left">
+            <div class="node-text">
+              <span class="time">6:00 PM</span>
+              <span class="event">Guests arrival</span>
+            </div>
+            <div class="node-icon">🥂</div>
           </div>
-        </div>
 
-        <div class="timeline-item">
-          <span class="timeline-symbol">✦</span>
-          <div>
-            <h4>8:00 PM</h4>
-            <p>Dinner & Celebrations</p>
+          <!-- Timeline Node 2 -->
+          <div class="timeline-node right">
+            <div class="node-icon">💍</div>
+            <div class="node-text">
+              <span class="time">7:00 PM</span>
+              <span class="event">Ceremony</span>
+            </div>
+          </div>
+
+          <!-- Timeline Node 3 -->
+          <div class="timeline-node left">
+            <div class="node-text">
+              <span class="time">8:00 PM</span>
+              <span class="event">Wedding dinner</span>
+            </div>
+            <div class="node-icon">🍽️</div>
+          </div>
+
+          <!-- Timeline Node 4 -->
+          <div class="timeline-node right">
+            <div class="node-icon">✨</div>
+            <div class="node-text">
+              <span class="time">12:00 AM</span>
+              <span class="event">End of the evening</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="section-divider">― ✦ ―</div>
+      <!-- Dress Code -->
+      <div class="section-block">
+        <h2 class="script-title">Dress Code</h2>
+        <p class="body-text">
+          We’d be delighted if your outfits complemented our wedding color palette. Formal or cocktail attire suggested.
+        </p>
+        <div class="color-palette">
+          <span class="swatch swatch-1"></span>
+          <span class="swatch swatch-2"></span>
+          <span class="swatch swatch-3"></span>
+        </div>
+      </div>
+
+      <!-- Couple Photo Section -->
+      <div class="section-block photo-block">
+        <div class="photo-frame">
+          <img src="couple.jpg" alt="Sawsan & Hassan" class="couple-img">
+        </div>
+      </div>
+
+      <!-- Additional Information -->
+      <div class="section-block">
+        <h2 class="script-title">Additional Information</h2>
+        <p class="body-text">
+          No gifts, please — your presence is our greatest gift.
+        </p>
+      </div>
 
       <!-- Friendly Note on Children -->
-      <div class="details-card note-card">
-        <div class="line-symbol">✧</div>
-        <h2>A Little Note</h2>
-        <p class="note-text">
-          We love your little ones dearly, but tonight is your night off! <br><br>
-          Call the babysitter, put on your dancing shoes, and let’s celebrate adult-style uninterrupted. 🥂
+      <div class="section-block">
+        <h2 class="script-title">A Little Note</h2>
+        <p class="body-text">
+          We love your little ones dearly, but tonight is your night off! Call the babysitter, put on your dancing shoes, and let’s celebrate adult-style uninterrupted. 🥂
         </p>
       </div>
 
