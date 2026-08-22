@@ -19,53 +19,62 @@ body {
   overflow-x: hidden;
 }
 
-/* 1. Background Overlay */
+/* Dynamic Background Overlay (Fixed file extension to background.jpg) */
 .background-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('background.png') center/cover no-repeat;
-  z-index: -1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./background.jpg?v=2');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 0;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 1.2s ease-in-out;
 }
 
 .background-overlay.active {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
-/* 2. Floating Music Toggle Button */
+/* Audio Control Button */
 .music-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 100;
-  background: rgba(253, 251, 247, 0.85);
+  background: rgba(253, 251, 247, 0.9);
   border: 1px solid var(--gold-accent);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  padding: 8px 14px;
+  border-radius: 20px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .music-toggle:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
-/* 3. Hero Section & Full Screen Envelope */
+.music-icon-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  color: var(--olive-green);
+  font-weight: 600;
+}
+
+/* Hero Section */
 .page-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-section {
@@ -75,13 +84,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 10px;
+  padding: 10px;
   position: relative;
 }
 
 .instruction-box {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   transition: opacity 0.6s ease;
 }
 
@@ -90,26 +99,26 @@ body {
   color: var(--olive-green);
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   margin: 0;
 }
 
 .tap-symbol {
   color: var(--gold-accent);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .background-overlay.active ~ .page-container .instruction-text {
   color: var(--ivory-white);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-/* Full Screen Envelope Layout */
+/* Envelope Container */
 .envelope-container {
-  width: 100%;
-  max-width: 420px;
-  height: 75vh;
-  max-height: 580px;
+  width: 96vw;
+  max-width: 480px;
+  height: 82vh;
+  max-height: 680px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -128,20 +137,20 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   position: relative;
   z-index: 2;
 }
 
-/* Card inside Envelope */
+/* Inner Card Motion */
 .card {
   position: absolute;
-  top: 15px;
-  left: 5%;
-  width: 90%;
-  height: 95%;
+  top: 10px;
+  left: 3%;
+  width: 94%;
+  height: 97%;
   background-color: var(--ivory-white);
-  padding: 20px 15px;
+  padding: 15px 10px;
   border-radius: 8px;
   text-align: center;
   z-index: 1;
@@ -155,16 +164,15 @@ body {
 .card-border {
   border: 1px solid var(--gold-accent);
   height: 100%;
-  padding: 20px 10px;
+  padding: 15px 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Open Animation: Card slides upward out of envelope */
 .envelope.open .card {
-  transform: translateY(-130px) scale(1.02);
+  transform: translateY(-135px) scale(1.02);
   z-index: 3;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
 }
@@ -173,17 +181,18 @@ body {
   opacity: 0;
 }
 
-/* Typography & Symbols */
-.card-symbol {
-  color: var(--olive-green);
-  font-size: 1.4rem;
+/* Typography & Visual Details */
+.card-symbol, .line-symbol {
+  color: var(--gold-accent);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
 }
 
 .card-header {
   font-style: italic;
   font-size: 1rem;
   color: var(--olive-green);
-  margin: 5px 0;
+  margin: 2px 0;
 }
 
 .names {
@@ -205,8 +214,7 @@ body {
 
 .divider {
   color: var(--gold-accent);
-  font-size: 0.8rem;
-  letter-spacing: 4px;
+  font-size: 0.75rem;
 }
 
 .detail-label {
@@ -239,27 +247,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .scroll-arrow {
   animation: bounce 1.5s infinite;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+  50% { transform: translateY(4px); }
 }
 
-/* 4. Details Section (Swipe Down Pages) */
+/* Details Section */
 .details-section {
   width: 100%;
   max-width: 450px;
-  padding: 80px 20px 100px 20px;
-  display: none; /* Hidden until opened */
+  padding: 60px 20px 100px 20px;
+  display: none;
   flex-direction: column;
-  gap: 30px;
+  gap: 25px;
 }
 
 .details-section.active {
@@ -267,24 +275,19 @@ body {
 }
 
 .details-card {
-  background-color: rgba(253, 251, 247, 0.95);
+  background-color: rgba(253, 251, 247, 0.96);
   border-radius: 12px;
-  padding: 30px 20px;
+  padding: 25px 20px;
   text-align: center;
   border: 1px solid var(--gold-accent);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
-.card-symbol-header {
-  font-size: 1.8rem;
-  margin-bottom: 5px;
-}
-
 .details-card h2 {
   font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--olive-green);
-  margin-top: 0;
+  margin: 8px 0 15px 0;
   letter-spacing: 1.5px;
 }
 
@@ -333,22 +336,25 @@ body {
 
 .section-divider {
   text-align: center;
-  font-size: 1.4rem;
+  color: var(--gold-accent);
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
 }
 
-/* Timeline Styling */
 .timeline-item {
   display: flex;
   align-items: center;
   gap: 15px;
   text-align: left;
-  margin: 20px 0;
-  padding-bottom: 10px;
+  margin: 15px 0;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(197, 160, 89, 0.2);
 }
 
 .timeline-symbol {
-  font-size: 1.4rem;
+  color: var(--gold-accent);
+  font-size: 0.8rem;
 }
 
 .timeline-item h4 {
@@ -361,4 +367,11 @@ body {
 .timeline-item p {
   margin: 2px 0 0 0;
   font-size: 0.9rem;
+}
+
+.note-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
 }
