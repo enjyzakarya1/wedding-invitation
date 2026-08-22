@@ -2,28 +2,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const envelopeWrapper = document.getElementById("envelope-wrapper");
   const bgMusic = document.getElementById("bg-music");
   const musicBtn = document.getElementById("music-btn");
+  const musicIcon = document.getElementById("music-icon");
+  
   let isPlaying = false;
 
-  // Enhanced Envelope Open Motion & Auto-play Audio
+  // Helper to play music smoothly
+  function playAudio() {
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      musicIcon.textContent = "🎵";
+    }).catch(err => {
+      console.log("Browser blocked initial audio start:", err);
+    });
+  }
+
+  // Helper to pause music
+  function pauseAudio() {
+    bgMusic.pause();
+    isPlaying = false;
+    musicIcon.textContent = "🔇";
+  }
+
+  // Envelope Tap: Toggle open class & trigger music
   envelopeWrapper.addEventListener("click", () => {
     envelopeWrapper.classList.toggle("open");
 
     if (!isPlaying) {
-      bgMusic.play().then(() => {
-        isPlaying = true;
-      }).catch(err => console.log("Autoplay prevented:", err));
+      playAudio();
     }
   });
 
-  // Music Button Manual Toggle
+  // Music Button: Explicit Toggle
   musicBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Avoid re-triggering envelope click
+    e.stopPropagation(); // Avoid triggering envelope click
     if (isPlaying) {
-      bgMusic.pause();
-      isPlaying = false;
+      pauseAudio();
     } else {
-      bgMusic.play();
-      isPlaying = true;
+      playAudio();
     }
   });
 });
